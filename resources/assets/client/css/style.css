@@ -475,11 +475,11 @@
  .swiper-pagination.news .swiper-pagination-bullet-active {
      width: 40px !important;
      border-radius: 5px !important;
-     background: #E5282A !important;
+     background: #1C58A6 !important;
  }
 
  .under {
-     color: #E5282A;
+     color: #1C58A6;
  }
 
  body .uwy.userway_p1 .userway_buttons_wrapper {
@@ -737,7 +737,7 @@
     --heading-font: "Montserrat", sans-serif;
     --nav-font: "Montserrat", sans-serif;
     --background-color: #F9F9F9;
-    --background-red: #E5282A;
+    --background-red: #1C58A6;
     --background-blue: #1C58A6;
     --default-color: #F9F9F9;
     --text-color: #6c757d;
@@ -827,9 +827,7 @@
         color: #FFF !important;
         transition: all 0.4s ease;
     }
-    .news-home nav ul li{
-        border-radius: 10px 10px 0 0;
-    }
+
  /*video*/
      .mySwiper .swiper-wrapper::before {
         content: '';
@@ -1067,10 +1065,6 @@
 
  .text-color {
      color: var(--text-color);
- }
-
- .rounded-top-left {
-     border-radius: 10px 0 0 0;
  }
 
  .background-red {
@@ -1376,22 +1370,11 @@
     display: block;
     max-width: 720px;
  }
-.news-home  .section-title{
-    border-left: 5px solid var(--background-red);
-}
+
 .border-bottom.news{
     border-bottom: 2px solid var(--background-red) !important;
 }
- .section-title {
-     margin-bottom: 15px;
-     padding: 15px;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     background: var(--background-color-white);
-     border: 1px solid #dee2e6;
-     border-left: 5px solid var(--background-blue);
- }
+
 .hero picture{
     height: 70vh;
     width:100vw;
@@ -1666,9 +1649,7 @@
      .text-blog-inner p{
         font-size: 0.938rem;
      }
-     .rounded-top-left {
-         /* margin-bottom: 30px !important; */
-     }
+
      .col-12.col-lg-9.mb-5.pb-4.d-flex.justify-content-between.gap-3.flex-wrap.align-items-center {
          margin-bottom: 10px !important;
      }
@@ -1915,7 +1896,7 @@
      .montserrat-bold.font-28.mt-5.title-blue {
          margin-top: 25px !important;
      }
-     .section-title.rounded-top-left.rounded-3.d-flex.justify-content-between.align-items-center.h-100 svg {
+     .section-title.rounded-3.d-flex.justify-content-between.align-items-center.h-100 svg {
          width: 20px;
      }
      .btn.px-4.background-red.rounded-3.text-white.montserrat-medium.font-15,

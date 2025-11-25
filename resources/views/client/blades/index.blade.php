@@ -49,7 +49,7 @@
 
                                             <div class="overlay">
                                                 <div class="mb-2 d-flex justify-content-center align-items-center gap-1 flex-wrap">
-                                                    <span class="badge background-red montserrat-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogSuperHighlight->category->title}}</span>
+                                                    <span class="badge rounded-0 background-red montserrat-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogSuperHighlight->category->title}}</span>
                                                     <p class="text-white mb-0 montserrat-regular font-15">{{$dataFormatada}}</p>
                                                 </div>
                                                 <a href="{{route('blog-inner', ['slug' => $blogSuperHighlight->slug])}}">
@@ -83,7 +83,7 @@
                                             style="object-fit: cover; aspect-ratio: 1 / 1;">
                                             <div class="overlay">
                                                 <div class="mb-2 d-flex justify-content-start align-items-center gap-1 flex-wrap">
-                                                    <span class="badge background-red text-uppercase montserrat-semiBold font-12 py-2 px-2 me-2">{{$blogHighlight->category->title}}</span>
+                                                    <span class="badge rounded-0 background-red text-uppercase montserrat-semiBold font-12 py-2 px-2 me-2">{{$blogHighlight->category->title}}</span>
                                                     <p class="text-white mb-0 montserrat-regular font-12">{{$dataFormatada}}</p>
                                                 </div>
                                                 <a href="{{route('blog-inner', ['slug' => $blogHighlight->slug])}}">                              
@@ -108,33 +108,32 @@
             <div class="row">
                 @if ($recentCategories->count() > 0)                    
                     <div class="col-12 col-lg-9 animate-on-scroll mb-3" data-animation="animate__fadeInLeft">
-                        <div class="border-bottom news mb-4">
+                        <div class="border-bottom news mb-0">
                             <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
-                                <h2 class="section-title d-table px-4 py-2 w-auto m-0 montserrat-bold font-18 title-blue text-uppercase rounded-top-left">
+                                <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-18 title-blue text-uppercase">
                                     Últimas notícias
-                                </h2>
-
-                                <nav class="mt-3 mt-md-0">
-                                    <ul class="list-unstyled d-flex flex-row flex-wrap gap-2 gap-md-3 justify-content-start justify-content-md-center mb-0">
-                                        <li class="py-1 py-sm-2 px-2 px-sm-3 text-uppercase montserrat-semiBold font-14 text-white background-red active">
-                                            <a href="javascript:void(0)" class="text-decoration-none text-white category-filter" data-category="todas">
-                                                Todas
-                                            </a>
-                                        </li>
-                                        
-                                        @foreach($recentCategories as $index => $category)
-                                            <li class="py-2 px-1 px-sm-3 text-uppercase montserrat-semiBold font-14 text-black">
-                                                <a href="javascript:void(0)" class="text-decoration-none text-black category-filter" data-category="{{ $category->slug }}">
-                                                    {{ $category->title }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </nav>
+                                </h2>                                
                             </div>
                         </div>
+                        <nav class="mt-3">
+                            <ul class="list-unstyled d-flex flex-row flex-wrap gap-2 gap-md-3 justify-content-start mb-0">
+                                <li class="py-1 py-sm-2 px-2 px-sm-3 text-uppercase montserrat-semiBold font-14 text-white background-red active">
+                                    <a href="javascript:void(0)" class="text-decoration-none text-white category-filter" data-category="todas">
+                                        Todas
+                                    </a>
+                                </li>
+                                
+                                @foreach($recentCategories as $index => $category)
+                                    <li class="py-2 px-1 px-sm-3 text-uppercase montserrat-semiBold font-14 text-black">
+                                        <a href="javascript:void(0)" class="text-decoration-none text-black category-filter" data-category="{{ $category->slug }}">
+                                            {{ $category->title }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </nav>
 
-                        <div id="news-container">
+                        <div id="news-container" class="mt-5">
                             @include('client.ajax.filter-blog-homePage', [
                                 'featuredNews' => $featuredNews,
                                 'latestNews' => $latestNews
