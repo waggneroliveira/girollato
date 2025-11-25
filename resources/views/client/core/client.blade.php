@@ -150,10 +150,16 @@
                 <div class="d-flex col-12 col-lg-11 justify-content-end align-items-start wrap-logo-and-login">
                     <div class="logo-img px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
                         <a href="{{route('index')}}">
-                            <img src="{{asset('build/client/images/sindacsba.png')}}" alt="Instituto Baiano de Medicina Desportivao" title="Instituto Baiano de Medicina Desportivao" class="img-fluid">
+                            <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Instituto Baiano de Medicina Desportivao" title="Instituto Baiano de Medicina Desportivao" class="img-fluid">
                         </a>
                     </div>
-                    <div class="d-flex justify-content-center align-items-center gap-2 mt-3 login-desktop" style="width: 23%;">                        
+
+                    @if ($announcements->count())                        
+                        <div class="mb-3">
+                            @include('client.includes.announcement')
+                        </div>
+                    @endif
+                    {{-- <div class="d-flex justify-content-center align-items-center gap-2 mt-3 login-desktop" style="width: 23%;">                        
                         @if (!Auth::guard('client')->check())                            
                             <div class="d-flex justify-content-start align-items-center gap-2">
                                 <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -189,7 +195,7 @@
                                 </a>                                               
                             </div>
                         @endif
-                    </div>
+                    </div> --}}
                 </div>
         
                 <div class="social-links d-flex justify-content-center align-items-center gap-4 mb-2 mt-3 text-center col-12">

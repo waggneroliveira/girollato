@@ -330,7 +330,7 @@
     border-radius: 100%;
  }
  .hidden div span span[aria-current="page"] span {
-     background: #2F368B !important;
+     background: #1C58A6 !important;
      color: #FFF !important;
      border-radius: 100%;
  }
@@ -746,7 +746,7 @@
     --nav-font: "Montserrat", sans-serif;
     --background-color: #F9F9F9;
     --background-red: #E5282A;
-    --background-blue: #2F368B;
+    --background-blue: #1C58A6;
     --default-color: #F9F9F9;
     --text-color: #6c757d;
     --text-color-blog-inner: #6c757d;
