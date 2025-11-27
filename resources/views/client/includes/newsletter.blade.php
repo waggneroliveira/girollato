@@ -1,25 +1,24 @@
-<div class="bg-white text-center border border-top-0 p-3">
-    <form id="newsletterForm">
-        @csrf
-        <p class="text-color montserrat-regular font-16 text-start">
-            Cadastre-se abaixo e receba as principais novidades via e-mail!
-        </p>
-        <div class="input-group mb-2" style="width: 100%;">
-            <input type="text" name="email" id="email" class="form-control form-control-lg montserrat-regular text-color font-14" placeholder="Seu e-mail" required>
-            <div class="input-group-append">
-                <button type="submit" class="btn background-red text-white montserrat-semiBold font-16 px-3 h-100 rounded-3">
-                    Enviar
-                </button>
-            </div>
+<form id="newsletterForm">
+    @csrf
+    <p class="text-color montserrat-regular font-12 text-start">
+        Inscreva-se na nossa newsletter e fique por dentro de todas as novidades de toda a acidade
+    </p>
+    <div class="input-group mb-2" style="width: 100%;">
+        <input type="text" name="email" id="email" class="form-control form-control-lg montserrat-regular text-color font-14" placeholder="Seu e-mail" required>
+        <div class="input-group-append">
+            <button type="submit" class="btn background-red text-white montserrat-semiBold font-16 px-3 h-100 rounded-3">
+                Enviar
+            </button>
         </div>
-        <div class="d-flex justify-content-start align-items-center gap-2">
-            <input type="checkbox" id="term_privacy" name="term_privacy" required>
-            <label for="term_privacy" class="montserrat-regular text-color font-12">
-                Aceito os termos descritos na Política de Privacidade
-            </label>
-        </div>
-    </form>
-</div>
+    </div>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+        <input type="checkbox" id="term_privacy" name="term_privacy" required>
+        <label for="term_privacy" class="montserrat-regular text-color font-12 text-start">
+            Aceito os termos descritos na Política de Privacidade
+        </label>
+    </div>
+</form>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $('#newsletterForm').on('submit', function(e) {

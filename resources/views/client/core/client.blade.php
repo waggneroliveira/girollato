@@ -149,7 +149,7 @@
             <div class="header-top py-2 mb-3 header-color">
                 <div class="container d-flex justify-content-between align-items-center">
                     <p class="dropdown-item montserrat-medium text-start font-15 mb-0">Lauro de Freitas, BA | Quinta-feira, 30 de outubro de 2025</p>
-                    <div class="col-6 sc">
+                    <div class="col-6">
                         <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 flex-column">
                             <div class="dark-background rounded-3 p-0 m-auto me-0">
                                 <nav class="site-navigation position-relative text-end w-25 redes-sociais">
@@ -224,7 +224,7 @@
                                     role="button" 
                                     data-bs-toggle="dropdown" 
                                     aria-expanded="false">
-                                        Quem Somos
+                                        Quem Somos <i class="bi bi-chevron-down"></i>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="sobreNosDropdown">
                                         @if (isset($abouts) && $abouts->count() > 0) 
@@ -241,7 +241,7 @@
                                         role="button" 
                                         data-bs-toggle="dropdown" 
                                         aria-expanded="false">
-                                        Notícias
+                                        Notícias <i class="bi bi-chevron-down"></i>
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="noticiasDropdown">

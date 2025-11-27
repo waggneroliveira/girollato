@@ -627,7 +627,9 @@
  .header--category ul li a.active {
      color: var(--background-red);
  }
-
+.title-blue.news{
+    border-color: var(--background-blue);
+}
  .sitemap ul li a,
  a {
      text-decoration: none

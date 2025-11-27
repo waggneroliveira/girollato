@@ -4,7 +4,7 @@
         <div class="swiper-wrapper">
             @foreach ($announcements->where('exhibition', 'mobile') as $announcement)
                 <div class="swiper-slide py-0">
-                    <div class="image rounded-0overflow-hidden">
+                    <div class="image rounded-0 overflow-hidden">
                         @if (!empty($announcement->link))
                             <a href="{{ $announcement->link }}" target="_blank" rel="nofollow noopener noreferrer">
                                 <img src="{{ asset('storage/' . $announcement->path_image) }}"
@@ -27,7 +27,7 @@
         <div class="swiper-wrapper">
             @foreach ($announcements->where('exhibition', 'horizontal') as $announcement)
                 <div class="swiper-slide py-0">
-                    <div class="image rounded-0overflow-hidden">
+                    <div class="image rounded-0 overflow-hidden">
                         @if (!empty($announcement->link))
                             <a href="{{ $announcement->link }}" target="_blank" rel="nofollow noopener noreferrer">
                                 <img src="{{ asset('storage/' . $announcement->path_image) }}"

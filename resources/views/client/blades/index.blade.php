@@ -152,45 +152,60 @@
                             ])
                         </div>
                     </div>
-                @endif
-                @if ($events->count() > 0)                    
-                    <div class="col-lg-3" data-aos="fade-left" data-aos-delay="100">
-                        <div class="section-title mb-0 rounded-top-left">
-                            <h3 class="m-0 text-uppercase montserrat-bold font-18 title-blue">Agenda</h3>
-                        </div>
+                @endif                  
+                <div class="col-lg-3 col-12" data-aos="fade-left" data-aos-delay="100">
+                    @if ($blogRelacionados->count() > 0)                        
+                        <!-- Popular News Start -->
+                        <div class="mb-3">
+                            <div class="bg-white border border-top-0 p-3 rounded-1">
+                                <div class="section-title mb-4 rounded-top-left">
+                                    <h4 class="mb-3 montserrat-bold font-20 pb-3 border-bottom title-blue news">Veja também</h4>
+                                </div>
+                                @foreach($blogRelacionados as $relacionado)                           
+                                    <article>
+                                        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                                            <!-- Texto à esquerda ocupando todo o espaço restante -->
+                                            <div class="h-100 pe-3 d-flex flex-column justify-content-center" style="flex: 1;">
+                                                <a href="{{ route('blog-inner', ['slug' => $relacionado->slug]) }}" class="underline">
+                                                    <h3 class="h6 m-0 montserrat-bold font-14 title-blue">
+                                                        {{ substr(strip_tags($relacionado->title), 0, 100) }}
+                                                    </h3>
+                                                </a>
+                                            </div>
 
-                        <div class="bg-white p-3">      
-                            @foreach($events as $event)                        
-                                <article>
-                                    <div class="d-flex align-items-center bg-white mb-3 overflow-hidden" style="height: 80px;">
-                                        <div class="date col-4 h-100 d-flex justify-content-center align-items-center flex-column border border-right-1">
-                                            <span class="montserrat-bold w-100 h-50 d-flex justify-content-center align-items-center font-20 title-blue">
-                                                {{ \Carbon\Carbon::parse($event->date)->format('d') }}
-                                            </span>
-                                            <span class="montserrat-medium w-100 h-50 d-flex justify-content-center align-items-center font-14 title-blue background-red text-white">
-                                                {{ ucfirst(\Carbon\Carbon::parse($event->date)->translatedFormat('F')) }}
-                                            </span>
+                                            <!-- Imagem fixa à direita -->
+                                            <div class="position-relative" style="width:94px; height:94px; flex-shrink:0;">
+                                                <img loading="lazy"
+                                                    class="rounded-1 img-fluid w-100 h-100"
+                                                    style="object-fit: cover; aspect-ratio: 1/1;"
+                                                    src="{{ $relacionado->path_image_thumbnail ? asset('storage/'.$relacionado->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                                    alt="{{ $relacionado->title ? $relacionado->title : 'Sem imagem' }}">
+                                            </div>
                                         </div>
-                                        <div class="col-8 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                                            @if($event->link)
-                                                <a href="{{ $event->link }}" class="underline">
-                                            @else
-                                                <a href="{{ route('client.event') }}?event_id={{ $event->id }}&scroll=true" class="underline">
-                                            @endif
-                                                <h3 class="h6 m-0 montserrat-bold font-14 title-blue" title="{{$event->title}}">
-                                                    {{ substr(strip_tags($event->title), 0, 50) }}...
-                                                </h3>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </article>
-                            @endforeach              
-                            <div class="btn-about d-table m-auto mt-5">
-                                <a href="{{route('client.event')}}" class="background-red montserrat-semiBold font-18 py-2 px-4 rounded-5">Ver todos</a>
-                            </div>                      
+                                    </article>
+                                @endforeach
+                            </div>
                         </div>
+                        <!-- Popular News End -->
+                    @endif
+
+                    <!-- Ads Start -->
+                    @if ($announcements->count())                        
+                        <div class="mb-4">
+                            @include('client.includes.announcementVertical')
+                        </div>
+                    @endif
+                    <!-- Ads End -->
+
+                    <!-- Newsletter Start -->
+                    <div class="mb-4 bg-white text-center border border-top-0 p-3 rounded-1">
+                        <div class="section-title mb-0 rounded-top-left">
+                            <h4 class="mb-3 montserrat-bold font-20 border-bottom pb-3 title-blue text-start news">Newsletter</h4>
+                        </div>
+                        @include('client.includes.newsletter')
                     </div>
-                @endif
+                    <!-- Newsletter End -->
+                </div>
             </div>
         </div>
     </section>

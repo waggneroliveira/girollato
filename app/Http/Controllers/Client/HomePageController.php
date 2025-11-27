@@ -53,24 +53,7 @@ class HomePageController extends Controller
         $benefitTopics = BenefitTopic::active()->sorting()->get();
         $report = Report::active()->first();
         $contact = Contact::first();
-        $startOfWeek = Carbon::now()->startOfWeek(Carbon::SUNDAY); // começa no domingo
-        $endOfWeek   = Carbon::now()->endOfWeek(Carbon::SATURDAY); // termina no sábado
-        $events = Event::active()
-        ->whereBetween('date', [$startOfWeek, $endOfWeek])
-        ->orderBy('date', 'asc')
-        ->get();
-        // Obter as próximas 9 notícias (excluindo o destaque)
-        $latestNews = Blog::whereHas('category', function($active) {
-            $active->where('active', 1);
-        })
-        ->with(['category' => function($query) {
-            $query->select('id', 'title', 'slug');
-        }])
-        ->orderBy('created_at', 'DESC')
-        ->active()
-        ->take(9)
-        ->get();
-        
+
         // Obter as 5 categorias mais recentes das últimas notícias
         $recentCategories = BlogCategory::whereHas('blogs', function($query) {
             $query->active()->whereHas('category', function($active) {
@@ -85,10 +68,43 @@ class HomePageController extends Controller
         ->take(5)
         ->get();
 
+        // Obter as próximas 9 notícias (excluindo o destaque)
+        $latestNews = Blog::whereHas('category', function($active) {
+                $active->where('active', 1);
+            })
+            ->with(['category' => function($query) {
+                $query->select('id', 'title', 'slug');
+            }])
+            ->orderBy('created_at', 'DESC')
+            ->active()
+            ->get();
+
+        // Pegando os IDs para excluir
+        $excludedIds = $recentCategories->pluck('id');
+        
+        $blogRelacionados = Blog::whereHas('category')
+            ->whereNotIn('blog_category_id', $excludedIds)
+            ->active()
+            ->sorting()
+            ->take(4)
+            ->get();
+
+        $announcementVerticals = Announcement::select(
+            'exhibition',
+            'link',
+            'exhibition',
+            'path_image',
+            'active',
+            'sorting',
+        )
+        ->where('exhibition', '=', 'vertical')
+        ->active()
+        ->sorting()
+        ->get();
+
         return view('client.blades.index', compact(
             'latestNews', 
             'recentCategories', 
-            'events', 
             'contact', 
             'report',
             'benefitTopics', 
@@ -100,6 +116,8 @@ class HomePageController extends Controller
             'blogSuperHighlights', 
             'blogHighlights', 
             'announcements', 
+            'blogRelacionados', 
+            'announcementVerticals', 
             'topics')
         );
     }
@@ -124,7 +142,7 @@ class HomePageController extends Controller
             $allNews = $query->orderBy('created_at', 'DESC')->get();
             
             // Pegar as próximas notícias (excluindo a primeira)
-            $latestNews = $allNews->take(10);
+            $latestNews = $allNews;
 
             $html = view('client.ajax.filter-blog-homePage', [
                 'latestNews' => $latestNews

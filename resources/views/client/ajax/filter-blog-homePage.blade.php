@@ -12,7 +12,7 @@
                             {{ $news->category->title }}
                         </span>
                     </div>
-                    <img loading="lazy" class="img-fluid w-100"
+                    <img loading="lazy" class="img-fluid w-100 rounded-1"
                     src="{{ $news->path_image_thumbnail ? asset('storage/' . $news->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
                     alt="{{ $news->title }}"
                     style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
