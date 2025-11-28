@@ -60,6 +60,7 @@
                         <div class="swiper-pagination news"></div>
                     </div>
                 </div>
+
                 @if ($blogHighlights->count())            
                     <div class="col-lg-4 ps-2">
                         <div class="row g-2">
@@ -137,7 +138,7 @@
                                 </li>
                                 
                                 @foreach($recentCategories as $index => $category)
-                                    <li class="py-2 px-1 px-sm-3 text-uppercase montserrat-semiBold font-14 text-black bg-blue-light">
+                                    <li class="py-2 px-1 px-sm-3 montserrat-semiBold font-14 text-black bg-blue-light">
                                         <a href="javascript:void(0)" class="text-decoration-none text-black category-filter" data-category="{{ $category->slug }}">
                                             {{ $category->title }}
                                         </a>
@@ -362,8 +363,6 @@
         </div>
     </section>
 @endif
-
-@include('client.includes.social')
 
 <script>
     const section = document.querySelector('section.video');

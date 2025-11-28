@@ -146,7 +146,7 @@
     <div id="organization" hidden></div>
     <header id="header" class="w-100 d-flex flex-column position p-0">   
         <div class="w-100 py-0">
-            <div class="header-top py-2 mb-3 header-color">
+            <div class="header-top py-2 mb-0 header-color">
                 <div class="container d-flex justify-content-between align-items-center">
                     <p class="dropdown-item montserrat-medium text-start font-15 mb-0">Lauro de Freitas, BA | Quinta-feira, 30 de outubro de 2025</p>
                     <div class="col-6">
@@ -211,7 +211,7 @@
                     @endif
                 </div>       
             </div>
-            <div class="container-fluid header-color mt-3 h-60 d-flex align-items-center py-0">
+            <div class="container-fluid header-color mt-0 h-60 d-flex align-items-center py-0">
                 <div class="container d-flex justify-content-between align-items-center h-100">
                     <div class="social-links d-flex justify-content-center align-items-center gap-4 text-center">
                         <nav class="none site-navigation ul position-relative text-end width-75 h-60">

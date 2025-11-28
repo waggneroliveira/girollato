@@ -448,4 +448,48 @@
         });
 
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const mainSwiper = new Swiper(".main-swiper", {
+            loop: true,
+            speed: 700,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+
+            pagination: {
+                el: ".swiper-pagination.news",
+                clickable: true,
+            },
+
+            keyboard: {
+                enabled: true,
+            },
+
+            // Transição suave entre slides
+            effect: "slide",
+
+            // Responsivo (caso queira ajustar no futuro)
+            breakpoints: {
+                0: {
+                    speed: 500
+                },
+                768: {
+                    speed: 700
+                }
+            }
+        });
+
+        // Pausar autoplay ao passar o mouse (UX melhor)
+        const swiperEl = document.querySelector(".main-swiper");
+
+        if (swiperEl) {
+            swiperEl.addEventListener("mouseenter", () => mainSwiper.autoplay.stop());
+            swiperEl.addEventListener("mouseleave", () => mainSwiper.autoplay.start());
+        }
+
+    });
+
 }();
