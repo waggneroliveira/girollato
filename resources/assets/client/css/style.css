@@ -746,7 +746,7 @@
     --cta-background-color: #BBD3F2;
     --nav-hover-color: #ffffff;
     --background-color-white: #ffffff;
-    --background-color-grey: #F8F9FC;
+    --background-color-grey: #F9F9F9;
     --background-color-dark: #101820;
     --background-color-grey-medium: #D9D9D9;
     --background-color-client: #F1F0F0;
@@ -829,18 +829,11 @@
     }
 
  /*video*/
-     .mySwiper .swiper-wrapper::before {
-        content: '';
-        width: 2px;
-        background: #ffffff8a;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 28px;
+    .shadow-video-current{
+        box-shadow: 0px 8px 15px -5px rgba(0, 0, 0, 0.35);    
     }
-
     .mySwiper .swiper-wrapper {
-        width: 70% !important; 
+        width: 95% !important; 
         overflow-y: auto;
         scrollbar-width: none;
         height: auto;
@@ -856,13 +849,12 @@
         gap: 10px;
         padding: 15px 10px;
         cursor: pointer;
-        border-radius: 6px;
         transition: all 0.4s ease;
     }
 
     .mySwiper .swiper-slide.active,
     .mySwiper .swiper-slide:hover {
-        background: #fff;
+        background: var(--cta-background-color);
         color: #000;
         font-weight: bold;
         transform: scale(1.06);
@@ -899,7 +891,7 @@
         height: 460px;
         overflow-y: auto;
         scrollbar-width: thin; /* Firefox */
-        scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        scrollbar-color: var(--background-blue) transparent;
     }
 
     /* Chrome, Edge, Safari */
