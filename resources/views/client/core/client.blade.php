@@ -275,10 +275,6 @@
                                  </button>
                               </div>
                            </form>
-                           {{-- {{dd(Route::currentRouteName())}} --}}
-                           @if (Route::currentRouteName() == 'blog-search')
-                              <a href="{{ route('blog') }}#news" class="btn background-red text-white montserrat-medium py-2 font-15">Limpar</a>
-                           @endif
                         </div>
                         <!-- Botão menu sandwich -->
                         <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
@@ -341,10 +337,6 @@
                                  </button>
                               </div>
                            </form>
-                           {{-- {{dd(Route::currentRouteName())}} --}}
-                           @if (Route::currentRouteName() == 'blog-search')
-                              <a href="{{ route('blog') }}#news" class="btn background-red text-white montserrat-medium py-2 font-15">Limpar</a>
-                           @endif
                         </div>                     
                         @if (!Auth::guard('client')->check())                            
                             <div class="d-flex justify-content-start align-items-center gap-2 col-3 ms-3">

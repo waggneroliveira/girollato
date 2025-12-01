@@ -131,7 +131,7 @@
                         </div>
                         <nav class="mt-3">
                             <ul class="list-unstyled d-flex flex-row flex-wrap gap-2 gap-md-3 justify-content-start mb-0">
-                                <li class="py-1 py-sm-2 px-2 px-sm-3 text-uppercase montserrat-semiBold font-14 text-white bg-blue-light background-red active">
+                                <li class="py-1 py-sm-2 px-2 px-sm-3 montserrat-semiBold font-14 text-white bg-blue-light background-red active">
                                     <a href="javascript:void(0)" class="text-decoration-none text-white category-filter" data-category="todas">
                                         Todas
                                     </a>
@@ -154,7 +154,7 @@
                         </div>
 
                         @if ($announcements->count())                        
-                            <div class="mt-5">
+                            <div class="mt-4">
                                 @include('client.includes.announcement')
                             </div>
                         @endif
@@ -300,7 +300,7 @@
 <section id="no-bairro">
     @if ($blogNoBairros->count() > 0) 
         <div class="container border-bottom news mb-0 p-0">
-            <div class="px-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+            <div class="px-0 d-flex flex-row justify-content-between align-items-center">
                 <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
                     No Bairro
                 </h2>
@@ -321,7 +321,7 @@
             </div>
         </div>
 
-        <div class="container-fluid m-auto me-0 mt-5 pe-0" style="padding-left: 100px;">
+        <div class="container-fluid m-auto me-0 mt-5 pe-0 pad-mobi" style="padding-left: 100px;">
             <div class="swiper myNewsSwiper">            
                 <div class="swiper-wrapper" style="align-items: flex-start;">
                     @foreach($blogNoBairros as $noBairro)
@@ -411,8 +411,8 @@
             prevEl: ".swiper-button-prev-one",
             },
             breakpoints: {
-            576: { slidesPerView: 1.2 },
-            768: { slidesPerView: 2.5 },
+            360: { slidesPerView: 1.3 },
+            576: { slidesPerView: 2.5 },
             1200: { slidesPerView: 4.5 }
             }
         });
@@ -422,7 +422,7 @@
 @if (!empty($videos) && $videos->count() > 0)
     <section class="video mt-5">
         <div class="container p-0">
-            <div class="border-bottom news mb-4 col-lg-8 col-12">
+            <div class="border-bottom news m-auto mb-4 col-lg-8 col-11">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
                     <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
                         Novidades em vídeo

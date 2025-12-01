@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\Blog;
+use App\Models\PopUp;
+use App\Models\Contact;
 use App\Models\Announcement;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\PopUp;
 
 class BlogPageController extends Controller
 {
@@ -126,6 +127,13 @@ class BlogPageController extends Controller
         ->take(4)
         ->get();
 
+        $viewMores = Blog::whereHas('category', function ($query) use ($blogInner) {
+            $query->where('id', '<>', $blogInner->category->id);
+        })
+        ->active()
+        ->sorting()
+        ->get();
+
         $blogCategories = BlogCategory::whereHas('blogs')->active()->sorting()->get();
         $announcements = Announcement::select(
             'exhibition',
@@ -152,10 +160,11 @@ class BlogPageController extends Controller
         ->active()
         ->sorting()
         ->get();
+        $contact = Contact::first();
         // Compartilha a variável globalmente (para menu/header)
         view()->share('blogInner', $blogInner);
 
-        return view('client.blades.blog-inner', compact('announcementVerticals', 'announcements','blogInner', 'slug', 'blogCategories', 'blogRelacionados'));
+        return view('client.blades.blog-inner', compact('contact', 'viewMores', 'announcementVerticals', 'announcements','blogInner', 'slug', 'blogCategories', 'blogRelacionados'));
     }
 
 }
