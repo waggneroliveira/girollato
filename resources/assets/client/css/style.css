@@ -999,6 +999,7 @@
 }
  .complaint a{
     color: var(--background-red);
+    height: 40px;
  }
  .complaint img{
     width:209px; 

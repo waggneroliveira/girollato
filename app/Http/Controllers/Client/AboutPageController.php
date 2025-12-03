@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\About;
+use App\Models\Report;
 use App\Models\Contact;
 use App\Models\Partner;
 use App\Models\Statute;
@@ -18,7 +19,8 @@ class AboutPageController extends Controller
         $contact = Contact::first();
         $statute = Statute::active()->first();
         $directions = Direction::active()->sorting()->get();
+        $report = Report::active()->first();
 
-        return view('client.blades.about', compact('directions', 'statute', 'contact', 'partners', 'abouts'));
+        return view('client.blades.about', compact('report', 'directions', 'statute', 'contact', 'partners', 'abouts'));
     }
 }

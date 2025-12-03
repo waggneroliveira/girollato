@@ -44,35 +44,37 @@
 
                     </div>
                 @endforeach
-
-
-                @if (!empty($directions))
-                    <div class="row g-4 m-auto mt-4 justify-content-center col-12 col-lg-11">
-                        @foreach ($directions as $direction)
-                            <div class="col-md-3 col-sm-12 p-0">
-                                <div class="d-flex justify-content-center flex-column gap-3 align-items-center bg-blue-light p-2 col-12 col-lg-11" style="min-height: 240px;">
-                                    @if ($direction->path_image <> null)
-                                        <div class="image">
-                                            <img src="{{asset('storage/' . $direction->path_image)}}" loading="lazy" class="h-100" alt="{{$direction->title}}">
-                                        </div>
-                                        <div class="description d-flex text-center flex-column justify-content-center">
-                                            <h5 class="mb-2 montserrat-bold font-17 title-blue">{{$direction->title}}</h5>
-                                            <p class="montserrat-regular text-black font-14 mb-0">{{$direction->description}}</p>
-                                        </div>
-                                    @else
-                                        <div class="description d-flex text-center flex-column justify-content-center">
-                                            <h5 class="mb-2 montserrat-bold font-17 title-blue">{{$direction->title}}</h5>
-                                            <p class="montserrat-regular text-black font-14 mb-0">{{$direction->description}}</p>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-
             </div>
         </section>       
     @endif
+
+    <div class="container">
+        @if (!empty($directions))
+            <div class="row g-4 m-auto mt-4 justify-content-center col-12 col-lg-11">
+                @foreach ($directions as $direction)
+                    <div class="col-md-3 col-sm-12 p-0">
+                        <div class="d-flex justify-content-center flex-column gap-3 align-items-center bg-blue-light p-2 col-12 col-lg-11" style="min-height: 240px;">
+                            @if ($direction->path_image <> null)
+                                <div class="image">
+                                    <img src="{{asset('storage/' . $direction->path_image)}}" loading="lazy" class="h-100" alt="{{$direction->title}}">
+                                </div>
+                                <div class="description d-flex text-center flex-column justify-content-center">
+                                    <h5 class="mb-2 montserrat-bold font-17 title-blue">{{$direction->title}}</h5>
+                                    <p class="montserrat-regular text-black font-14 mb-0">{{$direction->description}}</p>
+                                </div>
+                            @else
+                                <div class="description d-flex text-center flex-column justify-content-center">
+                                    <h5 class="mb-2 montserrat-bold font-17 title-blue">{{$direction->title}}</h5>
+                                    <p class="montserrat-regular text-black font-14 mb-0">{{$direction->description}}</p>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
+        @include('client.includes.complaint');
+    </div>
 
 @endsection
