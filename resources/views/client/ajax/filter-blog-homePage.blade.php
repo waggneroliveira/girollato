@@ -31,9 +31,23 @@
                             
                             <div id="socialLinks-filter-{{$news->id}}" class="social-links home opacity-0">
                                 <div class="d-flex gap-2">
-                                    <a href="https://api.whatsapp.com/send?text={{ urlencode($news->title . ' ' . url()->current()) }}" target="_blank" class="rounded-circle btn btn-sm bg-whatsapp bg-transparent p-0"><i class="fab fa-whatsapp text-dark"></i></a>    
-                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($news->title) }}" target="_blank" class="rounded-circle btn btn-sm btn-twiter bg-transparent p-0"><i class="fab fa-x-twitter text-dark"></i></a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="rounded-circle btn btn-facebook btn-sm bg-transparent p-0"><i class="fab fa-facebook-f text-dark"></i></a>
+                                    <a href="https://api.whatsapp.com/send?text={{ urlencode($news->title . ' ' . route('blog-inner', ['slug' => $news->slug])) }}" 
+                                    target="_blank" 
+                                    class="rounded-circle btn btn-sm bg-whatsapp bg-transparent p-0">
+                                        <i class="fab fa-whatsapp text-dark"></i>
+                                    </a>
+
+                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('blog-inner', ['slug' => $news->slug])) }}&text={{ urlencode($news->title) }}" 
+                                    target="_blank" 
+                                    class="rounded-circle btn btn-sm btn-twiter bg-transparent p-0">
+                                        <i class="fab fa-x-twitter text-dark"></i>
+                                    </a>
+
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('blog-inner', ['slug' => $news->slug])) }}" 
+                                    target="_blank" 
+                                    class="rounded-circle btn btn-facebook btn-sm bg-transparent p-0">
+                                        <i class="fab fa-facebook-f text-dark"></i>
+                                    </a>
                                 </div>
                             </div>  
 

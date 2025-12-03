@@ -76,7 +76,7 @@ Route::get('editais', [NoticiesPageController::class, 'index'])
 ->name('noticies');
 Route::get('noticias/{slug}', [BlogPageController::class, 'blogInner'])
 ->name('blog-inner');
-Route::get('noticias/{category?}', [BlogPageController::class, 'index'])->name('blog');
+Route::get('noticias/categoria/{category?}', [BlogPageController::class, 'index'])->name('blog');
 Route::post('noticias/search', [BlogPageController::class, 'index'])->name('blog-search');
 Route::post('send-newsletter', [NewsletterController::class, 'store'])->name('send-newsletter');
 

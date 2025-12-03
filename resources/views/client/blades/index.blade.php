@@ -36,9 +36,23 @@
 
                                                     <div id="socialLinks-{{$blogSuperHighlight->id}}" class="social-links home opacity-0">
                                                         <div class="d-flex gap-2">
-                                                            <a href="https://api.whatsapp.com/send?text={{ urlencode($blogSuperHighlight->title . ' ' . url()->current()) }}" target="_blank" class="rounded-circle btn btn-sm bg-whatsapp bg-transparent p-0"><i class="fab fa-whatsapp text-white"></i></a>    
-                                                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($blogSuperHighlight->title) }}" target="_blank" class="rounded-circle btn btn-sm btn-twiter bg-transparent p-0"><i class="fab fa-x-twitter text-white"></i></a>
-                                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="rounded-circle btn btn-facebook btn-sm bg-transparent p-0"><i class="fab fa-facebook-f text-white"></i></a>
+                                                            <a href="https://api.whatsapp.com/send?text={{ urlencode($blogSuperHighlight->title . ' ' . route('blog-inner', ['slug' => $blogSuperHighlight->slug])) }}" 
+                                                            target="_blank" 
+                                                            class="rounded-circle btn btn-sm bg-whatsapp bg-transparent p-0">
+                                                                <i class="fab fa-whatsapp text-white"></i>
+                                                            </a>
+
+                                                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('blog-inner', ['slug' => $blogSuperHighlight->slug])) }}&text={{ urlencode($blogSuperHighlight->title) }}" 
+                                                            target="_blank" 
+                                                            class="rounded-circle btn btn-sm btn-twiter bg-transparent p-0">
+                                                                <i class="fab fa-x-twitter text-white"></i>
+                                                            </a>
+
+                                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('blog-inner', ['slug' => $blogSuperHighlight->slug])) }}" 
+                                                            target="_blank" 
+                                                            class="rounded-circle btn btn-facebook btn-sm bg-transparent p-0">
+                                                                <i class="fab fa-facebook-f text-white"></i>
+                                                            </a>
                                                         </div>
                                                     </div>  
 
@@ -359,16 +373,27 @@
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <p class="text-color mb-0 montserrat-regular font-12 col-8">{{$dataFormatada}}</p>
 
-                                            <div id="socialLinks-filter-{{$noBairro->id}}" class="social-links home opacity-0">
+                                            <div id="socialLinks-filter-two-{{$noBairro->id}}" class="social-links home opacity-0">
                                                 <div class="d-flex gap-2">
-                                                    <a href="https://api.whatsapp.com/send?text={{ urlencode($noBairro->title . ' ' . url()->current()) }}" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-whatsapp text-dark"></i></a>    
-                                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($noBairro->title) }}" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-x-twitter text-dark"></i></a>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-facebook-f text-dark"></i></a>
+                                                    <a href="https://api.whatsapp.com/send?text={{ urlencode($noBairro->title . ' ' . route('blog-inner', ['slug' => $noBairro->slug])) }}" 
+                                                    class="rounded-circle btn btn-sm bg-transparent p-0" target="_blank">
+                                                        <i class="fab fa-whatsapp text-dark"></i>
+                                                    </a>
+
+                                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('blog-inner', ['slug' => $noBairro->slug])) }}&text={{ urlencode($noBairro->title) }}" 
+                                                    class="rounded-circle btn btn-sm bg-transparent p-0" target="_blank">
+                                                        <i class="fab fa-x-twitter text-dark"></i>
+                                                    </a>
+
+                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('blog-inner', ['slug' => $noBairro->slug])) }}" 
+                                                    class="rounded-circle btn btn-sm bg-transparent p-0" target="_blank">
+                                                        <i class="fab fa-facebook-f text-dark"></i>
+                                                    </a>
                                                 </div>
                                             </div>  
 
-                                            <button id="btnShare-filter-{{$noBairro->id}}" 
-                                                    data-target="socialLinks-filter-{{$noBairro->id}}"
+                                            <button id="btnShare-filter-two-{{$noBairro->id}}" 
+                                                    data-target="socialLinks-filter-two-{{$noBairro->id}}"
                                                     class="share-button d-flex">
                                                 <svg width="18" height="20" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M4.28845 8.58841C1.92459 8.58841 0 10.5692 0 13.002C0 15.4348 1.92459 17.4155 4.28845 17.4155C5.68567 17.4155 6.92779 16.7195 7.70969 15.6506L15.6837 20.0897C15.5186 20.5571 15.4231 21.0603 15.4231 21.5864C15.4231 24.0193 17.3477 26 19.7115 26C22.0754 26 24 24.0193 24 21.5864C24 19.1536 22.0754 17.1729 19.7115 17.1729C18.3143 17.1729 17.0722 17.8689 16.2903 18.9378L8.31633 14.4987C8.48136 14.0313 8.57691 13.5281 8.57691 12.9982C8.57691 12.4682 8.47516 11.9356 8.3002 11.4554L16.2033 6.94346C16.9789 8.08134 18.262 8.82714 19.71 8.82714C22.0739 8.82714 23.9985 6.84639 23.9985 4.41357C23.9985 1.98074 22.0739 0 19.71 0C17.3462 0 15.4216 1.98074 15.4216 4.41357C15.4216 4.88736 15.4973 5.34584 15.6313 5.77367L7.67731 10.3151C6.89306 9.26915 5.66339 8.58848 4.28466 8.58848L4.28845 8.58841Z" fill="#282828"/>

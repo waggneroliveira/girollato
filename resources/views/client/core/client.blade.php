@@ -212,8 +212,8 @@
                 </div>       
             </div>
             <div class="container-fluid header-color mt-0 h-60 d-flex align-items-center py-0">
-                <div class="container d-flex justify-content-between align-items-center h-100">
-                    <div class="social-links d-flex justify-content-center align-items-center gap-4 text-center">
+                <div class="container d-flex justify-content-between align-items-center w-100 h-100">
+                    <div class="social-links d-flex justify-content-center align-items-center gap-4 text-center col-12 col-lg-auto">
                         <nav class="none site-navigation ul position-relative text-end width-75 h-60">
                             <ul class="d-flex flex-row justify-content-start align-items-center gap-3 mb-0 list-unstyled h-100">
                                 <li class="h-100 d-flex align-items-center px-2"><a href="{{route('index')}}" class="nav-link montserrat-bold text-center font-12 text-uppercase">Principal</a></li>                                                   
@@ -284,7 +284,7 @@
                                 <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
                             </span>
                         </button>
-                        <div class="d-none justify-content-center align-items-center gap-2 mt-0 login-middle-mobile">                        
+                        {{-- <div class="d-none justify-content-center align-items-center gap-2 mt-0 login-middle-mobile">                        
                             @if (!Auth::guard('client')->check())                            
                                 <div class="d-flex justify-content-start align-items-center gap-2">
                                     <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -308,24 +308,24 @@
                                 </div>
                                 <div class="d-flex flex-column align-items-start gap-1">
                                     <div class="d-flex justify-content-start align-items-center gap-2 lh-0">
-                                        <h2 class="loginOn m-0 montserrat-medium font-14 text-start">Bem vindo,</h2>   
-                                        <h3 class="m-0 montserrat-medium font-14 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
+                                        <h2 class="loginOn m-0 montserrat-medium font-10 text-start">Bem vindo,</h2>   
+                                        <h3 class="m-0 montserrat-medium font-12 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
                                         <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="modal" data-bs-target="#editClientModal-{{Auth::guard('client')->user()->id}}">
-                                            <i class="bi bi-gear font-18"></i>
+                                            <i class="bi bi-gear font-15"></i>
                                         </a>                 
                                     </div>  
                                     <a href="{{route('client.user.logout')}}" class="d-flex justify-content-start align-items-center gap-2 text-decoration-none lh-0">
-                                        <i class="bi bi-box-arrow-right font-18"></i>
+                                        <i class="bi bi-box-arrow-right font-15"></i>
                                         <h4 class="montserrat-medium font-12 m-0">Sair</h4>
                                     </a>                                               
                                 </div>
                             @endif
-                        </div>
+                        </div> --}}
                         
                     </div>
 
-                    <div class="d-flex justify-content-center align-items-center gap-2 login-desktop col-6">   
-                        <div class="d-flex justify-content-between gap-3 flex-wrap align-items-center col-8">
+                    <div class="d-none d-lg-flex d-flex justify-content-center align-items-center gap-2 login-desktop col-auto col-lg-8">   
+                        <div class="d-flex justify-content-between gap-3 flex-wrap align-items-center col-8 col-sm-5 col-md-6 col-lg-7">
                            <form action="{{route('blog-search')}}#news" class="search col-12" method="post">
                               @csrf
                               <div class="input-group input-group-lg">
@@ -368,14 +368,14 @@
                             </div>
                             <div class="d-flex flex-column align-items-start gap-1">
                                 <div class="d-flex justify-content-start align-items-center gap-2 lh-0">
-                                    <h2 class="loginOn m-0 montserrat-medium font-14 text-start">Bem vindo,</h2>   
-                                    <h3 class="m-0 montserrat-medium font-14 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
+                                    <h2 class="loginOn m-0 montserrat-medium font-10 text-start">Bem vindo,</h2>   
+                                    <h3 class="m-0 montserrat-medium font-12 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
                                     <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="modal" data-bs-target="#editClientModal-{{Auth::guard('client')->user()->id}}">
-                                        <i class="bi bi-gear font-18"></i>
+                                        <i class="bi bi-gear font-15"></i>
                                     </a>                 
                                 </div>  
                                 <a href="{{route('client.user.logout')}}" class="d-flex justify-content-start align-items-center gap-2 text-decoration-none lh-0">
-                                    <i class="bi bi-box-arrow-right font-18"></i>
+                                    <i class="bi bi-box-arrow-right font-15"></i>
                                     <h4 class="montserrat-medium font-12 m-0">Sair</h4>
                                 </a>                                               
                             </div>
@@ -413,98 +413,114 @@
     <!-- Modal de Login -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content header-color">
+            <div class="modal-content">
 
-                <div class="modal-header">
-                    <h5 class="modal-title text-uppercase montserrat-bold font-22 text-white" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                <!-- Header -->
+                <div class="modal-header background-red text-white">
+                    <h5 class="modal-title montserrat-medium font-22" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
 
+                <!-- Body -->
                 <div class="modal-body">
-                    <form action="{{route('client.user.authenticate')}}" method="POST">
-                        <!-- CSRF token (Laravel) -->
+                    <form action="{{ route('client.user.authenticate') }}" method="POST">
                         @csrf
 
                         <div class="mb-3">
-                            <label for="email" class="form-label montserrat-medium font-15">E-mail</label>
+                            <label for="email" class="form-label montserrat-medium title-blue font-15">E-mail</label>
                             <input type="email" class="form-control montserrat-regular font-15" id="email" name="email" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label montserrat-medium font-15">Senha</label>
+                            <label for="password" class="form-label montserrat-medium title-blue font-15">Senha</label>
                             <input type="password" class="form-control montserrat-regular font-15" id="password" name="password" required>
                         </div>
 
-                        <div class="d-flex justify-content-center mt-3 mb-4">
-                            <button type="submit" class="btn px-5 background-red rounded-3 text-white montserrat-medium font-15">Entrar</button>
+                        <div class="d-flex justify-content-center my-3">
+                            <button type="submit" class="btn background-red text-white px-5 rounded-3 text-white montserrat-medium font-15 background-red">
+                                Entrar
+                            </button>
                         </div>
 
-                        <div class="d-flex flex-column justify-content-center align-items-center">
-                            <p class="montserrat-regular font-15 text-white text-center">
+                        <div class="text-center mt-3">
+
+                            <p class="montserrat-regular font-15 text-muted">
                                 Ainda não tem uma conta?
-                                <a href="#" class="text-decoration-underline montserrat-bold ms-1 under" 
-                                data-bs-dismiss="modal"
-                                data-bs-toggle="modal"
-                                data-bs-target="#registerModal">Registre-se</a>
-                                aqui <br>
-                                <a href="#" 
-                                class="text-decoration-underline montserrat-bold ms-1 under" 
-                                data-bs-dismiss="modal"
-                                data-bs-toggle="modal"
-                                data-bs-target="#forgotPasswordModal">
-                                Esqueceu sua senha?
+                                <a href="#"
+                                    class="text-decoration-underline montserrat-bold ms-1 under"
+                                    data-bs-dismiss="modal"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#registerModal">
+                                    Registre-se
+                                </a>
+                            </p>
+
+                            <p class="montserrat-regular font-15 text-muted mb-0">
+                                <a href="#"
+                                    class="text-decoration-underline montserrat-bold under"
+                                    data-bs-dismiss="modal"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#forgotPasswordModal">
+                                    Esqueceu sua senha?
                                 </a>
                             </p>
 
                         </div>
+
                     </form>
                 </div>
 
             </div>
         </div>
     </div>
+
     
     <!-- Modal de Cadastro -->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content header-color">
+            <div class="modal-content">
 
-                <div class="modal-header">
-                    <h5 class="modal-title text-uppercase montserrat-bold font-22 text-white" id="registerModalLabel">Cadastro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                <!-- Header -->
+                <div class="modal-header background-red text-white">
+                    <h5 class="modal-title montserrat-medium font-22" id="registerModalLabel">Cadastro</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
 
+                <!-- Body -->
                 <div class="modal-body">
-                    <form action="{{route('register-client')}}" method="POST">
+                    <form action="{{ route('register-client') }}" method="POST">
                         @csrf
 
                         <div class="mb-3">
-                            <label for="name" class="form-label montserrat-medium font-15">Nome</label>
+                            <label for="name" class="form-label montserrat-medium title-blue font-15">Nome</label>
                             <input type="text" class="form-control montserrat-regular font-15" id="name" name="name" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="emailRegister" class="form-label montserrat-medium font-15">E-mail</label>
+                            <label for="emailRegister" class="form-label montserrat-medium title-blue font-15">E-mail</label>
                             <input type="email" class="form-control montserrat-regular font-15" id="emailRegister" name="email" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="passwordRegister" class="form-label montserrat-medium font-15">Senha</label>
+                            <label for="passwordRegister" class="form-label montserrat-medium title-blue font-15">Senha</label>
                             <input type="password" class="form-control montserrat-regular font-15" id="passwordRegister" name="password" required>
                         </div>
 
-                        <div class="d-flex justify-content-center my-2">
-                            <button type="submit" class="btn px-4 background-red rounded-3 text-white montserrat-medium font-15">Cadastrar</button>
+                        <div class="d-flex justify-content-center my-3">
+                            <button type="submit" class="btn background-red px-4 rounded-3 text-white montserrat-medium font-15 background-red">
+                                Cadastrar
+                            </button>
                         </div>
 
-                        <div class="d-flex justify-content-center">
-                            <p class="montserrat-regular font-15 text-white text-center">
+                        <div class="text-center">
+                            <p class="montserrat-regular font-15 text-muted">
                                 Já tem uma conta?
-                                <a href="#" class="text-decoration-underline montserrat-bold ms-1 under"
-                                data-bs-dismiss="modal"
-                                data-bs-toggle="modal"
-                                data-bs-target="#loginModal">
-                                Fazer login
+                                <a href="#" 
+                                    class="text-decoration-underline montserrat-bold ms-1 under"
+                                    data-bs-dismiss="modal"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#loginModal">
+                                    Fazer login
                                 </a>
                             </p>
                         </div>
@@ -515,6 +531,7 @@
             </div>
         </div>
     </div>
+
 
     @if (Auth::guard('client')->check())
         @php
@@ -522,77 +539,82 @@
             $defaultImage = $user && $user->path_image ? url('storage/'.$user->path_image) : '';
         @endphp
         <!-- Modal de Edição -->
-        <div class="modal fade" id="editClientModal-{{Auth::guard('client')->user()->id}}" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editClientModal-{{ Auth::guard('client')->user()->id }}" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content header-color">
+                <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h5 class="modal-title text-uppercase montserrat-bold font-22 text-white" id="editClientModalLabel">Editar Informações</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <!-- Header -->
+                    <div class="modal-header background-red text-white">
+                        <h5 class="modal-title montserrat-medium font-22" id="editClientModalLabel">Editar Informações</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
+                    <!-- Body -->
                     <div class="modal-body">
                         <form action="{{ route('client.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+
                             <div class="mb-3">
-                                <label for="name" class="form-label montserrat-medium font-15">Nome</label>
-                                <input type="text" class="form-control montserrat-regular font-15" id="name" name="name" value="{{Auth::guard('client')->user()->name}}" required>
+                                <label for="name" class="form-label title-blue montserrat-medium font-15">Nome</label>
+                                <input type="text" class="form-control montserrat-regular font-15" id="name" name="name" value="{{ Auth::guard('client')->user()->name }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="emailRegister" class="form-label montserrat-medium font-15">E-mail</label>
-                                <input type="email" class="form-control montserrat-regular font-15" id="emailRegister" name="email" value="{{Auth::guard('client')->user()->email}}" required>
+                                <label for="emailRegister" class="form-label title-blue montserrat-medium font-15">E-mail</label>
+                                <input type="email" class="form-control montserrat-regular font-15" id="emailRegister" name="email" value="{{ Auth::guard('client')->user()->email }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="passwordRegister" class="form-label montserrat-medium font-15">Senha</label>
+                                <label for="passwordRegister" class="form-label title-blue montserrat-medium font-15">Senha</label>
                                 <input type="password" class="form-control montserrat-regular font-15" id="passwordRegister" name="password">
                             </div>
-                            <div class="col-lg-12">
-                                <div class="mt-3">
-                                    <label for="title" class="form-label montserrat-regular font-15">Imagem de perfil </label>
-                                    <input 
-                                        type="file" 
-                                        name="path_image" 
-                                        data-plugins="dropify" 
-                                        data-default-file="{{ $defaultImage }}" 
-                                    />
-                                    <p class="montserrat-regular text-white font-12 mt-2 mb-0">{{__('dashboard.text_img_size')}} <b class="text-danger">2 MB</b>.</p>
-                                </div>
+
+                            <div class="mb-3">
+                                <label class="form-label montserrat-medium title-blue font-15">Imagem de perfil</label>
+                                <input 
+                                    type="file" 
+                                    name="path_image" 
+                                    data-plugins="dropify" 
+                                    data-default-file="{{ $defaultImage }}"
+                                >
+                                <p class="montserrat-regular text-muted font-12 mt-2 mb-0">
+                                    {{ __('dashboard.text_img_size') }} <b class="text-danger">2 MB</b>.
+                                </p>
                             </div>
 
+                            <!-- Footer -->
                             <div class="modal-footer">
-                                <button type="button" class="btn bg-secondary rounded-3 text-white montserrat-medium font-15" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn px-4 background-red rounded-3 text-white montserrat-medium font-15">Salvar alterações</button>
+                                <button type="button" class="btn btn-danger montserrat-medium font-15" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn background-red text-white px-4 montserrat-medium font-15">Salvar alterações</button>
                             </div>
 
                         </form>
                     </div>
 
                 </div>
-            </div>        
+            </div>
         </div>
+
     @endif
 
     <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content header-color">
+            <div class="modal-content">
 
-                <div class="modal-header">
-                    <h5 class="modal-title text-uppercase montserrat-bold font-22 text-white" id="forgotPasswordModalLabel">
+                <div class="modal-header background-red">
+                    <h5 class="modal-title montserrat-medium font-22 text-white" id="forgotPasswordModalLabel">
                         Recuperar Senha
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
 
                 <div class="modal-body">
-                    {{-- {{ route('client.password.email') }} --}}
                     <form action="{{ route('client.password.email') }}" method="POST">
                         @csrf
 
                         <div class="mb-3">
-                            <label for="recover_email" class="form-label montserrat-medium font-15">Digite seu e-mail</label>
+                            <label for="recover_email" class="form-label montserrat-medium title-blue font-15">Digite seu e-mail</label>
                             <input type="email" class="form-control montserrat-regular font-15" id="recover_email" name="email" required>
                         </div>
 
@@ -771,7 +793,29 @@
                             @endif 
                         </ul>
                     </li>
-                    <li class="montserrat-regular font-18 mb-3"><a href="{{route('blog')}}">Notícias</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle montserrat-regular font-18 mb-3" 
+                            href="{{ route('blog') }}" 
+                            id="noticiasDropdown" 
+                            role="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false">
+                            Notícias <i class="bi bi-chevron-down"></i>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="noticiasDropdown">
+                            @if ($blogCategories->count())
+                                @foreach ($blogCategories as $category)
+                                    <li>
+                                        <a class="dropdown-item montserrat-regular text-start font-15" 
+                                        href="{{ route('blog', ['category' => $category->slug]) }}#news">
+                                            {{ $category->title }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </li>
                     <li class="montserrat-regular font-18 mb-3"><a href="{{route('client.event')}}">Eventos</a></li>
                     <li class="montserrat-regular font-18 mb-3"><a href="{{route('contact')}}">Contato</a></li>
                     <li class="montserrat-regular font-18 mb-3"><a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
@@ -892,7 +936,7 @@
         });
     </script>
 
-    @if ($errors->any())
+    @if (isset($errors) && $errors->any())
         @foreach ($errors->all() as $error)
             <script>
                 Swal.fire({
@@ -922,23 +966,30 @@
     </script>
     <script>
         document.addEventListener('click', function(event) {
-            // Verifica TODOS os botões share, independente do padrão
+            // Detecta QUALQUER botão de share que comece com btnShare
             const btn = event.target.closest('[id^="btnShare"]');
             if (!btn) return;
 
             console.log('Botão clicado:', btn.id);
-            
+
             let itemId, linksId;
-            
-            // Detecta o padrão do ID e constrói o ID correspondente dos links
-            if (btn.id.startsWith('btnShare-filter-')) {
+
+            // Nova verificação: filtro "two"
+            if (btn.id.startsWith('btnShare-filter-two-')) {
+                itemId = btn.id.replace('btnShare-filter-two-', '');
+                linksId = 'socialLinks-filter-two-' + itemId;
+
+            // Filtro comum
+            } else if (btn.id.startsWith('btnShare-filter-')) {
                 itemId = btn.id.replace('btnShare-filter-', '');
                 linksId = 'socialLinks-filter-' + itemId;
+
+            // Padrão normal
             } else if (btn.id.startsWith('btnShare-')) {
                 itemId = btn.id.replace('btnShare-', '');
                 linksId = 'socialLinks-' + itemId;
             }
-            
+
             console.log('Procurando links com ID:', linksId);
             const links = document.getElementById(linksId);
             console.log('Links encontrados:', links);
@@ -948,6 +999,7 @@
                 console.log('Toggle realizado!');
             }
         });
+
     </script>
 </body>
 </html>
