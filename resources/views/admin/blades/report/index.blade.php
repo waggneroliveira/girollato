@@ -11,10 +11,10 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Denuncie</li>
+                                    <li class="breadcrumb-item active">Sessão Anuncie</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Denuncie</h4>
+                            <h4 class="page-title">Sessão Anuncie</h4>
                         </div>
                     </div>
                 </div>
@@ -27,8 +27,8 @@
                                 <div class="row mb-2">
                                     <div class="col-12 d-flex justify-end">
                                         <div class="col-12 d-flex justify-content-end">
-                                            @if (Auth::user()->can('denuncie.visualizar') &&
-                                            Auth::user()->can('denuncie.criar') ||
+                                            @if (Auth::user()->can('sessao anuncie.visualizar') &&
+                                            Auth::user()->can('sessao anuncie.criar') ||
                                             Auth::user()->can('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
                                                 @if (!isset($report))                                                
@@ -98,8 +98,8 @@
                                                         @endswitch
                                                     </td>
                                                     <td class="d-flex gap-lg-1 justify-center">
-                                                        @if (Auth::user()->can('denuncie.visualizar') &&
-                                                        Auth::user()->can('denuncie.editar') ||
+                                                        @if (Auth::user()->can('sessao anuncie.visualizar') &&
+                                                        Auth::user()->can('sessao anuncie.editar') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <button class="table-edit-button btn btn-primary text-black" data-bs-toggle="modal" data-bs-target="#modal-group-edit-{{$report->id}}" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
@@ -126,8 +126,8 @@
                                                             </div><!-- /.modal -->                                                        
                                                         @endif
 
-                                                        @if (Auth::user()->can('denuncie.visualizar') &&
-                                                        Auth::user()->can('denuncie.remover') ||
+                                                        @if (Auth::user()->can('sessao anuncie.visualizar') &&
+                                                        Auth::user()->can('sessao anuncie.remover') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <form action="{{route('admin.dashboard.report.destroy',['report' => $report->id])}}" style="width: 30px" method="POST">

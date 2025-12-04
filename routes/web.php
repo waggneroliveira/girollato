@@ -80,7 +80,6 @@ Route::post('send-newsletter', [NewsletterController::class, 'store'])->name('se
 Route::post('cliente/cadastro', [ClientController::class, 'store'])->name('register-client');
 Route::get('/', [HomePageController::class, 'index'])->name('index');
 Route::get('sobre', [AboutPageController::class, 'index'])->name('about');
-Route::get('regionais', [RegionPageController::class, 'index'])->name('regional');
 Route::get('eventos', [EventPageController::class, 'index'])->name('client.event');
 Route::get('blog/filter/{category?}', [HomePageController::class, 'filterByCategory'])
     ->name('blog.filter');

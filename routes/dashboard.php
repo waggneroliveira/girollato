@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use App\Models\Event;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -13,36 +12,22 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PopUpController;
-use App\Http\Controllers\SlideController;
-use App\Http\Controllers\StackController;
-use App\Http\Controllers\TopicController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ReportController;
 use App\Repositories\AuditCountRepository;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\StatuteController;
-use App\Http\Controllers\JuridicoController;
-use App\Http\Controllers\NoticiesController;
-use App\Http\Controllers\RegionalController;
 use App\Repositories\SettingThemeRepository;
-use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\FormIndexController;
-use App\Http\Controllers\UnionizedController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\AnnouncementController;
-use App\Http\Controllers\BenefitTopicController;
 use App\Http\Controllers\BlogCategoryController;
-use App\Http\Controllers\MunicipalityController;
 use App\Http\Controllers\SettingEmailController;
 use App\Http\Controllers\SettingThemeController;
 use App\Http\Controllers\AuditActivityController;
-use App\Http\Controllers\StackSessionTitleController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
@@ -132,14 +117,7 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.announcement.destroySelected');
         Route::post('anuncio/sorting', [AnnouncementController::class, 'sorting'])
         ->name('admin.dashboard.announcement.sorting');
-        //NOTICIES
-        Route::resource('editais', NoticiesController::class)
-        ->parameters(['editais' => 'noticies'])
-        ->names('admin.dashboard.noticies');
-        Route::post('editais/delete', [NoticiesController::class, 'destroySelected'])
-        ->name('admin.dashboard.noticies.destroySelected');
-        Route::post('editais/sorting', [NoticiesController::class, 'sorting'])
-        ->name('admin.dashboard.noticies.sorting');
+
         //BLOG
         Route::resource('blog', BlogController::class)
         ->parameters(['blog' => 'blog'])
@@ -158,69 +136,12 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.blogCategory.destroySelected');
         Route::post('categoria-do-blog/sorting', [BlogCategoryController::class, 'sorting'])
         ->name('admin.dashboard.blogCategory.sorting');
-        //REGIONAIS
-        Route::resource('regionais', RegionalController::class)
-        ->parameters(['regionais' => 'regional'])
-        ->names('admin.dashboard.regional');
-        Route::post('regionais/delete', [RegionalController::class, 'destroySelected'])
-        ->name('admin.dashboard.regional.destroySelected');
-        Route::post('regionais/sorting', [RegionalController::class, 'sorting'])
-        ->name('admin.dashboard.regional.sorting');
-        //MUNICIPALITY
-        Route::resource('municipios', MunicipalityController::class)
-        ->parameters(['municipios' => 'municipality'])
-        ->names('admin.dashboard.municipality');
-        Route::post('municipios/delete', [MunicipalityController::class, 'destroySelected'])
-        ->name('admin.dashboard.municipality.destroySelected');
-        Route::post('municipios/sorting', [MunicipalityController::class, 'sorting'])
-        ->name('admin.dashboard.municipality.sorting');
-        //SLIDES
-        Route::resource('slides', SlideController::class)
-        ->names('admin.dashboard.slide')
-        ->parameters(['slides'=>'slide']);
-        Route::post('slides/delete', [SlideController::class, 'destroySelected'])
-        ->name('admin.dashboard.slide.destroySelected');
-        Route::post('slides/sorting', [SlideController::class, 'sorting'])->name('admin.dashboard.slide.sorting');
-        //UNIONIZED
-        Route::resource('sindicalize-se', UnionizedController::class)
-        ->names('admin.dashboard.unionized')
-        ->parameters(['sindicalize-se'=>'unionized']);
+
         //REPORT
-        Route::resource('denuncie', ReportController::class)
+        Route::resource('sessao-anuncie', ReportController::class)
         ->names('admin.dashboard.report')
-        ->parameters(['denuncie'=>'report']);
-        //Agreement
-        Route::resource('convenios', AgreementController::class)
-        ->names('admin.dashboard.agreement')
-        ->parameters(['convenios'=>'agreement']);
-        //STATUTE
-        Route::resource('estatuto', StatuteController::class)
-        ->names('admin.dashboard.statute')
-        ->parameters(['estatuto'=>'statute']);
-        //BENEFITTOPIC
-        Route::resource('beneficios', BenefitTopicController::class)
-        ->names('admin.dashboard.benefitTopic')
-        ->parameters(['beneficios'=>'benefitTopic']);
-        Route::post('beneficios/delete', [BenefitTopicController::class, 'destroySelected'])
-        ->name('admin.dashboard.benefitTopic.destroySelected');
-        Route::post('beneficios/sorting', [BenefitTopicController::class, 'sorting'])
-        ->name('admin.dashboard.benefitTopic.sorting');
-        //PARTNER
-        Route::resource('parceiros', PartnerController::class)
-        ->names('admin.dashboard.partner')
-        ->parameters(['parceiros'=>'partner']);
-        Route::post('parceiros/delete', [PartnerController::class, 'destroySelected'])
-        ->name('admin.dashboard.partner.destroySelected');
-        Route::post('parceiros/sorting', [PartnerController::class, 'sorting'])
-        ->name('admin.dashboard.partner.sorting');
-        //JURIDICO
-        Route::resource('juridico', JuridicoController::class)
-        ->names('admin.dashboard.juridico')
-        ->parameters(['juridico'=>'juridico']);
-        Route::post('juridico/delete', [JuridicoController::class, 'destroySelected'])
-        ->name('admin.dashboard.juridico.destroySelected');
-        Route::post('juridico/sorting', [JuridicoController::class, 'sorting'])
-        ->name('admin.dashboard.juridico.sorting');
+        ->parameters(['sessao-anuncie'=>'report']);
+
         //DIRECTION
         Route::resource('a-direcao', DirectionController::class)
         ->parameters(['a-direcao' => 'direction'])
@@ -257,14 +178,7 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.event.sorting');
         Route::post('agenda/store', [EventController::class, 'storeTheBlog'])
         ->name('admin.dashboard.event.storeTheBlog');
-        //TOPIC
-        Route::resource('topicos', TopicController::class)
-        ->names('admin.dashboard.topic')
-        ->parameters(['topicos'=>'topic']);
-        Route::post('topicos/delete', [TopicController::class, 'destroySelected'])
-        ->name('admin.dashboard.topic.destroySelected');
-        Route::post('topicos/sorting', [TopicController::class, 'sorting'])
-        ->name('admin.dashboard.topic.sorting');
+
         //E-MAIL CONFIG
         Route::resource('configuracao-de-email', SettingEmailController::class)
         ->names('admin.dashboard.settingEmail')

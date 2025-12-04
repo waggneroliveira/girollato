@@ -14,7 +14,7 @@ class PermissionsSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            'a direcao'=>[
+            'topico sobre'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
@@ -29,19 +29,7 @@ class PermissionsSeeder extends Seeder
             'auditoria'=>[
                 'Visualizar',
             ],
-            'beneficios'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
             'categorias do noticias'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
-            'convenios'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
@@ -53,13 +41,7 @@ class PermissionsSeeder extends Seeder
                 'Visualizar',
                 'Remover'
             ],
-            'denuncie'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
-            'editais'=>[
+            'sessao anuncie'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
@@ -69,12 +51,6 @@ class PermissionsSeeder extends Seeder
                 'Visualizar',
                 'configurar smtp',
                 'testar conexao smtp'
-            ],
-            'estatuto'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
             ],
             'agenda'=>[
                 'Criar',
@@ -88,19 +64,7 @@ class PermissionsSeeder extends Seeder
                 'Visualizar',
                 'Remover'
             ],
-            'juridico'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
             'lead contato'=>[
-                'Visualizar',
-                'Remover'
-            ],
-            'municipios'=>[
-                'Criar',
-                'Editar',                
                 'Visualizar',
                 'Remover'
             ],
@@ -119,37 +83,7 @@ class PermissionsSeeder extends Seeder
                 'Visualizar',
                 'Notificacao de auditoria',
             ],
-            'parceiros'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
-            'regionais'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
-            'sindicalize-se'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
-            'slide'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
             'sobre nos'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
-            'topicos'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
