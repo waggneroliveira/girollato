@@ -41,7 +41,7 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="copyright" content="Direitos reservados WHI">
     <meta name="author" content="WHI">
-    <link rel="shortcut icon" href="https://www.sindacsba.org.br/assets/images/favicon.svg">
+    <link rel="shortcut icon" href="#assets/images/favicon.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
@@ -75,12 +75,12 @@
         {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "@id": "https://www.sindacsba.org.br/#organization",
+            "@id": "##organization",
             "name": "Expresso Vida Nova",
             "legalName": "Expresso Vida Nova",
             "url": "https://www.sindacsba.org.br",
-            "logo": "https://www.sindacsba.org.br/assets/images/logo.png",
-            "image": "https://www.sindacsba.org.br/assets/images/logo.png",
+            "logo": "#assets/images/logo.png",
+            "image": "#assets/images/logo.png",
             "description": "Expresso Vida Nova é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.",
             "foundingDate": "2003",
             "email": "sindacsbahia@gmail.com",
@@ -887,7 +887,7 @@
                     </script>
                 </div>
                 <div class=credits>
-                    <a href="https://www.sindacsba.org.br/" target=_blank rel="noopener noreferrer">
+                    <a href="#" target=_blank rel="noopener noreferrer">
                         <img src="{{asset('build/client/images/developed.svg')}}"  alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
                     </a>
                 </div>
