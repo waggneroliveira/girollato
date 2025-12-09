@@ -148,12 +148,40 @@
         <div class="w-100 py-0">
             <div class="header-top py-2 mb-0 header-color">
                 <div class="container d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
-                    <p class="text-white poppins-medium text-center text-lg-start font-15 mb-0 col-12 col-lg-6">
+                    <div class="d-flex justify-content-center gap-4 w-100">
+                        <div class="logo-img d-block d-lg-none px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
+                            <a href="{{route('index')}}">
+                                <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid" style="width: 100px;">
+                            </a>
+                        </div>                           
+                        <div class="d-flex justify-content-between gap-3 flex-nowrap align-items-center d-lg-none search-mobile">
+                            <form action="{{route('blog-search')}}#news" class="search col-12 col-lg-10" method="post">
+                                @csrf
+                                <div class="input-group input-group-lg">
+                                    <input type="search" name="search" class="rounded-0 form-control border-end-0 text-color poppins-regular bg-white py-0" placeholder="Pesquise aqui">
+                                    <button type="submit" title="search" class="btn-reset input-group-text bg-white border rounded-0">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99989 0C3.13331 0 0 3.13427 0 6.99979C0 10.8663 3.13351 14.0004 6.99989 14.0004C8.49916 14.0004 9.88877 13.5285 11.0281 12.7252L15.9512 17.6491C16.4199 18.117 17.1798 18.117 17.6485 17.6491C18.1172 17.1804 18.1172 16.4205 17.6485 15.9518L12.7254 11.0288C13.5279 9.88936 13.9998 8.4997 13.9998 6.99983C13.9998 3.13411 10.8655 0 6.99989 0ZM2.39962 6.99979C2.39962 4.45981 4.45907 2.40019 6.99989 2.40019C9.54072 2.40019 11.6002 4.45961 11.6002 6.99979C11.6002 9.54058 9.54072 11.6 6.99989 11.6C4.45907 11.6 2.39962 9.54058 2.39962 6.99979Z" fill="#31404B"/>
+                                    </svg>                                    
+                                    </button>
+                                </div>
+                            </form>
+                            <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
+                                <span class="menu-icon" style="display:inline-block;width:32px;height:32px;">
+                                    <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                                    <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                                    <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                                </span>
+                            </button>
+                        </div>  
+                    </div>
+
+                    <p class="text-white d-none d-lg-block poppins-medium text-center text-lg-start font-15 mb-0 col-12 col-lg-6">
                         Lauro de Freitas, BA | {{ \Carbon\Carbon::now()->translatedFormat('l, d \d\e F \d\e Y') }}
                     </p>
 
                     <div class="col-12 col-lg-6 text-center"> 
-                        <div class="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                        <div class="d-none d-lg-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
                             <div class="dark-background p-0">
                                 <nav class="site-navigation position-relative redes-sociais">
                                     <ul class="p-0 d-flex justify-content-center gap-3 flex-row mb-0">
@@ -199,8 +227,8 @@
                     </div>
                 </div>
             </div>
-            <div class="container m-auto d-flex align-items-center justify-content-between flex-column">
-                <div class="d-flex col-12 justify-content-between align-items-center wrap-logo-and-login">
+            <div class="container m-auto d-none d-lg-flex align-items-center justify-content-between flex-column">
+                <div class="d-flex col-12 justify-content-between align-items-center ">
                     <div class="logo-img px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
                         <a href="{{route('index')}}">
                             <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid">
@@ -214,7 +242,7 @@
                     @endif
                 </div>       
             </div>
-            <div class="container-fluid header-color mt-0 h-60 d-flex align-items-center py-0">
+            <div class="container-fluid header-color mt-0 h-60 d-none d-lg-flex align-items-center py-0">
                 <div class="container d-flex justify-content-between align-items-center w-100 h-100">
                     <div class="social-links d-flex justify-content-center align-items-center gap-4 text-center col-12 col-lg-auto">
                         <nav class="none site-navigation ul position-relative text-end width-75 h-60">
@@ -266,7 +294,7 @@
                             </ul>                      
                         </nav>
 
-                        <div class="d-flex justify-content-between gap-3 flex-wrap align-items-center d-lg-none">
+                        {{-- <div class="d-flex justify-content-between gap-3 flex-wrap align-items-center d-lg-none">
                            <form action="{{route('blog-search')}}#news" class="search col-12 col-lg-10" method="post">
                               @csrf
                               <div class="input-group input-group-lg">
@@ -278,15 +306,15 @@
                                  </button>
                               </div>
                            </form>
-                        </div>
+                        </div> --}}
                         <!-- Botão menu sandwich -->
-                        <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
+                        {{-- <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
                             <span class="menu-icon" style="display:inline-block;width:32px;height:32px;">
                                 <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
                                 <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
                                 <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
                             </span>
-                        </button>
+                        </button> --}}
                         {{-- <div class="d-none justify-content-center align-items-center gap-2 mt-0 login-middle-mobile">                        
                             @if (!Auth::guard('client')->check())                            
                                 <div class="d-flex justify-content-start align-items-center gap-2">
@@ -387,7 +415,43 @@
                 </div>
             </div>
         </div>     
-        
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".search-mobile form");
+    const input = form.querySelector("input[type='search']");
+    const submitBtn = form.querySelector("button[type='submit']");
+
+    submitBtn.addEventListener("click", function (event) {
+        // Se estiver no mobile (≤560px)
+        if (window.innerWidth <= 560) {
+
+            // Se o campo está escondido, mostra ele em vez de enviar
+            if (getComputedStyle(input).display === "none") {
+                event.preventDefault(); // impede o submit
+
+                // mostra o campo
+                input.style.display = "block";
+                input.focus();
+
+                return;
+            }
+        }
+        // Se já está visível, segue com o submit normal
+    });
+});
+
+
+        </script>
+        <style>
+/* MOBILE – até 560px */
+@media (max-width: 560px) {
+    .search-mobile form .input-group input {
+        display: none; /* escondemos só o input */
+    }
+}
+
+
+        </style>
         @include('client/includes/lgpd/lgpd')
         
         @if (isset($contact) && $contact->whatsapp <> null)
@@ -638,7 +702,7 @@
             <button id="menu-close" aria-label="Fechar menu" class="col-2 btn-close-menu p-0 bg-transparent" type="button">&times;</button>
         </div>
         <div class="col-10 logo-img p-0 mb-2 rounded-2 d-flex justify-content-center align-items-center">
-            <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid">
+            <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid" style="width: 100px;">
         </div>
         <div class="row justify-content-center gap-5">
             <nav class="mt-3">

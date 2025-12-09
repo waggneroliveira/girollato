@@ -1756,7 +1756,7 @@
 
  @media (max-width:476px) {
     .logo-img .img-fluid{
-        width: 100px;
+        width: 75px;
     }
     .overlay{
         padding: 10px 15px;
@@ -1918,7 +1918,10 @@
          max-height: inherit;
      }
      .container-fluid {
-         padding: 0 !important;
+        padding: 0 !important;
+     }
+     #news .container-fluid {
+        padding: 0 1.5rem !important;
      }
      .mt-5.border.p-5.bg-white.rounded-2{
         padding: 20px !important;

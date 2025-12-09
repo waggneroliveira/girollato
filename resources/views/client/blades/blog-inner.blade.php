@@ -325,7 +325,7 @@
                                                 alt="{{ $viewMore->title }}"
                                                 style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
 
-                                                <div class="col-12 my-3 h-100 px-0 d-flex flex-column justify-content-center position-relative">                        
+                                                <div class="col-12 my-3 h-100 px-2 d-flex flex-column justify-content-center position-relative">                        
                                                     <a href="{{ route('blog-inner', $viewMore->slug) }}" class="underline">
                                                         <h3 class="h6 m-0 poppins-bold font-14 title-blue">
                                                             {{ Str::limit($viewMore->title, 60) }}

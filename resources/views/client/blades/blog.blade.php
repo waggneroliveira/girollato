@@ -23,9 +23,9 @@
                                  <div class="mb-3">
                                     <div class="bg-white border-top-0">
                                           <div class="d-flex flex-wrap m-n1">
-                                             <a href="{{ route('blog') }}#news"
+                                             <a href="{{ route('blogAll') }}#news"
                                                    class="btn btn-sm btn-outline-secondary text-p poppins-medium font-14 m-1
-                                                   {{ (request()->routeIs('blog') && request()->route('category') === null) ? 'active background-red' : '' }}">
+                                                   {{ (request()->routeIs('blogAll') && request()->route('category') === null) ? 'active background-red' : '' }}">
                                                    Todas
                                              </a>
                                              @foreach ($blogCategories as $blogCategory)
@@ -84,7 +84,7 @@
                                     alt="{{ $blog->title }}"
                                     style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
 
-                                    <div class="col-12 my-3 h-auto px-0 d-flex flex-column justify-content-center position-relative">                        
+                                    <div class="col-12 my-3 h-auto px-2 d-flex flex-column justify-content-center position-relative">                        
                                         <a href="{{ route('blog-inner', $blog->slug) }}" class="underline">
                                             <h3 class="h6 m-0 poppins-bold font-14 title-blue">
                                                 {{ Str::limit($blog->title, 60) }}

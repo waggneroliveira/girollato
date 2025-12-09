@@ -74,6 +74,7 @@ Route::get('contato', [ContactPageController::class, 'index'])
 Route::post('send-contact', [FormIndexController::class, 'store'])->name('send-contact');
 Route::get('noticias/{slug}', [BlogPageController::class, 'blogInner'])
 ->name('blog-inner');
+Route::get('noticias', [BlogPageController::class, 'index'])->name('blogAll');
 Route::get('noticias/categoria/{category?}', [BlogPageController::class, 'index'])->name('blog');
 Route::post('noticias/search', [BlogPageController::class, 'index'])->name('blog-search');
 Route::post('send-newsletter', [NewsletterController::class, 'store'])->name('send-newsletter');
