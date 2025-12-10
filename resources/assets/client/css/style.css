@@ -492,11 +492,17 @@
  .under {
      color: #1C58A6;
  }
-
+div[vw].enabled {
+    top: inherit !important;
+    bottom: 40px !important;
+    right: 18px !important;
+    margin: 0 !important;
+}
  body .uwy.userway_p1 .userway_buttons_wrapper {
-     top: 40% !important;
-     right: -34px !important;
-     left: inherit !important
+    top: inherit !important;
+    right: -28px !important;
+    left: inherit !important;
+    bottom: 121px !important;
  }
 
  .site-navigation.ul li a {
