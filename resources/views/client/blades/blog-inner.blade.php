@@ -143,7 +143,7 @@
                     <!-- Comment List End -->
                 </div>                
 
-                <div class="col-lg-3 col-12 mt-4 mt-lg-0" data-aos="fade-left" data-aos-delay="100">
+                <div class="col-lg-3 col-12 mt-3 mt-lg-0" data-aos="fade-left" data-aos-delay="100">
                     @if ($blogRelacionados->count() > 0)                        
                         <!-- Popular News Start -->
                         <div class="mb-3">
