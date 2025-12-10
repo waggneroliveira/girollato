@@ -47,7 +47,7 @@
     <section class="blog mb-0 mt-5">
         <div class="container">
             <div class="row g-3 g-lg-4">
-                <div class="col-lg-8 pe-0">
+                <div class="col-lg-8 px-2 pe-lg-0">
                     <!-- Swiper Main Carousel -->
                     <div class="swiper main-swiper">
                         <div class="swiper-wrapper">
