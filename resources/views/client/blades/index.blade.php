@@ -356,7 +356,7 @@
 @if ($blogNoBairros->count() > 0) 
     <section id="no-bairro" data-aos="fade-up" data-aos-delay="100">
         <div class="container border-bottom news mb-0 p-0">
-            <div class="px-0 d-flex flex-row justify-content-between align-items-center">
+            <div class="px-0 d-flex flex-row justify-content-between align-items-center w-100">
                 <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
                     No Bairro
                 </h2>
