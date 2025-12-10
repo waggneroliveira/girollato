@@ -233,7 +233,7 @@
                         </div>
                         <div class="p-0 m-auto me-0 mt-4">
                             <nav class="site-navigation position-relative text-end w-100 redes-sociais">
-                                <ul class="p-0 d-flex justify-content-center align-items-center gap-3 flex-row mb-0 w-100">
+                                <ul class="p-0 d-flex justify-content-start justify-content-lg-center align-items-center gap-3 flex-row mb-0 w-100">
                                     @if (isset($contact) && $contact->link_face)
                                         <li class="li d-flex justify-content-start align-items-center">
                                             <a href="{{$contact->link_face}}" rel="nofollow noopener noreferrer" target="_blank">
