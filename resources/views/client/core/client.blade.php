@@ -56,20 +56,12 @@
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></noscript>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
-    <link rel="preload" href="{{ asset('build/admin/js/libs/sweetalert2/sweetalert2.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="{{ asset('build/admin/js/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"></noscript>
-    <link rel="preload" href="{{ asset('build/admin/js/libs/dropzone/min/dropzone.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="{{ asset('build/admin/js/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css"></noscript>
-    <link rel="preload" href="{{ asset('build/admin/js/libs/dropify/css/dropify.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="{{ asset('build/admin/js/libs/dropify/css/dropify.min.css') }}" rel="stylesheet" type="text/css"></noscript>
     <link href="{{ asset('build/client/lgpd/style.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('build/client/css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="preload" href="{{ asset('build/client/css/bootstrap-icons/bootstrap-icons.css') }}" as="style" onload="this.rel='stylesheet'">
     <link href="{{ asset('build/client/css/style.css') }}" rel="stylesheet" type="text/css" />
-    
-    <script defer src="https://cdn.userway.org/widget.js" data-account="qSpdtrySSt"></script>
-    <link rel="preconnect" href="https://vlibras.gov.br" crossorigin>
+    <link href="{{ asset('build/client/css/responsivo.css') }}" rel="stylesheet" type="text/css" />
 
     <script type=application/ld+json>
         {
@@ -159,7 +151,7 @@
 
             <!-- Menu -->
             <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
+                <ul class="navbar-nav mx-auto m-auto me-4 mb-2 mb-lg-0 gap-lg-3">
                     <li class="nav-item">
                         <a class="nav-link font-changa font-18 font-semibold font-header active" href="#">Home</a>
                     </li>
@@ -207,109 +199,9 @@
     <script src="https://cdn.ckeditor.com/4.22.1/basic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="{{ asset('build/admin/js/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-    <script src="{{ asset('build/admin/js/libs/dropzone/min/dropzone.min.js') }}"></script>
-    <script src="{{ asset('build/admin/js/libs/dropify/js/dropify.min.js') }}"></script>
-    <script src="{{ asset('build/admin/js/pages/form-fileuploads.init.js') }}"></script>
     <script src="{{ asset('build/client/css/bootstrap/js/bootstrap.bundle.js') }}"></script>
-    <script src="{{ asset('build/client/css/typed.js/typed.umd.js') }}"></script>
     <script src="{{ asset('build/client/lgpd/script.js') }}"></script>
     <script src="{{ asset('build/client/js/default.js') }}"></script>
 
-
-    {{-- Modais alert --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let successMessage = @json(session('success'));
-            let errorMessage = @json(session('error'));
-
-            if (successMessage) {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: successMessage,
-                    icon: 'success',
-                    timer: 2000,
-                    showConfirmButton: false
-                });
-            }
-
-            if (errorMessage) {
-                Swal.fire({
-                    title: 'Erro!',
-                    text: errorMessage,
-                    icon: 'error',
-                    timer: 2500,
-                    showConfirmButton: false
-                });
-            }
-        });
-    </script>
-
-    @if (isset($errors) && $errors->any())
-        @foreach ($errors->all() as $error)
-            <script>
-                Swal.fire({
-                    title: 'Erro!',
-                    text: @json($error),
-                    icon: 'error',
-                    timer: 2500,
-                    showConfirmButton: false
-                });
-            </script>
-        @endforeach
-    @endif
-
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", (function() {
-            const o = document.createElement("script");
-            o.src = "https://vlibras.gov.br/app/vlibras-plugin.js", o.onload = function() {
-                window.VLibras && window.VLibras.Widget ? (new window.VLibras.Widget("https://vlibras.gov.br/app")) : console.warn("VLibras não foi carregado corretamente.")
-            }, document.body.appendChild(o)
-        }))
-    </script>
-    <script>
-        document.addEventListener('click', function(event) {
-            // Detecta QUALQUER botão de share que comece com btnShare
-            const btn = event.target.closest('[id^="btnShare"]');
-            if (!btn) return;
-
-            console.log('Botão clicado:', btn.id);
-
-            let itemId, linksId;
-
-            // Nova verificação: filtro "two"
-            if (btn.id.startsWith('btnShare-filter-two-')) {
-                itemId = btn.id.replace('btnShare-filter-two-', '');
-                linksId = 'socialLinks-filter-two-' + itemId;
-
-            // Filtro comum
-            } else if (btn.id.startsWith('btnShare-filter-')) {
-                itemId = btn.id.replace('btnShare-filter-', '');
-                linksId = 'socialLinks-filter-' + itemId;
-
-            // Padrão normal
-            } else if (btn.id.startsWith('btnShare-')) {
-                itemId = btn.id.replace('btnShare-', '');
-                linksId = 'socialLinks-' + itemId;
-            }
-
-            console.log('Procurando links com ID:', linksId);
-            const links = document.getElementById(linksId);
-            console.log('Links encontrados:', links);
-
-            if (links) {
-                links.classList.toggle('opacity-0');
-                console.log('Toggle realizado!');
-            }
-        });
-
-    </script>
 </body>
 </html>

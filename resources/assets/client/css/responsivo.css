@@ -1,0 +1,76 @@
+@media (max-width: 991px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-actions {
+    flex-direction: column-reverse;
+  }
+  .about {
+    min-height: 500px;
+  }
+}
+@media (max-width: 530px) {
+    .firula-about{
+        left: 56px;
+        top: -22px;
+    }
+    .about-subtitle{
+        width: 215px;
+        margin: 0 auto;
+        margin-right: 0;
+    }
+    .stat-number{
+        font-size: 1.75rem;
+    }
+    .hero-content{
+        align-items: baseline;
+    }
+    .hero-title, .about-title{
+        font-size: 1.75rem;
+        text-align: center;
+    }
+    .hero-subtitle{
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+    .hero-actions{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .btn-one{
+        max-width: 160px;
+    }
+    .btn-two{
+        max-width: 260px;
+    }
+}
+@media (max-width: 441px) {
+    .hero-title{
+        font-size: 24px;
+    }
+}
+@media (max-width: 414px) {
+    .hero-title{
+        font-size: 1.25rem;
+    }
+    .hero-slide, .hero-content {
+        height: 80vh;
+    }
+    .btn-one, .btn-two{
+        font-size: 0.75rem;
+        padding: 3px 0 3px 0;
+    }
+    .btn-one svg, .btn-two svg{
+        width: 10px;
+    }
+}
+
+@media (max-width: 387px) {
+    .topics .topic-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+

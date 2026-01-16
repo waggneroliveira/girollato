@@ -71,6 +71,8 @@ body {
     font-size: 2.5rem;
     line-height: 1.2;
 }
+.font-44 { font-size: 2.75rem; }
+.font-50 { font-size: 3.125rem; }
 
 .font-light   { font-weight: 300; }
 .font-regular { font-weight: 400; }
@@ -90,6 +92,9 @@ body {
 .color-green{
     color: var(--green-color);
 }
+.color-grey{
+    color: var(--grey-color);
+}
 
 /* =========================
    HEADER
@@ -102,20 +107,17 @@ body {
    HERO
 ========================= */
 
-/* HERO */
 .hero {
   position: relative;
   width: 100%;
 }
 
-/* Slide */
 .hero-slide {
   position: relative;
-  min-height: 100vh;
+  min-height: 85vh;
   overflow: hidden;
 }
 
-/* Imagem full */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -128,40 +130,29 @@ body {
   object-fit: cover;
 }
 
-/* Conteúdo */
 .hero-content {
   position: relative;
   z-index: 3;
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   color: #fff;
 }
 
 .hero-subtitle {
-  display: block;
-  font-size: 14px;
   margin-bottom: 12px;
   opacity: 0.9;
 }
 
 .hero-title {
-  font-size: 44px;
-  font-weight: 700;
   line-height: 1.2;
   margin-bottom: 30px;
 }
 
-.hero-title strong {
-  color: #ffd000;
-}
-
 .hero-actions {
-  display: flex;
   gap: 15px;
 }
 
-/* Botões */
 .btn-hero.btn:hover {
     border: 1px solid var(--white-color);
 }
@@ -169,32 +160,63 @@ body {
     filter: brightness(10) saturate(0.1) contrast(10);
 }
 .btn-outline {
-  border: 2px solid #ffd000;
-  color: #ffd000;
+  border: 2px solid var(--yellow-color);
+  color: var(--yellow-color);
   padding: 12px 28px;
   border-radius: 50px;
   font-weight: 600;
   text-decoration: none;
 }
-
-/* Swiper pagination */
-.swiper-pagination-bullet {
+.main-swiper .swiper-pagination-bullet{
+    height: 17px;
+    width: 17px;
+}
+.main-swiper .swiper-pagination-bullet {
   background: rgba(255, 255, 255, 0.5);
   opacity: 1;
 }
 
-.swiper-pagination-bullet-active {
-  background: #ffd000;
+.main-swiper .swiper-pagination-bullet-active {
+  background: var(--yellow-color);
 }
 
-/* Responsivo */
-@media (max-width: 991px) {
-  .hero-title {
-    font-size: 32px;
-  }
+/* =========================
+   TOPIC
+========================= */
+.topic-item img {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.topic-item img{
+    width: 193px;
+    height: 113px;
+    object-fit: cover;
+} 
+.topic-item:hover img {
+  transform: translateY(-6px);
+}
 
-  .hero-actions {
-    flex-direction: column;
-    width: fit-content;
-  }
+/* =========================
+   ABOUT
+========================= */
+.about-image img {
+    object-fit: cover;
+    height: 100%;
+}
+.mb-0.color-grey.font-changa.font-16.font-semibold.col-11.ms-3{
+    line-height: 23px;
+}
+.firula-about{
+    z-index: -1;
+    top: -50px;
+}
+.about-subtitle{
+    border-bottom: 1px solid var(--green-color);
+}
+.firula-count{
+    width: 130px;
+    top: -4px !important;
+    left: 0px;
+}
+.stat-number{
+    color: rgb(16 81 61 / 50%);
 }
