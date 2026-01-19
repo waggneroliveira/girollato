@@ -543,8 +543,8 @@
         </div>
 
         <!-- Botão -->
-        <div class="text-end mt-4">
-            <a href="#" class="btn btn-product bg-green rounded-pill px-4 text-white d-flex justify-content-center justify-content-lg-end align-items-center">
+        <div class="text-end mt-4 d-flex justify-content-center justify-content-lg-end align-items-center">
+            <a href="#" class="btn btn-product bg-green rounded-pill px-4 text-white">
                 Ver todos os produtos
                 <svg class="ms-2" width="31" height="13" viewBox="0 0 31 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24.1708 12.4741L30.4078 6.23712L24.1708 0.000120163L22.4036 1.76727L26.8527 6.23712L22.3828 10.707L24.1708 12.4741Z" fill="#10513D"></path>
