@@ -23,28 +23,28 @@
               <div class="row">
                 <div class="col-lg-6">
 
-                  <span class="hero-subtitle font-changa font-15 font-regular">
-                    Te ajudando a compartilhar qualidade no seu negócio
-                  </span>
+                    <span class="hero-subtitle font-changa font-15 font-regular">
+                        Te ajudando a compartilhar qualidade no seu negócio
+                    </span>
 
-                  <h1 class="hero-title font-changa font-40 font-bold">
-                    Há 10 anos distribuindo soluções para empresas no mercado PET
-                  </h1>
+                    <h1 class="hero-title font-changa font-40 font-bold">
+                        Há 10 anos distribuindo soluções para empresas no mercado PET
+                    </h1>
 
-                  <div class="hero-actions d-flex">
-                    <a href="#" class="btn-one rounded-pill px-4 btn-hero btn font-changa bg-yellow color-green font-18 font-medium text-decoration-none">
-                        Conheça
-                        <svg class="ms-2" width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1.78794 12.474L8.02494 6.237L1.78794 -1.90735e-06L0.02079 1.76715L4.46985 6.237L0 10.7068L1.78794 12.474Z" fill="#0E523E"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="btn-two rounded-pill px-4 btn-hero btn font-changa bg-yellow color-green font-18 font-medium text-decoration-none">
-                        Acessar Catálogo
-                        <svg class="ms-2" width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.28975 9.17017C1.30848 9.53072 1.45344 9.87123 1.70426 10.1283L6.49015 15.0333C7.04555 15.6025 7.95515 15.6025 8.51054 15.0333L13.2964 10.1283C14.18 9.22192 13.5749 7.6319 12.2858 7.6319C11.9063 7.6319 11.544 7.78129 11.2752 8.05672L8.92907 10.4621V1.46592C8.92907 1.07699 8.77679 0.708085 8.51947 0.444363C7.53737 -0.533798 6.07158 0.23571 6.07158 1.46592V10.463L3.7246 8.05757C2.88827 7.19959 1.28975 7.66954 1.28975 9.17017ZM0.466453 17.457C-0.547411 18.4961 0.236799 20 1.43064 20H13.5708C14.8526 20 15.465 18.3842 14.5904 17.5136C14.307 17.2315 13.9706 17.0713 13.5708 17.0713L1.43064 17.0705C1.0715 17.0705 0.729482 17.2091 0.466453 17.457Z" fill="#0E523E"/>
-                        </svg>
-                    </a>
-                  </div>
+                    <div class="hero-actions d-flex">
+                        <a href="#" class="btn-one rounded-pill px-4 btn-hero btn font-changa bg-yellow color-green font-18 font-medium text-decoration-none">
+                            Conheça
+                            <svg class="ms-2" width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.78794 12.474L8.02494 6.237L1.78794 -1.90735e-06L0.02079 1.76715L4.46985 6.237L0 10.7068L1.78794 12.474Z" fill="#0E523E"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn-two rounded-pill px-4 btn-hero btn font-changa bg-yellow color-green font-18 font-medium text-decoration-none">
+                            Acessar Catálogo
+                            <svg class="ms-2" width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.28975 9.17017C1.30848 9.53072 1.45344 9.87123 1.70426 10.1283L6.49015 15.0333C7.04555 15.6025 7.95515 15.6025 8.51054 15.0333L13.2964 10.1283C14.18 9.22192 13.5749 7.6319 12.2858 7.6319C11.9063 7.6319 11.544 7.78129 11.2752 8.05672L8.92907 10.4621V1.46592C8.92907 1.07699 8.77679 0.708085 8.51947 0.444363C7.53737 -0.533798 6.07158 0.23571 6.07158 1.46592V10.463L3.7246 8.05757C2.88827 7.19959 1.28975 7.66954 1.28975 9.17017ZM0.466453 17.457C-0.547411 18.4961 0.236799 20 1.43064 20H13.5708C14.8526 20 15.465 18.3842 14.5904 17.5136C14.307 17.2315 13.9706 17.0713 13.5708 17.0713L1.43064 17.0705C1.0715 17.0705 0.729482 17.2091 0.466453 17.457Z" fill="#0E523E"/>
+                            </svg>
+                        </a>
+                    </div>
 
                 </div>
               </div>
@@ -212,6 +212,15 @@
                         </p>
                     </li>
                 </ul>
+
+                <div class="btn-about my-4 d-flex justify-content-center justify-content-lg-start">
+                    <a href="#" class="rounded-pill px-4 btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
+                        Saiba mais
+                        <svg class="ms-2" width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.78794 12.474L8.02494 6.237L1.78794 -1.90735e-06L0.02079 1.76715L4.46985 6.237L0 10.7068L1.78794 12.474Z" fill="#0E523E"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -260,7 +269,9 @@
         <div class="row">
             <div class="left-content col-12 col-lg-6 bg-green z-3 d-flex flex-column align-items-end justify-content-center py-5">
                 <div class="image position-relative">
-                    <img src="{{asset('build/client/images/step.png')}}" alt="Passo a passo" class="w-100">
+                    <img src="{{asset('build/client/images/step.png')}}" alt="Passo a passo" class="w-100 step-image">
+
+                    <img src="{{asset('build/client/images/icon-step.png')}}" alt="Icone" class="w-100 icon-step position-absolute">
                 </div>
     
                 <div class="description col-12 col-lg-7 text-center text-lg-end px-0 px-lg-4">
@@ -281,9 +292,261 @@
                 <h3 class="about-title font-changa font-50 font-bold color-green mb-3">
                     Garanta aqui <span class="color-grey">as melhores marcas do mercado com entrega personalizada em poucos passos</span>
                 </h3>
+
+                <ul class="list-unstyled list-step mt-4 position-relative">
+                    <li class="d-flex align-items-center mb-3">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="white"/>
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#565656"/>
+                        <path d="M18.3861 23.2768C18.2468 23.4161 18.0791 23.4857 17.8829 23.4857C17.6866 23.4857 17.5189 23.4161 17.3796 23.2768L14.3032 20.2004L15.2907 19.194L17.8734 21.7956L24.7668 14.8452L25.6973 15.8517L18.3861 23.2768Z" fill="#124937"/>
+                        </svg>
+
+                        <p class="mb-0 color-grey font-changa font-16 font-semibold col-10 col-lg-auto ms-3">
+                            Veja os produtos disponíveis em nosso site ou catálogo
+                        </p>
+                    </li>
+
+                    <li class="d-flex align-items-center mb-3">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="white"/>
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#565656"/>
+                        <path d="M18.3861 23.2768C18.2468 23.4161 18.0791 23.4857 17.8829 23.4857C17.6866 23.4857 17.5189 23.4161 17.3796 23.2768L14.3032 20.2004L15.2907 19.194L17.8734 21.7956L24.7668 14.8452L25.6973 15.8517L18.3861 23.2768Z" fill="#124937"/>
+                        </svg>
+
+                        <p class="mb-0 color-grey font-changa font-16 font-semibold col-10 col-lg-auto ms-3">
+                            Faça a sua lista
+                        </p>
+                    </li>
+
+                    <li class="d-flex align-items-center mb-3">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="white"/>
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#565656"/>
+                        <path d="M18.3861 23.2768C18.2468 23.4161 18.0791 23.4857 17.8829 23.4857C17.6866 23.4857 17.5189 23.4161 17.3796 23.2768L14.3032 20.2004L15.2907 19.194L17.8734 21.7956L24.7668 14.8452L25.6973 15.8517L18.3861 23.2768Z" fill="#124937"/>
+                        </svg>
+
+                        <p class="mb-0 color-grey font-changa font-16 font-semibold col-10 col-lg-auto ms-3">
+                            Entre em contato conosco pelo site
+                        </p>
+                    </li>
+
+                    <li class="d-flex align-items-center mb-3">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="white"/>
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#565656"/>
+                        <path d="M18.3861 23.2768C18.2468 23.4161 18.0791 23.4857 17.8829 23.4857C17.6866 23.4857 17.5189 23.4161 17.3796 23.2768L14.3032 20.2004L15.2907 19.194L17.8734 21.7956L24.7668 14.8452L25.6973 15.8517L18.3861 23.2768Z" fill="#124937"/>
+                        </svg>
+
+                        <p class="mb-0 color-grey font-changa font-16 font-semibold col-10 col-lg-auto ms-3">
+                            Encaminhe os dados da empresa para cadastro conosco
+                        </p>
+                    </li>
+
+                    <li class="d-flex align-items-center mb-3">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="white"/>
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#565656"/>
+                        <path d="M18.3861 23.2768C18.2468 23.4161 18.0791 23.4857 17.8829 23.4857C17.6866 23.4857 17.5189 23.4161 17.3796 23.2768L14.3032 20.2004L15.2907 19.194L17.8734 21.7956L24.7668 14.8452L25.6973 15.8517L18.3861 23.2768Z" fill="#124937"/>
+                        </svg>
+
+                        <p class="mb-0 color-grey font-changa font-16 font-semibold col-10 col-lg-auto ms-3">
+                            Receba seu produto em até 30 dias corridos
+                        </p>
+                    </li>
+
+                    <li class="d-flex align-items-center">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="white"/>
+                        <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#565656"/>
+                        <path d="M18.3861 23.2768C18.2468 23.4161 18.0791 23.4857 17.8829 23.4857C17.6866 23.4857 17.5189 23.4161 17.3796 23.2768L14.3032 20.2004L15.2907 19.194L17.8734 21.7956L24.7668 14.8452L25.6973 15.8517L18.3861 23.2768Z" fill="#124937"/>
+                        </svg>
+
+                        <p class="mb-0 color-grey font-changa font-16 font-semibold col-10 col-lg-auto ms-3">
+                            Conte com a visita dos nossos representantes para acompanhamento.
+                        </p>
+                    </li>
+                </ul>
+                <div class="step-actions mt-4 d-flex justify-content-center justify-content-lg-start">
+                    <a href="#" class="rounded-pill px-4 btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
+                        Realizar um orçamento
+                        <svg class="ms-2" width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.78794 12.474L8.02494 6.237L1.78794 -1.90735e-06L0.02079 1.76715L4.46985 6.237L0 10.7068L1.78794 12.474Z" fill="#0E523E"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<section class="lets-go bg-grey-light py-5">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="content-left col-12 col-lg-6">
+                <img src="{{asset('build/client/images/lets-got.png')}}" alt="Carro de entrega" class="w-100">
+            </div>
+            <div class="content-left col-12 col-lg-6">
+                <h3 class="about-title font-changa font-50 font-bold color-green mb-3">
+                    A Girollato pode ir até você!
+                </h3>
+                <p class="color-grey font-changa font-16 font-regular text-center text-lg-start">Receba as melhores marcas e as soluções mais inovadoras do Mercado PET no seu negócio. Nosso atendimento é exclusivo para empresas do setor, realizado pelos nossos representantes. Lembramos que não atendemos consumidor final e não realizamos vendas diretas na porta.</p>
+                <div class="step-actions gap-3 d-flex mt-4 flex-wrap justify-content-center justify-content-lg-start">
+                    <a href="#" class="rounded-pill px-4 btn-hero btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
+                        Onde Distribuimos
+                        <svg class="ms-2" width="31" height="13" viewBox="0 0 31 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24.1708 12.4741L30.4078 6.23712L24.1708 0.000120163L22.4036 1.76727L26.8527 6.23712L22.3828 10.707L24.1708 12.4741Z" fill="#10513D"/>
+                        <path d="M0 5H27V7.2H0V5Z" fill="#10513D"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="rounded-pill px-4 btn-hero btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
+                        Encontrar Representantes
+                        <svg class="ms-2" width="31" height="13" viewBox="0 0 31 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24.1708 12.4741L30.4078 6.23712L24.1708 0.000120163L22.4036 1.76727L26.8527 6.23712L22.3828 10.707L24.1708 12.4741Z" fill="#10513D"/>
+                        <path d="M0 5H27V7.2H0V5Z" fill="#10513D"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="category-product">
+    <div class="container py-5">
+        <div class="row g-4">
+            <!-- Item 1 -->
+            <div class="col-12 col-md-4 mb-3 mb-lg-0">
+                <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">
+                    <img src="{{asset('build/client/images/cat-1.png')}}"
+                        class="card-img-top rounded"
+                        alt="Imagem 1">
+
+                    <div class="card-body">
+                        <a href="#" class="stretched-link text-decoration-none text-center">
+                            <h5 class="card-title font-changa text-black font-25 font-bold">Cachorro</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="col-12 col-md-4 mb-3 mb-lg-0">
+                <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">
+                    <img src="{{asset('build/client/images/cat-2.png')}}"
+                        class="card-img-top rounded"
+                        alt="Imagem 1">
+
+                    <div class="card-body">
+                        <a href="#" class="stretched-link text-decoration-none text-center">
+                            <h5 class="card-title font-changa text-black font-25 font-bold">Gato</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="col-12 col-md-4 mb-3 mb-lg-0">
+                <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">
+                    <img src="{{asset('build/client/images/cat-3.png')}}"
+                        class="card-img-top rounded"
+                        alt="Imagem 1">
+
+                    <div class="card-body">
+                        <a href="#" class="stretched-link text-decoration-none text-center">
+                            <h5 class="card-title font-changa text-black font-25 font-bold">Pássaro</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products-section py-5">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <small class="text-warning fw-bold">Conheça Aqui!</small>
+      <h2 class="fw-bold text-success">Nossos Produtos</h2>
+    </div>
+
+    <!-- Filtros -->
+    <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
+      <button class="btn btn-filter active" data-filter="all">Todos</button>
+      <button class="btn btn-filter" data-filter="alimentos">Alimentos</button>
+      <button class="btn btn-filter" data-filter="racao">Ração</button>
+      <button class="btn btn-filter" data-filter="acessorios">Acessórios</button>
+      <button class="btn btn-filter" data-filter="nutridani">Nutridani</button>
+    </div>
+
+    <!-- Produtos -->
+    <div class="row g-4 products">
+
+      <!-- Produto -->
+      <div class="col-12 col-sm-6 col-lg-3 product alimentos nutridani">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/240x240" alt="">
+          <h6>BILLY CAT 10 KG</h6>
+          <p>Gato filhote ao castrado, linha premium Nutridani</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3 product acessorios">
+        <div class="product-card highlight">
+          <img src="https://via.placeholder.com/240x240" alt="">
+          <a href="#" class="btn btn-view">Ver Produto</a>
+          <h6>LOUNGER DOG BED</h6>
+          <p>Produto confort premium Nutridani, para soneca PET</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3 product acessorios">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/240x240" alt="">
+          <h6>ACTIVE PET DOG HARNESS</h6>
+          <p>Gato filhote ao castrado, linha premium Nutridani</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3 product alimentos">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/240x240" alt="">
+          <h6>SARA’S DOGGIE TREAT</h6>
+          <p>Produto confort premium Nutridani, para soneca PET</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botão -->
+    <div class="text-end mt-4">
+      <a href="#" class="btn btn-success rounded-pill px-4">
+        Ver todos os produtos →
+      </a>
+    </div>
+
+  </div>
+</section>
+<script>
+  const buttons = document.querySelectorAll('.btn-filter');
+  const products = document.querySelectorAll('.product');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      products.forEach(product => {
+        product.classList.toggle(
+          'd-none',
+          filter !== 'all' && !product.classList.contains(filter)
+        );
+      });
+    });
+  });
+</script>
 
 @endsection
