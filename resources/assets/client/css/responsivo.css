@@ -1,4 +1,4 @@
-@media (max-width: 991px) {
+@media (max-width: 991.98px) {
   .hero-title {
     font-size: 2rem;
   }
@@ -9,6 +9,9 @@
   .about {
     min-height: 500px;
   }
+  .left-content .image{
+        margin: 0 auto;
+    }
 }
 @media (max-width: 530px) {
     .firula-about{
@@ -16,7 +19,7 @@
         top: -22px;
     }
     .about-subtitle{
-        width: 215px;
+        width: 67%;
         margin: 0 auto;
         margin-right: 0;
     }

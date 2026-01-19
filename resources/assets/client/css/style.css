@@ -220,3 +220,19 @@ body {
 .stat-number{
     color: rgb(16 81 61 / 50%);
 }
+
+/* =========================
+   STEP-TO-STEP
+========================= */
+.left-content .image{
+    margin-right: -100px;
+}
+.left-content img{
+    max-width: 687px;
+    height: 100%;
+    object-fit: cover;
+}
+.left-content p{
+    color: #F9F9F9;
+    line-height: 33.6px;
+}
