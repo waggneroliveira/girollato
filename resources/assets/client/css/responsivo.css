@@ -15,6 +15,9 @@
 }
 
 @media (max-width: 530px) {
+    .product-card img{
+        height: 140px;
+    }
     .firula-about{
         left: 56px;
         top: -22px;
@@ -56,6 +59,9 @@
     }
 }
 @media (max-width: 414px) {
+    .product-card h6, .product-card p, .btn-filter{
+        font-size: 0.938rem;
+    }
     .hero-title{
         font-size: 1.25rem;
     }
