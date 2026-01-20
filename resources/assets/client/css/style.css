@@ -395,7 +395,7 @@ body {
     object-fit: cover;
     width: 80px;
 }
-.span-product{
+.about-subtitle.span-product{
     width: 43%;
 }
 /* =========================
@@ -405,7 +405,7 @@ body {
     border-bottom: 1px solid var(--green-color);
 }
 .blog-subtitle{
-    width: 67.3% !important;
+    width: 61.5% !important;
 }
 .post-card {
   position: relative;
@@ -493,3 +493,78 @@ body {
   color: #eaeaea;
 }
 
+/* =========================
+   DEPOIMENT
+========================= */
+
+.testimonial-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    height: 100%;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,.05);
+    text-align: left;
+    min-height: 320px;
+}
+.author{
+    border-top: 1px solid #E9E9E9;
+}
+.testimonial-swiper .swiper-pagination-bullet{
+    background: var(--green-color);
+    opacity: 1;   
+    padding: 4px;
+    border: 1px solid transparent;
+    width: 8px;
+    position: relative;
+}
+.testimonial-swiper .swiper-pagination-bullet-active:after{
+    content: '';
+    height: 8px;
+    width: 8px;
+    background-color: var(--green-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+}
+.testimonial-swiper .swiper-pagination-bullet-active {
+    background: #FFF;
+    padding: 8px;
+    border: 3px solid var(--yellow-color);
+    width: 17px;
+}
+
+/* bullets base */
+.swiper-pagination-blog .swiper-pagination-bullet {
+    background: var(--green-color);
+    opacity: 1;
+    width: 8px;
+    height: 8px;
+    padding: 4px;
+    border: 1px solid transparent;
+    position: relative;
+}
+
+/* bullet ativo (externo) */
+.swiper-pagination-blog .swiper-pagination-bullet-active {
+    background: #fff;
+    padding: 8px;
+    border: 3px solid var(--yellow-color);
+    width: 17px;
+    height: 17px;
+}
+
+/* bolinha interna */
+.swiper-pagination-blog .swiper-pagination-bullet-active::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: var(--green-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}

@@ -560,7 +560,7 @@
 
 <section class="blog position-relative">
     <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
-    <div class="container">
+    <div class="container z-3 position-relative">
         <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">
             Conheça aqui!
         </span>
@@ -570,66 +570,85 @@
         </h3>
 
         <div class="row g-4 mt-5">
-            <!-- Card -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <article class="post-card">
-                    <a href="">
-                        <img src="{{asset('build/client/images/blog-1.png')}}" alt="">
-                        <div class="post-overlay">
-                            <h5 class="font-changa font-18 font-bold text-white mb-3">Qual a melhor ração para fêmeas com filhotes?</h5>
-                            <p class="font-16 font-regular text-white mb-3">
-                            Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
-                            </p>
-                            <span class="date font-16 font-regular text-white">04 Mar 2026</span>
-                        </div>
-                    </a>
-                </article>
-            </div>
 
-            <div class="col-12 col-sm-6 col-lg-3">
-                <article class="post-card">
-                    <a href="">
-                        <img src="{{asset('build/client/images/blog-2.png')}}" alt="">
-                        <div class="post-overlay">
-                            <h5 class="font-changa font-18 font-bold text-white mb-3">Por que os cães amam petiscos?</h5>
-                            <p class="font-16 font-regular text-white mb-3">
-                            Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
-                            </p>
-                            <span class="date font-16 font-regular text-white">04 Set 2026</span>
-                        </div>
-                    </a>
-                </article>
+            <div class="swiper blog-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <article class="post-card">
+                            <a href="">
+                                <img src="{{asset('build/client/images/blog-1.png')}}" alt="">
+                                <div class="post-overlay">
+                                    <h5 class="font-changa font-18 font-bold text-white mb-3">
+                                        Qual a melhor ração para fêmeas com filhotes?
+                                    </h5>
+                                    <p class="font-16 font-regular text-white mb-3">
+                                        Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                                    </p>
+                                    <span class="date font-16 font-regular text-white">
+                                    04 Set 2026
+                                    </span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                    <div class="swiper-slide">
+                        <article class="post-card">
+                            <a href="">
+                                <img src="{{asset('build/client/images/blog-2.png')}}" alt="">
+                                <div class="post-overlay">
+                                    <h5 class="font-changa font-18 font-bold text-white mb-3">
+                                        Por que os cães amam petiscos?
+                                    </h5>
+                                    <p class="font-16 font-regular text-white mb-3">
+                                        Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                                    </p>
+                                    <span class="date font-16 font-regular text-white">
+                                    04 Set 2026
+                                    </span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                    <div class="swiper-slide">
+                        <article class="post-card">
+                            <a href="">
+                                <img src="{{asset('build/client/images/blog-1.png')}}" alt="">
+                                <div class="post-overlay">
+                                    <h5 class="font-changa font-18 font-bold text-white mb-3">
+                                        Qual a melhor ração para fêmeas com filhotes?
+                                    </h5>
+                                    <p class="font-16 font-regular text-white mb-3">
+                                        Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                                    </p>
+                                    <span class="date font-16 font-regular text-white">
+                                    04 Mar 2026
+                                    </span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                    <div class="swiper-slide">
+                        <article class="post-card">
+                            <a href="">
+                                <img src="{{asset('build/client/images/blog-2.png')}}" alt="">
+                                <div class="post-overlay">
+                                    <h5 class="font-changa font-18 font-bold text-white mb-3">
+                                        Por que os cães amam petiscos?
+                                    </h5>
+                                    <p class="font-16 font-regular text-white mb-3">
+                                        Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                                    </p>
+                                    <span class="date font-16 font-regular text-white">
+                                    04 Set 2026
+                                    </span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-12 col-sm-6 col-lg-3">
-                <article class="post-card">
-                    <a href="">
-                        <img src="{{asset('build/client/images/blog-1.png')}}" alt="">
-                        <div class="post-overlay">
-                            <h5 class="font-changa font-18 font-bold text-white mb-3">Qual a melhor ração para fêmeas com filhotes?</h5>
-                            <p class="font-16 font-regular text-white mb-3">
-                            Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
-                            </p>
-                            <span class="date font-16 font-regular text-white">04 Mar 2026</span>
-                        </div>
-                    </a>
-                </article>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-3">
-                <article class="post-card">
-                    <a href="">
-                        <img src="{{asset('build/client/images/blog-2.png')}}" alt="">
-                        <div class="post-overlay">
-                            <h5 class="font-changa font-18 font-bold text-white mb-3">Por que os cães amam petiscos?</h5>
-                            <p class="font-16 font-regular text-white mb-3">
-                            Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
-                            </p>
-                            <span class="date font-16 font-regular text-white">04 Set 2026</span>
-                        </div>
-                    </a>
-                </article>
-            </div>
+            <!-- Dots -->
+            <div class="swiper-pagination-blog mt-4 position-relative d-flex justify-content-center align-items-center"></div>
 
         </div>
 
@@ -829,6 +848,152 @@
         </div>
     </div>
 </section>
+
+<section class="depoiment py-5 position-relative">
+    <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
+    <div class="container z-3 position-relative">
+        <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">
+            Experiência de quem viveu!
+        </span>
+
+        <h3 class="about-title font-changa font-50 font-bold color-green mb-3 text-center">
+            Depoimentos
+        </h3>
+    </div>
+    <div class="col-11 m-auto me-0">
+        <div class="swiper testimonial-swiper">
+            <div class="swiper-wrapper">
+
+                <!-- Slide -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="icon mb-3">
+                            <img src="{{asset('build/client/images/dep-1.png')}}" alt="Depoimento">
+                        </div>
+
+                        <p class="color-grey font-changa font-16 font-regular text-start">
+                        “Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry. Lorem Ipsum has been the industry's standard dummy text
+                        ever since the 1500s...”
+                        </p>
+
+                        <div class="author">
+                            <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">Iza Souza</h5>
+                            <span class="color-grey font-changa font-16 font-regular">Diretora Comercial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="icon mb-3">
+                            <img src="{{asset('build/client/images/dep-2.png')}}" alt="Depoimento 2">
+                        </div>
+
+                        <p class="color-grey font-changa font-16 font-regular text-start">
+                        “Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry. Lorem Ipsum has survived...”
+                        </p>
+
+                        <div class="author">
+                            <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">Iza Souza</h5>
+                            <span class="color-grey font-changa font-16 font-regular">Diretora Comercial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="icon mb-3">
+                            <img src="{{asset('build/client/images/dep-3.png')}}" alt="Depoimento 3">
+                        </div>
+
+                        <p class="color-grey font-changa font-16 font-regular text-start">
+                        “Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry...”
+                        </p>
+
+                        <div class="author">
+                            <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">Iza Souza</h5>
+                            <span class="color-grey font-changa font-16 font-regular">Diretora Comercial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="icon mb-3">
+                            <img src="{{asset('build/client/images/dep-2.png')}}" alt="Depoimento 4">
+                        </div>
+
+                        <p class="color-grey font-changa font-16 font-regular text-start">
+                        “Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry...”
+                        </p>
+
+                        <div class="author">
+                            <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">Iza Souza</h5>
+                            <span class="color-grey font-changa font-16 font-regular">Diretora Comercial</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Dots -->
+            <div class="swiper-pagination mt-4 position-relative d-flex justify-content-center align-items-center"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  new Swiper('.blog-swiper', {
+    spaceBetween: 24,
+    pagination: {
+      el: '.swiper-pagination-blog',
+      clickable: true,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1.3,
+      },
+      576: {
+        slidesPerView: 2,
+      },
+      992: {
+        slidesPerView: 4,
+        allowTouchMove: false,
+      }
+    }
+  });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  new Swiper('.testimonial-swiper', {
+    loop: true,
+    spaceBetween: 24,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1.2,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1200: {
+        slidesPerView: 2.5,
+      }
+    }
+  });
+});
+
+</script>
 
 <script>
   const buttons = document.querySelectorAll('.btn-filter');

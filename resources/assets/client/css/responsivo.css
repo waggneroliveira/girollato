@@ -27,6 +27,9 @@
         margin: 0 auto;
         margin-right: 0;
     }
+    .blog-subtitle{
+        width: 73% !important;
+    }
     .stat-number{
         font-size: 1.75rem;
     }
