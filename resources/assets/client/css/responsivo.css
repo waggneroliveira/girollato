@@ -22,7 +22,7 @@
         left: 56px;
         top: -22px;
     }
-    .about-subtitle{
+    .about-subtitle, .blog-subtitle{
         width: 67%;
         margin: 0 auto;
         margin-right: 0;
@@ -33,7 +33,7 @@
     .hero-content{
         align-items: baseline;
     }
-    .hero-title, .about-title{
+    .hero-title, .about-title, .faq-title{
         font-size: 1.75rem;
         text-align: center;
     }
