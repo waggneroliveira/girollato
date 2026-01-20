@@ -411,7 +411,8 @@
     </div>
 </section>
 
-<section class="category-product">
+<section class="category-product position-relative">
+    <img src="{{asset('build/client/images/firula-top-product.svg')}}" alt="Firula" class="position-absolute top-0 left-0">
     <div class="container py-5">
         <div class="row g-4">
             <!-- Item 1 -->
@@ -467,12 +468,13 @@
 
         <!-- Header -->
         <div class="text-center mb-4">
-            <span class="about-subtitle color-yellow font-changa font-16 font-bold d-block mb-2">
+            <span class="about-subtitle span-product color-yellow font-changa font-16 font-bold d-block mb-2 text-end m-0 z-3 position-relative">
                 Conheça Aqui!
             </span>
 
-            <h3 class="about-title font-changa font-50 font-bold color-green mb-3">
-                Nossos Produtos</span>
+            <h3 class="about-title font-changa font-50 font-bold color-green mb-3 position-relative">
+                <img src="{{asset('build/client/images/firula-about.svg')}}" alt="Firula" class="position-absolute firula-products">
+                Nossos <span class="color-grey z-3 position-relative">Produtos</span>
             </h3>
         </div>
 
@@ -555,6 +557,123 @@
 
     </div>
 </section>
+
+<section class="faq-section py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+        <!-- COLUNA ESQUERDA -->
+        <div class="col-lg-6">
+            <!-- Header -->
+            <div class="mb-4">
+                <span class="faq-eyebrow color-yellow font-changa font-16 font-bold d-block mb-2">
+                    Conheça Aqui!
+                </span>
+
+                <h3 class="faq-title font-changa font-50 font-bold color-green mb-3">
+                    Dúvidas <span>frequentes</span>
+                </h3>
+            </div>
+
+            <p class="faq-text">
+                Encontre respostas claras e detalhadas para perguntas
+                frequentes sobre nossos produtos, entregas, prazos além de
+                orçamentos.
+            </p>
+
+            <a href="#" class="btn btn-faq">
+                Continuo com dúvidas
+            </a>
+
+            <div class="faq-image mt-4">
+                <img src="{{asset('build/client/images/faq.png')}}" alt="Entrega" class="img-fluid">
+            </div>
+        </div>
+
+        <!-- COLUNA DIREITA -->
+        <div class="col-lg-6">
+            <div class="accordion" id="faqAccordion">
+
+            <!-- ITEM -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq1">
+                    Quem pode comprar diretamente com a Girolatto?
+                </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                </div>
+                </div>
+            </div>
+
+            <!-- ITEM -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq2">
+                    Existe valor mínimo para pedidos?
+                </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Lorem Ipsum has been the industry’s standard dummy text.
+                </div>
+                </div>
+            </div>
+
+            <!-- ITEM ATIVO -->
+            <div class="accordion-item active">
+                <h2 class="accordion-header">
+                <button class="accordion-button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq3">
+                    Quais regiões vocês atendem?
+                </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse show"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Lorem Ipsum has survived not only five centuries, but
+                    also the leap into electronic typesetting.
+                </div>
+                </div>
+            </div>
+
+            <!-- ITEM -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq4">
+                    Qual o prazo de entrega?
+                </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    O prazo varia conforme a região e o volume do pedido.
+                </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
 <script>
   const buttons = document.querySelectorAll('.btn-filter');
   const products = document.querySelectorAll('.product');

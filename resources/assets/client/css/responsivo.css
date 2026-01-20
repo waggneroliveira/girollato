@@ -52,6 +52,9 @@
     .btn-two{
         max-width: 260px;
     }
+    .about-subtitle.span-product{
+        width: 62%;
+    }
 }
 @media (max-width: 441px) {
     .hero-title{

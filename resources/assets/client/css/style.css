@@ -37,7 +37,7 @@ body {
     font-weight: 400;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: #f9f9f9;
 }
 
 /* =========================
@@ -386,4 +386,101 @@ body {
 }
 .btn-product:hover{
     color: var(--green-color) !important;
+}
+.firula-products{
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    object-fit: cover;
+    width: 80px;
+}
+.span-product{
+    width: 43%;
+}
+/* =========================
+   FAQ
+========================= */
+
+.faq-section {
+  background: #f4f4f2;
+}
+
+.faq-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f4b400;
+  text-transform: uppercase;
+}
+
+.faq-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0f3d2e;
+}
+
+.faq-title span {
+  font-weight: 400;
+}
+
+.faq-text {
+  color: #666;
+  margin: 20px 0;
+  max-width: 420px;
+}
+
+.btn-faq {
+  background: #0f3d2e;
+  color: #fff;
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-weight: 600;
+}
+
+.btn-faq:hover {
+  background: #0c2f23;
+  color: #fff;
+}
+
+/* ACCORDION */
+.accordion-item {
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.accordion-button {
+  background: #ffffff;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background: #0f3d2e;
+  color: #fff;
+}
+
+.accordion-body {
+  background: #0f3d2e;
+  color: #eaeaea;
+}
+
+.accordion-button::after {
+  filter: brightness(0.4);
+}
+
+.accordion-button:not(.collapsed)::after {
+  filter: brightness(5);
+}
+
+/* RESPONSIVO */
+@media (max-width: 991px) {
+  .faq-title {
+    font-size: 32px;
+  }
+
+  .faq-text {
+    max-width: 100%;
+  }
 }
