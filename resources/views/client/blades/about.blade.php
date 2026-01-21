@@ -155,8 +155,208 @@
         </div>
     </section>
 
-    {{-- <div class="container">
-        @include('client.includes.complaint');
-    </div> --}}
+    <section class="mvw-section d-flex justify-content-center align-items-end" id="mvwSection">
+        <div class="mvw-overlay"></div>
+        <div class="container">
+            <div class="mvw-cards row justify-content-center flex-wrap">
+                <div class="col-12 col-lg-4 mvw-card d-flex justify-content-center align-items-start active" data-bg="{{asset('build/client/images/missao.png')}}">
+                    <div class="icon rounded-circle bg-white d-flex justify-content-center align-items-center">
+                        <img src="{{asset('build/client/images/dog-1.png')}}" alt="">
+                    </div>
+                    <div class="description ms-2 col-8">
+                        <h4 class="color-yellow font-changa font-30 font-semibold">Missão</h4>
+                        <p class="text-white font-changa font-16 font-regular mb-0">Well gaudy hound hired set flailed much followed less this maternal well unavoidable crudely aloof more save groomed.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4 mvw-card d-flex justify-content-center align-items-start" data-bg="{{asset('build/client/images/visao.png')}}">
+                    <div class="icon rounded-circle bg-white d-flex justify-content-center align-items-center">
+                        <img src="{{asset('build/client/images/dog-2.png')}}" alt="">
+                    </div>
+                    <div class="description ms-2 col-8">                        
+                        <h4 class="color-yellow font-changa font-30 font-semibold">Visão</h4>
+                        <p class="text-white font-changa font-16 font-regular mb-0">Well gaudy hound hired set flailed much followed less this maternal well unavoidable crudely aloof more save groomed.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4 mvw-card d-flex justify-content-center align-items-start" data-bg="{{asset('build/client/images/valores.png')}}">
+                    <div class="icon rounded-circle bg-white d-flex justify-content-center align-items-center">
+                        <img src="{{asset('build/client/images/dog-3.png')}}" alt="">
+                    </div>
+                    <div class="description ms-2 col-8">                        
+                        <h4 class="color-yellow font-changa font-30 font-semibold">Valores</h4>
+                        <p class="text-white font-changa font-16 font-regular mb-0">Well gaudy hound hired set flailed much followed less this maternal well unavoidable crudely aloof more save groomed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section py-5 position-relative">
+        <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
+        <div class="container z-3 position-relative">
+            <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">
+                Equipe
+            </span>
+
+            <h3 class="about-title font-changa font-50 font-bold color-green mb-3 text-center">
+                Respresentantes 
+            </h3>
+            <div class="row g-4">
+                <!-- Card -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="team-card position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
+                        </div>
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
+                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="team-card position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
+                        </div>
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
+                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="team-card position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
+                        </div>
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
+                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="team-card position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
+                        </div>
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
+                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="team-card position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
+                        </div>
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
+                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="team-card position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
+                        </div>
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
+                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="team-card position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
+                        </div>
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
+                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="team-card position-relative">
+                        <div class="team-image">
+                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
+                        </div>
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
+                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+    const section = document.getElementById("mvwSection");
+    const cards = document.querySelectorAll(".mvw-card");
+
+    function changeBackground(card) {
+        const bg = card.getAttribute("data-bg");
+        section.style.backgroundImage = `url(${bg})`;
+
+        cards.forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+    }
+
+    // Desktop (hover)
+    cards.forEach(card => {
+            card.addEventListener("mouseenter", () => {
+                if (window.innerWidth > 768) {
+                    changeBackground(card);
+                }
+            });
+    });
+
+    // Mobile (click)
+        cards.forEach(card => {
+            card.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {
+                    changeBackground(card);
+                }
+            });
+        });
+    </script>
 
 @endsection

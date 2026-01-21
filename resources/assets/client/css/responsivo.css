@@ -13,7 +13,15 @@
         margin: 0 auto;
     }
 }
+@media (max-width: 768px) {
+  .mvw-section {
+    padding: 60px 0;
+  }
 
+  .mvw-card {
+    max-width: 100%;
+  }
+}
 @media (max-width: 530px) {
     .product-card img{
         height: 140px;
