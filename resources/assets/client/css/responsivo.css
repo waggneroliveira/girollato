@@ -14,6 +14,18 @@
     }
 }
 @media (max-width: 768px) {
+    .video-play-btn {
+    width: 70px;
+    height: 70px;
+    }
+
+    .video-play-btn::before {
+    left: 28px;
+    top: 22px;
+    border-left-width: 22px;
+    border-top-width: 14px;
+    border-bottom-width: 14px;
+    }
   .mvw-section {
     padding: 60px 0;
   }
@@ -23,6 +35,9 @@
   }
 }
 @media (max-width: 530px) {
+    .team-card{
+        height: 270px;
+    }
     .product-card img{
         height: 140px;
     }
@@ -31,7 +46,7 @@
         top: -22px;
     }
     .about-subtitle, .blog-subtitle{
-        width: 67%;
+        width: 67% !important;
         margin: 0 auto;
         margin-right: 0;
     }
@@ -68,11 +83,30 @@
     }
 }
 @media (max-width: 441px) {
+    .state-block h4{
+        font-size: 1.125rem;
+    }
+    .team-body{
+        bottom: 12px;
+    }
+    .team-body small{
+        font-size: 0.75rem;
+    }
+    .team-body h6, .state-list li{
+        font-size: 0.938rem;
+    }
+    .btn-team{
+        font-size: 0.625rem;
+    }
     .hero-title{
         font-size: 24px;
     }
+
 }
 @media (max-width: 414px) {
+    .team-card {
+        height: 203px;
+    }
     .product-card h6, .product-card p, .btn-filter{
         font-size: 0.938rem;
     }

@@ -140,7 +140,7 @@
     <header class="shadow-sm bg-white">
         <nav class="navbar navbar-expand-lg navbar-light container py-3 px-3 px-lg-0">            
             <!-- Logo -->
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="{{route('index')}}">
                 <img src="{{asset('build/client/images/logo.svg')}}" alt="Girollato" height="40">
             </a>
 
@@ -153,10 +153,10 @@
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav mx-auto m-auto me-4 mb-2 mb-lg-0 gap-lg-3">
                     <li class="nav-item">
-                        <a class="nav-link font-changa font-18 font-semibold font-header active" href="#">Home</a>
+                        <a class="nav-link font-changa font-18 font-semibold font-header active" href="{{route('index')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-changa font-18 font-semibold font-header" href="#">Sobre Nós</a>
+                        <a class="nav-link font-changa font-18 font-semibold font-header" href="{{route('about')}}">Sobre Nós</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link font-changa font-18 font-semibold font-header" href="#">Depoimentos</a>

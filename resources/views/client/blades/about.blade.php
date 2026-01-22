@@ -1,6 +1,11 @@
 @extends('client.core.client')
 
 @section('content')
+    <div class="banner-inner container-fluid d-flex justify-content-center align-items-center flex-column position-relative">
+        <span class="color-yellow font-changa font-16 font-bold position-relative z-3">Quem somos? </span>
+        <h1 class="font-changa font-40 font-bold text-white position-relative z-3 mt-2">Somos a Girollato</h1>
+        <p class="font-changa font-15 font-regular text-white position-relative z-3">Conheça um pouco sobre a gente aqui!</p>
+    </div>
     <section class="topics py-5">
         <div class="container">
             <div class="row g-4 justify-content-center">
@@ -204,120 +209,120 @@
             </h3>
             <div class="row g-4">
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-6 col-sm-6 col-lg-3">
                     <div class="team-card position-relative">
                         <div class="team-image">
                             <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
                         </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                             <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
                             <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
                                 <i class="bi bi-envelope me-1"></i> Enviar mensagem
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-6 col-sm-6 col-lg-3">
                     <div class="team-card position-relative">
                         <div class="team-image">
                             <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
                         </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                             <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
                             <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
                                 <i class="bi bi-envelope me-1"></i> Enviar mensagem
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-6 col-sm-6 col-lg-3">
                     <div class="team-card position-relative">
                         <div class="team-image">
                             <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
                         </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                             <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
                             <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
                                 <i class="bi bi-envelope me-1"></i> Enviar mensagem
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-6 col-sm-6 col-lg-3">
                     <div class="team-card position-relative">
                         <div class="team-image">
                             <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
                         </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                             <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
                             <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
                                 <i class="bi bi-envelope me-1"></i> Enviar mensagem
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-6 col-sm-6 col-lg-3">
                     <div class="team-card position-relative">
                         <div class="team-image">
                             <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
                         </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                             <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
                             <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
                                 <i class="bi bi-envelope me-1"></i> Enviar mensagem
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-6 col-sm-6 col-lg-3">
                     <div class="team-card position-relative">
                         <div class="team-image">
                             <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
                         </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                             <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
                             <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
                                 <i class="bi bi-envelope me-1"></i> Enviar mensagem
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-6 col-sm-6 col-lg-3">
                     <div class="team-card position-relative">
                         <div class="team-image">
                             <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
                         </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                             <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
                             <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
                                 <i class="bi bi-envelope me-1"></i> Enviar mensagem
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-lg-3">
+                <div class="col-6 col-sm-6 col-lg-3">
                     <div class="team-card position-relative">
                         <div class="team-image">
                             <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
                         </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-3 px-2">
+                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                             <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
                             <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-5">
+                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
                                 <i class="bi bi-envelope me-1"></i> Enviar mensagem
                             </a>
                         </div>
@@ -327,29 +332,130 @@
         </div>
     </section>
 
+    <section class="video-section">
+        <div class="video-container position-relative">
+            <!-- Thumbnail -->
+            <img
+                src="https://img.youtube.com/vi/qyGUoxcTfvw/maxresdefault.jpg"
+                alt="Vídeo institucional"
+                class="video-thumb"
+                loading="eager"
+                >
+            <!-- Botão Play -->
+            <button class="video-play-btn" aria-label="Reproduzir vídeo"></button>
+        </div>
+    </section>
+
+    <section class="coverage-section py-5 position-relative">
+        <div class="container">
+            <div class="row align-items-center gy-4">
+                <!-- MAPA -->
+                <div class="col-12 col-lg-6 text-center">
+                    <div class="text-center text-lg-end mb-4 col-12 col-lg-11">
+                        <span class="about-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 text-end m-0 z-3 position-relative w-100">
+                            Distribuição
+                        </span>
+
+                        <h3 class="about-title font-changa font-50 font-bold color-green mb-3 position-relative">                            
+                            Onde atendemos
+                        </h3>
+                    </div>
+                    <img 
+                        src="{{asset('build/client/images/mapa.png')}}" 
+                        alt="Mapa de cobertura"
+                        class="img-fluid coverage-map"
+                        >
+                </div>
+                <!-- LISTAS -->
+                <div class="col-12 col-lg-6 mt-0">
+                    <!-- BAHIA -->
+                    <div class="state-block mb-4">
+                        <h4 class="state-title color-yellow font-changa font-40 font-medium">Bahia</h4>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul class="state-list">
+                                    <li class="font-changa font-20 font-medium">Salvador</li>
+                                    <li class="font-changa font-20 font-medium">Amélia Rodrigues</li>
+                                    <li class="font-changa font-20 font-medium">Saubara</li>
+                                    <li class="font-changa font-20 font-medium">Terra Nova</li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul class="state-list">
+                                    <li class="font-changa font-20 font-medium">Lauro de Freitas</li>
+                                    <li class="font-changa font-20 font-medium">Santo Amaro</li>
+                                    <li class="font-changa font-20 font-medium">São Sebastião do Passé</li>
+                                    <li class="font-changa font-20 font-medium">Madre de Deus</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SERGIPE -->
+                    <div class="state-block">
+                        <h4 class="state-title color-yellow font-changa font-40 font-medium">Sergipe</h4>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul class="state-list">
+                                    <li class="font-changa font-20 font-medium">Salvador</li>
+                                    <li class="font-changa font-20 font-medium">Amélia Rodrigues</li>
+                                    <li class="font-changa font-20 font-medium">Saubara</li>
+                                    <li class="font-changa font-20 font-medium">Terra Nova</li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul class="state-list">
+                                    <li class="font-changa font-20 font-medium">Lauro de Freitas</li>
+                                    <li class="font-changa font-20 font-medium">Santo Amaro</li>
+                                    <li class="font-changa font-20 font-medium">São Sebastião do Passé</li>
+                                    <li class="font-changa font-20 font-medium">Madre de Deus</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="{{asset('build/client/images/firula-about.svg')}}" alt="Firula" class="position-absolute bottom-0 start-0">
+    </section>
 
     <script>
-    const section = document.getElementById("mvwSection");
-    const cards = document.querySelectorAll(".mvw-card");
+        //Video youtube
+          document.querySelector('.video-play-btn').addEventListener('click', function () {
+            const container = this.closest('.video-container');
 
-    function changeBackground(card) {
-        const bg = card.getAttribute("data-bg");
-        section.style.backgroundImage = `url(${bg})`;
+            container.innerHTML = `
+            <iframe
+                src="https://www.youtube.com/embed/qyGUoxcTfvw?si=oVEe4FJtOr4dBzjp"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                style="width:100%; height:100%;">
+            </iframe>
+            `;
+        });
+        
 
-        cards.forEach(c => c.classList.remove("active"));
-        card.classList.add("active");
-    }
+        const section = document.getElementById("mvwSection");
+        const cards = document.querySelectorAll(".mvw-card");
 
-    // Desktop (hover)
-    cards.forEach(card => {
-            card.addEventListener("mouseenter", () => {
-                if (window.innerWidth > 768) {
-                    changeBackground(card);
-                }
-            });
-    });
+        function changeBackground(card) {
+            const bg = card.getAttribute("data-bg");
+            section.style.backgroundImage = `url(${bg})`;
 
-    // Mobile (click)
+            cards.forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+        }
+
+        // Desktop (hover)
+        cards.forEach(card => {
+                card.addEventListener("mouseenter", () => {
+                    if (window.innerWidth > 768) {
+                        changeBackground(card);
+                    }
+                });
+        });
+
+        // Mobile (click)
         cards.forEach(card => {
             card.addEventListener("click", () => {
                 if (window.innerWidth <= 768) {

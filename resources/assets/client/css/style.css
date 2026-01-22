@@ -201,6 +201,34 @@ body {
 /* =========================
    ABOUT
 ========================= */
+.banner-inner{
+    background-image: url('../images/banner-sobre.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: contain;
+    height: 221px;
+    width: 100%;
+}
+.banner-inner::after{
+    content: '';
+    background: rgb(0 0 0 / 66%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+.banner-inner span::after{
+    content: '';
+    height: 1px;
+    background: #FFF;
+    width: 50px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+}
 .about-image img {
     object-fit: cover;
     height: 100%;
@@ -655,4 +683,57 @@ body {
 
 .btn-team:hover {
   background: rgb(16 81 61 / 80%);
+}
+
+/* =========================
+   FONT SIZES (UTILS)
+========================= */
+
+.video-section {
+  width: 100%;
+  background: #000;
+}
+
+.video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  height: 543px;
+}
+
+.video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botão Play */
+.video-play-btn {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 0, 0, 0.95);
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.video-play-btn::before {
+  content: '';
+  position: absolute;
+  left: 36px;
+  top: 28px;
+  width: 0;
+  height: 0;
+  border-left: 28px solid #fff;
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+}
+
+.video-play-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 12px rgba(255, 0, 0, 0.25);
 }
