@@ -35,6 +35,13 @@
   }
 }
 @media (max-width: 530px) {
+    .blog-content .col-6.col-md-6.col-lg-4{
+        height: 320px;
+        padding: 0px 5px 0px 5px;
+    }
+    .post-card img{
+        min-height: inherit;
+    }
     .team-card{
         height: 270px;
     }
@@ -83,6 +90,18 @@
     }
 }
 @media (max-width: 441px) {
+    .blog-content .col-6.col-md-6.col-lg-4{
+        height: 260px;
+    }
+    .blog-content .col-6.col-md-6.col-lg-4 h5{
+        font-size: 0.938rem;
+    }
+    .blog-content .col-6.col-md-6.col-lg-4 p, 
+    .blog-content .col-6.col-md-6.col-lg-4 span{
+        font-size: 0.75rem;
+        line-height: 17px;
+    }
+
     .state-block h4{
         font-size: 1.125rem;
     }
@@ -125,7 +144,22 @@
     }
 }
 
-@media (max-width: 387px) {
+@media (max-width: 390px) {
+    .post-overlay{
+        padding: 12px;
+    }
+    .blog-content .col-6.col-md-6.col-lg-4{
+        height: 260px;
+        padding: 0px 5px 0px 5px;
+    }
+    .blog-content .col-6.col-md-6.col-lg-4 h5{
+        font-size: 0.75rem;
+    }
+    .blog-content .col-6.col-md-6.col-lg-4 p, 
+    .blog-content .col-6.col-md-6.col-lg-4 span{
+        font-size: 0.625rem;
+        line-height: 17px;
+    }
     .topics .topic-col {
         flex: 0 0 100%;
         max-width: 100%;

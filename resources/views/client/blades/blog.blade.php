@@ -2,138 +2,195 @@
 
 @extends('client.core.client')
 @section('content')
-<section id="news" class="blog-content pt-0 my-5">
-   <!-- News With Sidebar Start -->
-   <div class="container-fluid">
-       <div class="max-width m-auto">
-
-         <div class="row">
-            
-            <div class="col-lg-12 mb-4" data-aos="fade-up" data-aos-delay="750">
-               @if ($blogAll->count())                     
-                  <div class="mb-5 rounded-top-left">
-                     <h2 class="m-0 text-uppercase poppins-bold font-22 title-blue">Notícias</h2>
-                  </div>
-
-                  <div class="col-12">
-                     <div class="row">
-                        <div class="col-12 col-lg-7">
-                           @if ($blogCategories->count())                        
-                                 <!-- Tags Start -->
-                                 <div class="mb-3">
-                                    <div class="bg-white border-top-0">
-                                          <div class="d-flex flex-wrap m-n1">
-                                             <a href="{{ route('blogAll') }}#news"
-                                                   class="btn btn-sm btn-outline-secondary text-p poppins-medium font-14 m-1
-                                                   {{ (request()->routeIs('blogAll') && request()->route('category') === null) ? 'active background-red' : '' }}">
-                                                   Todas
-                                             </a>
-                                             @foreach ($blogCategories as $blogCategory)
-                                                <a href="{{ route('blog', ['category' => $blogCategory->slug]) }}#news"
-                                                   class="btn btn-sm btn-outline-secondary text-p poppins-medium font-14 m-1
-                                                   {{ (request()->routeIs('blog') && request()->route('category') === $blogCategory->slug) ? 'active background-red' : '' }}">
-                                                   {{$blogCategory->title}}
-                                                </a>
-                                             @endforeach
-                                          </div>
-                                    </div>
-                                 </div>
-                                 <!-- Tags End -->
-                              @endif
-                        </div>
-                        <div class="col-12 col-lg-5 d-flex justify-content-end gap-3 flex-wrap align-items-start">   
-                           <form action="{{route('blog-search')}}#news" class="search col-12 h-1/6" method="post">
-                              @csrf
-                              <div class="input-group input-group-lg h-100">
-                                 <input type="search" name="search" class="form-control border-end-0 text-color poppins-regular bg-white py-0" placeholder="Pesquise aqui">
-                                 <button type="submit" title="search" class="btn-reset input-group-text bg-white border">
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99989 0C3.13331 0 0 3.13427 0 6.99979C0 10.8663 3.13351 14.0004 6.99989 14.0004C8.49916 14.0004 9.88877 13.5285 11.0281 12.7252L15.9512 17.6491C16.4199 18.117 17.1798 18.117 17.6485 17.6491C18.1172 17.1804 18.1172 16.4205 17.6485 15.9518L12.7254 11.0288C13.5279 9.88936 13.9998 8.4997 13.9998 6.99983C13.9998 3.13411 10.8655 0 6.99989 0ZM2.39962 6.99979C2.39962 4.45981 4.45907 2.40019 6.99989 2.40019C9.54072 2.40019 11.6002 4.45961 11.6002 6.99979C11.6002 9.54058 9.54072 11.6 6.99989 11.6C4.45907 11.6 2.39962 9.54058 2.39962 6.99979Z" fill="#31404B"/>
-                                    </svg>                                    
-                                 </button>
-                              </div>
-                           </form>   
-                           @if (Route::currentRouteName() == 'blog-search')
-                              <a href="{{ route('blog') }}#news" class="btn background-red rounded-0 text-white poppins-medium py-1 font-15">Limpar</a>
-                           @endif                     
-                        </div>
-                     </div>
-
-                     <div class="mt-3">
-                        {{$blogAll->links()}}
-                     </div>
-
-                     <div class="row mt-5">
-                        @foreach($blogAll as $blog)   
-                           @php
-                              \Carbon\Carbon::setLocale('pt_BR');
-                              $dataFormatada = \Carbon\Carbon::parse($blog->date)->translatedFormat('d \d\e F \d\e Y');
-                           @endphp                     
-
-                           <article class="col-lg-4 col-md-6 col-12 mb-4 d-flex">
-                                <div class="d-flex flex-column align-items-center bg-white mb-4 overflow-hidden position-relative">
-
-                                    <div class="position-absolute mt-2 start-0">
-                                        <span class="badge rounded-0 badge-primary poppins-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
-                                            {{ $blog->category->title }}
-                                        </span>
-                                    </div>
-
-                                    <img loading="lazy" class="img-fluid w-100 rounded-1"
-                                    src="{{ $blog->path_image_thumbnail ? asset('storage/' . $blog->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
-                                    alt="{{ $blog->title }}"
-                                    style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
-
-                                    <div class="col-12 my-3 h-auto px-2 d-flex flex-column justify-content-center position-relative">                        
-                                        <a href="{{ route('blog-inner', $blog->slug) }}" class="underline">
-                                            <h3 class="h6 m-0 poppins-bold font-14 title-blue">
-                                                {{ Str::limit($blog->title, 60) }}
-                                            </h3>
-                                        </a>
-
-                                        <p class="text-color my-3 poppins-regular font-15">
-                                            {!! substr(strip_tags($blog->text), 0, 200) !!}...
-                                        </p>
-
-                                        <div class="d-flex justify-content-between align-items-center w-100">
-                                            <p class="text-color mb-0 poppins-regular font-12 col-8">{{$dataFormatada}}</p>
-
-                                            <div id="socialLinks-filter-{{$blog->id}}" class="social-links home opacity-0">
-                                                <div class="d-flex gap-2">
-                                                    <a href="https://api.whatsapp.com/send?text={{ urlencode($blog->title . ' ' . url()->current()) }}" target="_blank" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-whatsapp text-dark"></i></a>    
-                                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($blog->title) }}" target="_blank" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-x-twitter text-dark"></i></a>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-facebook-f text-dark"></i></a>
-                                                </div>
-                                            </div>  
-
-                                            <button id="btnShare-filter-{{$blog->id}}" 
-                                                    data-target="socialLinks-filter-{{$blog->id}}"
-                                                    class="share-button d-flex">
-                                                <svg width="18" height="20" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M4.28845 8.58841C1.92459 8.58841 0 10.5692 0 13.002C0 15.4348 1.92459 17.4155 4.28845 17.4155C5.68567 17.4155 6.92779 16.7195 7.70969 15.6506L15.6837 20.0897C15.5186 20.5571 15.4231 21.0603 15.4231 21.5864C15.4231 24.0193 17.3477 26 19.7115 26C22.0754 26 24 24.0193 24 21.5864C24 19.1536 22.0754 17.1729 19.7115 17.1729C18.3143 17.1729 17.0722 17.8689 16.2903 18.9378L8.31633 14.4987C8.48136 14.0313 8.57691 13.5281 8.57691 12.9982C8.57691 12.4682 8.47516 11.9356 8.3002 11.4554L16.2033 6.94346C16.9789 8.08134 18.262 8.82714 19.71 8.82714C22.0739 8.82714 23.9985 6.84639 23.9985 4.41357C23.9985 1.98074 22.0739 0 19.71 0C17.3462 0 15.4216 1.98074 15.4216 4.41357C15.4216 4.88736 15.4973 5.34584 15.6313 5.77367L7.67731 10.3151C6.89306 9.26915 5.66339 8.58848 4.28466 8.58848L4.28845 8.58841Z" fill="#282828"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        @endforeach
-                     </div>
-
-                  </div>
-                  <div class="mt-3">
-                     {{$blogAll->links()}}
-                  </div>
-                  @else
-                  <div class="alert alert-warning d-flex align-items-center flex-column text-center py-4" role="alert">
-                     <i class="bi bi-emoji-frown fs-1 mb-2"></i>
-                     <h3 class="alert-heading text-uppercase poppins-bold font-20">Nenhuma notícia encontrada</h3>
-                  </div>
-               @endif
+<div class="banner-inner blog container-fluid d-flex justify-content-center align-items-center flex-column position-relative" style="--banner-bg: url('../images/banner-blog.png');">
+   <span class="color-yellow font-changa font-16 font-bold position-relative z-3">Blog </span>
+   <h1 class="font-changa font-40 font-bold text-white position-relative z-3 mt-2">Artigo Animal</h1>
+   <p class="font-changa font-15 font-regular text-white position-relative z-3">Conheça um pouco sobre a gente aqui!</p>
+</div>
+<section id="news" >
+   <div class="container p-3 p-lg-0">
+      <div class="row mt-5 justify-content-between">
+         <div class="blog-content col-12 col-lg-8">
+            <div class="row g-4">
+   
+               <div class="col-6 col-md-6 col-lg-4 m-0 mb-2 mb-lg-0 mt-0 mt-lg-4">
+                  <article class="post-card">
+                        <a href="">
+                           <img src="{{asset('build/client/images/blog-1.png')}}" alt="">
+                           <div class="post-overlay">
+                              <h5 class="font-changa font-18 font-bold text-white mb-2 mb-lg-3">
+                                    Qual a melhor ração para fêmeas com filhotes?
+                              </h5>
+                              <p class="font-16 font-regular text-white mb-1 mb-lg-3">
+                                    Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                              </p>
+                              <span class="date font-16 font-regular text-white">
+                                    04 Set 2026
+                              </span>
+                           </div>
+                        </a>
+                  </article>
+               </div>
+   
+               <div class="col-6 col-md-6 col-lg-4 m-0 mb-2 mb-lg-0 mt-0 mt-lg-4">
+                  <article class="post-card">
+                        <a href="">
+                           <img src="{{asset('build/client/images/blog-2.png')}}" alt="">
+                           <div class="post-overlay">
+                              <h5 class="font-changa font-18 font-bold text-white mb-2 mb-lg-3">
+                                    Por que os cães amam petiscos?
+                              </h5>
+                              <p class="font-16 font-regular text-white mb-1 mb-lg-3">
+                                    Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                              </p>
+                              <span class="date font-16 font-regular text-white">
+                                    04 Set 2026
+                              </span>
+                           </div>
+                        </a>
+                  </article>
+               </div>
+   
+               <div class="col-6 col-md-6 col-lg-4 m-0 mb-2 mb-lg-0 mt-0 mt-lg-4">
+                  <article class="post-card">
+                        <a href="">
+                           <img src="{{asset('build/client/images/blog-1.png')}}" alt="">
+                           <div class="post-overlay">
+                              <h5 class="font-changa font-18 font-bold text-white mb-2 mb-lg-3">
+                                    Qual a melhor ração para fêmeas com filhotes?
+                              </h5>
+                              <p class="font-16 font-regular text-white mb-1 mb-lg-3">
+                                    Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                              </p>
+                              <span class="date font-16 font-regular text-white">
+                                    04 Mar 2026
+                              </span>
+                           </div>
+                        </a>
+                  </article>
+               </div>
+   
+               <div class="col-6 col-md-6 col-lg-4 m-0 mb-2 mb-lg-0 mt-0 mt-lg-4">
+                  <article class="post-card">
+                        <a href="">
+                           <img src="{{asset('build/client/images/blog-2.png')}}" alt="">
+                           <div class="post-overlay">
+                              <h5 class="font-changa font-18 font-bold text-white mb-2 mb-lg-3">
+                                    Por que os cães amam petiscos?
+                              </h5>
+                              <p class="font-16 font-regular text-white mb-1 mb-lg-3">
+                                    Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                              </p>
+                              <span class="date font-16 font-regular text-white">
+                                    04 Set 2026
+                              </span>
+                           </div>
+                        </a>
+                  </article>
+               </div>
+   
             </div>
+   
          </div>
-       </div>
+   
+         <aside class="col-12 col-lg-4">
+   
+            <!-- Busca -->
+            <div class="card border-0 shadow-sm mb-4 bg-grey-light col-12 col-lg-10">
+               <div class="card-body p-2 p-lg-4">
+                     <form class="position-relative">
+                        <input
+                           type="text"
+                           class="form-control rounded-3 ps-4 pe-5"
+                           placeholder="Pesquise aqui..."
+                        >
+                        <button
+                           type="submit"
+                           class="btn position-absolute top-50 end-0 translate-middle-y me-3 p-0 border-0 bg-transparent"
+                        >
+                           <i class="bi bi-search"></i>
+                        </button>
+                     </form>
+               </div>
+            </div>
+   
+            <!-- Categorias -->
+            <div class="card border-0 shadow-sm mb-4 bg-grey-light px-3 col-12 col-lg-10">
+               <div class="card-body">
+                     <h5 class="font-changa font-24 font-bold mb-3">Categories</h5>
+   
+                     <ul class="list-unstyled mb-0">
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                           <span class="font-changa font-16 font-semibold">PETS</span>
+                           <span class="color-yellow font-changa font-16 font-semibold">25</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                           <span class="font-changa font-16 font-semibold">Gatos</span>
+                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                           <span class="font-changa font-16 font-semibold">Cachorros</span>
+                           <span class="color-yellow font-changa font-16 font-semibold">7</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                           <span class="font-changa font-16 font-semibold">Estilo de Vida</span>
+                           <span class="color-yellow font-changa font-16 font-semibold">8</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                           <span class="font-changa font-16 font-semibold">Nutrição</span>
+                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                           <span class="font-changa font-16 font-semibold">Banho</span>
+                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2">
+                           <span>Brinquedos</span>
+                           <span class="color-yellow font-changa font-16 font-semibold">9</span>
+                        </li>
+                     </ul>
+               </div>
+            </div>
+   
+            <!-- Relacionados -->
+            <div class="card border-0 shadow-sm col-12 col-lg-10">
+               <div class="card-body">
+                     <h5 class="fw-bold mb-3">Relacionados</h5>
+   
+                     <div class="d-flex mb-3">
+                        <img src="https://via.placeholder.com/70" class="rounded me-3" alt="">
+                        <div>
+                           <h6 class="mb-1 fw-semibold">
+                                 Calopsita e suas vantagens no mundo PET...
+                           </h6>
+                           <small class="text-muted">Jun 22, 2026</small>
+                        </div>
+                     </div>
+   
+                     <div class="d-flex mb-3">
+                        <img src="https://via.placeholder.com/70" class="rounded me-3" alt="">
+                        <div>
+                           <h6 class="mb-1 fw-semibold">
+                                 Uma mensagem de como cuidar do seu pet...
+                           </h6>
+                           <small class="text-muted">Jun 22, 2026</small>
+                        </div>
+                     </div>
+   
+                     <div class="d-flex">
+                        <img src="https://via.placeholder.com/70" class="rounded me-3" alt="">
+                        <div>
+                           <h6 class="mb-1 fw-semibold">
+                                 Como ajudar e colaborar com animais de ruas em 2026...
+                           </h6>
+                           <small class="text-muted">Jun 22, 2026</small>
+                        </div>
+                     </div>
+               </div>
+            </div>
+   
+         </aside>
+      </div>
    </div>
-   <!-- News With Sidebar End -->
 </section>
 @endsection

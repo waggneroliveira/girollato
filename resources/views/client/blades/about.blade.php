@@ -1,7 +1,7 @@
 @extends('client.core.client')
 
 @section('content')
-    <div class="banner-inner container-fluid d-flex justify-content-center align-items-center flex-column position-relative">
+    <div class="banner-inner container-fluid d-flex justify-content-center align-items-center flex-column position-relative" style="--banner-bg: url('../images/banner-sobre.png');">
         <span class="color-yellow font-changa font-16 font-bold position-relative z-3">Quem somos? </span>
         <h1 class="font-changa font-40 font-bold text-white position-relative z-3 mt-2">Somos a Girollato</h1>
         <p class="font-changa font-15 font-regular text-white position-relative z-3">Conheça um pouco sobre a gente aqui!</p>
