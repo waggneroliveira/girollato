@@ -38,7 +38,7 @@
    
          </div>
    
-         <aside class="col-12 col-lg-4 mb-3 mb-lg-0">
+         <aside class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-baseline align-items-end flex-column">
    
             <!-- Busca -->
             <div class="card border-0 shadow-sm mb-4 bg-grey-light col-12 col-lg-10">
@@ -62,7 +62,7 @@
             <!-- Categorias -->
             <div class="card border-0 shadow-sm mb-4 bg-grey-light px-3 col-12 col-lg-10">
                <div class="card-body">
-                     <h5 class="font-changa font-24 font-bold mb-3">Categories</h5>
+                     <h5 class="font-changa color-green font-24 font-bold mb-3">Categories</h5>
    
                      <ul class="list-unstyled mb-0">
                         <li class="d-flex justify-content-between py-2 border-bottom">
@@ -100,7 +100,7 @@
             <!-- Relacionados -->
             <div class="card border-0 shadow-sm col-12 col-lg-10 relacionados bg-grey-light">
                <div class="card-body">
-                     <h5 class="font-changa font-24 font-bold mb-3">Relacionados</h5>
+                     <h5 class="font-changa color-green font-24 font-bold mb-3">Relacionados</h5>
    
                      @for($r = 0; $r < 6; $r++)
                         <div class="d-flex mb-3">
