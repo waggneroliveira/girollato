@@ -482,6 +482,15 @@ body {
 .firula-blog{
     width: 150px;
 }
+.relacionados .image{
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+}
+.relacionados img{
+    object-fit: cover;
+    width: 100%;
+}
 
 /* =========================
    FAQ
