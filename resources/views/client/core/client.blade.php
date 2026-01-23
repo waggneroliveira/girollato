@@ -168,7 +168,7 @@
                         <a class="nav-link font-changa font-18 font-semibold font-header" href="#">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-changa font-18 font-semibold font-header" href="#">Contato</a>
+                        <a class="nav-link font-changa font-18 font-semibold font-header" href="{{route('contact')}}">Contato</a>
                     </li>
                 </ul>
 

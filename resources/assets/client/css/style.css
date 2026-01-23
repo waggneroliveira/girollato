@@ -159,7 +159,7 @@ body {
 .btn-hero.btn:hover {
     border: 1px solid var(--white-color);
 }
-.btn-hero.btn:hover svg, .btn-product svg{
+.btn-hero.btn:hover svg, .btn-product svg, #shareBtn svg{
     filter: brightness(10) saturate(0.1) contrast(10);
 }
 .btn-outline {
@@ -290,10 +290,10 @@ body {
 .step-actions .btn:hover, .btn-about .btn:hover{
     color: var(--green-color) !important;
 }
-.step-actions svg , .btn-about svg{
+.step-actions svg , .btn-about svg, .to-back svg{
     filter: brightness(10) saturate(0.1) contrast(10);
 }
-.step-actions .btn:hover svg, .btn-about .btn:hover svg, .btn-product:hover svg{
+.step-actions .btn:hover svg, .btn-about .btn:hover svg, .btn-product:hover svg, #shareBtn:hover svg, .to-back:hover svg {
     filter: inherit;
 }
 
@@ -429,6 +429,40 @@ body {
 /* =========================
    BLOG 
 ========================= */
+#shareBtn {
+    width: 171px;
+}
+
+.socialLinks {
+    max-height: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.bg-whatsapp, .btn-twiter, .btn-facebook {
+    width: 35px;
+    height: 35px;
+}
+
+.bg-whatsapp, .bg-whatsapp.btn:hover {
+    background: #25d366;
+    transition: all 0.3s ease;
+}
+
+.btn-twiter, .btn-twiter.btn:hover {
+    background: #1DA1F2;
+    transition: all 0.3s ease;
+}
+
+.btn-facebook, .btn-facebook.btn:hover {
+    background: #3b5998;
+    transition: all 0.3s ease;
+}
+
+.bg-whatsapp.btn:hover, .btn-facebook.btn:hover, .btn-twiter.btn:hover{
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
 .blog-subtitle{
     border-bottom: 1px solid var(--green-color);
 }
@@ -745,4 +779,14 @@ body {
 .video-play-btn:hover {
   transform: scale(1.1);
   box-shadow: 0 0 0 12px rgba(255, 0, 0, 0.25);
+}
+#shareBtn{
+    border: 1px solid var(--green-color);
+}
+#shareBtn:hover, .to-back:hover{
+    color: var(--green-color) !important;
+    background: transparent;
+}
+.to-back{
+    border: 1px solid var(--green-color);
 }

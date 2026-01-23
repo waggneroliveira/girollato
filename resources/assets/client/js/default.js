@@ -135,4 +135,8 @@
 
         observer.observe(document.querySelector(".stats-section"));
     });
+
+    document.getElementById("socialLinks") && document.getElementById("shareBtn").addEventListener("click", (function() {
+        document.getElementById("socialLinks").classList.toggle("opacity-0")
+    }));
 })();
