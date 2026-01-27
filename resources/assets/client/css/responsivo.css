@@ -1,4 +1,33 @@
+@media (min-width: 992px) {
+    .filter-box .filter-list {
+        display: block !important;
+    }
+}
 @media (max-width: 991.98px) {
+    .filter-box .filter-list {
+        display: none;
+    }
+
+    .filter-box.active .filter-list {
+        display: block;
+    }
+
+    .filter-title {
+        padding: 0 11px 0 25px;
+    }
+
+    /* efeito visual opcional */
+    .filter-title::after {
+        content: "\F282"; /* ícone bootstrap chevron-down */
+        font-family: "Bootstrap-icons";
+        margin-left: auto;
+        margin-right: 12px;
+        transition: transform .3s;
+    }
+
+    .filter-box.active .filter-title::after {
+        transform: rotate(180deg);
+    }
   .hero-title {
     font-size: 2rem;
   }

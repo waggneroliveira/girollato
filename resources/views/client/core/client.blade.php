@@ -159,13 +159,13 @@
                         <a class="nav-link font-changa font-18 font-semibold font-header" href="{{route('about')}}">Sobre Nós</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-changa font-18 font-semibold font-header" href="#">Depoimentos</a>
+                        <a class="nav-link font-changa font-18 font-semibold font-header" href="#depoiment">Depoimentos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-changa font-18 font-semibold font-header" href="#">Representantes</a>
+                        <a class="nav-link font-changa font-18 font-semibold font-header" href="#topic">Representantes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-changa font-18 font-semibold font-header" href="#">Produtos</a>
+                        <a class="nav-link font-changa font-18 font-semibold font-header" href="{{route('products')}}">Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link font-changa font-18 font-semibold font-header" href="{{route('contact')}}">Contato</a>

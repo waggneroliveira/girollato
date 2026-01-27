@@ -110,7 +110,7 @@
   </div>
 </section>
 
-<section class="topics py-5">
+<section id="topic" class="topics py-5">
     <div class="container">
         <div class="row g-4 justify-content-center">
             <div class="col-6 col-md-4 col-lg-2 topic-col">
@@ -849,7 +849,7 @@
     </div>
 </section>
 
-<section class="depoiment py-5 position-relative">
+<section id="depoiment" class="depoiment py-5 position-relative">
     <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
     <div class="container z-3 position-relative">
         <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">

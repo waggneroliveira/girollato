@@ -6,7 +6,7 @@
         <h1 class="font-changa font-40 font-bold text-white position-relative z-3 mt-2">Somos a Girollato</h1>
         <p class="font-changa font-15 font-regular text-white position-relative z-3">Conheça um pouco sobre a gente aqui!</p>
     </div>
-    <section class="topics py-5">
+    <section id="topic" class="topics py-5">
         <div class="container">
             <div class="row g-4 justify-content-center">
                 <div class="col-6 col-md-4 col-lg-2 topic-col">

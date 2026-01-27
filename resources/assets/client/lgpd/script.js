@@ -10,30 +10,43 @@ function setCookie(name, value, days) {
 function getCookie(name) {
     const nameEQ = name + "=";
     const ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
+    for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        while (c.charAt(0) === ' ') c = c.substring(1);
+        if (c.indexOf(nameEQ) === 0) {
+            return c.substring(nameEQ.length, c.length);
+        }
     }
     return null;
 }
 
 // Função para verificar se o consentimento já foi dado
 function checkConsent() {
+    const banner = document.getElementById('lgpd-banner');
+    if (!banner) return;
+
     const consent = getCookie('lgpdConsent');
     if (!consent) {
-        document.getElementById('lgpd-banner').style.display = 'block';
+        banner.style.display = 'block';
     }
 }
 
-// Função para registrar o consentimento com cookies
+// Função para registrar o consentimento
 function giveConsent() {
-    setCookie('lgpdConsent', 'accepted', 365); // Salva por 1 ano
-    document.getElementById('lgpd-banner').style.display = 'none';
+    const banner = document.getElementById('lgpd-banner');
+    if (!banner) return;
+
+    setCookie('lgpdConsent', 'accepted', 365); // 1 ano
+    banner.style.display = 'none';
 }
 
-// Evento do botão "Aceitar"
-document.getElementById('accept-btn').addEventListener('click', giveConsent);
+// Aguarda o DOM carregar
+document.addEventListener('DOMContentLoaded', function () {
+    const acceptBtn = document.getElementById('accept-btn');
 
-// Verifica o consentimento ao carregar a página
-window.onload = checkConsent;
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', giveConsent);
+    }
+
+    checkConsent();
+});
