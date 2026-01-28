@@ -12,6 +12,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PopUpController;
+use App\Http\Controllers\SlideController;
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ReportController;
 use App\Repositories\AuditCountRepository;
@@ -95,6 +97,22 @@ Route::prefix('painel/')->group(function () {
         ->parameters(['auditorias'=>'activitie']);
         Route::post('auditorias/{id}/mark-as-read', [AuditActivityController::class, 'markAsRead']);
         Route::post('/auditorias/mark-all-as-read', [AuditActivityController::class, 'markAllAsRead']);
+        //SLIDES
+        Route::resource('slides', SlideController::class)
+        ->names('admin.dashboard.slide')
+        ->parameters(['slides'=>'slide']);
+        Route::post('slides/delete', [SlideController::class, 'destroySelected'])
+        ->name('admin.dashboard.slide.destroySelected');
+        Route::post('slides/sorting', [SlideController::class, 'sorting'])
+        ->name('admin.dashboard.slide.sorting');
+        //TOPICOS
+        Route::resource('topico', TopicController::class)
+        ->names('admin.dashboard.topic')
+        ->parameters(['topico'=>'topic']);
+        Route::post('topico/delete', [TopicController::class, 'destroySelected'])
+        ->name('admin.dashboard.topic.destroySelected');
+        Route::post('topico/sorting', [TopicController::class, 'sorting'])
+        ->name('admin.dashboard.topic.sorting');
         //LEAD
         Route::resource('lead', FormIndexController::class)
         ->names('admin.dashboard.formIndex')

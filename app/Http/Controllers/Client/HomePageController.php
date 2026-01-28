@@ -46,6 +46,8 @@ class HomePageController extends Controller
         ->active()
         ->sorting()
         ->get();
+        $slides = Slide::active()->sorting()->get();
+        $topics = Topic::active()->sorting()->get();
         $about = About::active()->first();
         $videos = Video::active()->sorting()->get();
         $report = Report::active()->first();
@@ -134,6 +136,8 @@ class HomePageController extends Controller
             'blogCategories', 
             'events', 
             'popUp', 
+            'slides', 
+            'topics', 
             'blogNoBairros')
         );
     }

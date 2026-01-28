@@ -237,6 +237,40 @@ body {
     object-fit: cover;
     height: 100%;
 }
+.about .description p, .about li{
+    font-size: 1rem;
+    font-family: "Changa", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    color: #565656;
+}
+.about .description ul{
+    padding: 0 !important;
+}
+.about li{
+    font-weight: 600;
+    position: relative;
+    padding-left: 22px;
+    list-style: none;
+    margin-bottom: 15px;
+}
+.about li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 14px;
+    height: 14px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    background-image: url('../images/pata.svg');
+}
 .mb-0.color-grey.font-changa.font-16.font-semibold.col-11.ms-3{
     line-height: 23px;
 }
