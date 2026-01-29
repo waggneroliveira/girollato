@@ -26,6 +26,7 @@ use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\FormIndexController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\BenefitTopicController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\SettingEmailController;
 use App\Http\Controllers\SettingThemeController;
@@ -113,6 +114,14 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.topic.destroySelected');
         Route::post('topico/sorting', [TopicController::class, 'sorting'])
         ->name('admin.dashboard.topic.sorting');
+        //Parametro
+        Route::resource('parametro', BenefitTopicController::class)
+        ->names('admin.dashboard.benefitTopic')
+        ->parameters(['parametro'=>'benefitTopic']);
+        Route::post('parametro/delete', [BenefitTopicController::class, 'destroySelected'])
+        ->name('admin.dashboard.benefitTopic.destroySelected');
+        Route::post('parametro/sorting', [BenefitTopicController::class, 'sorting'])
+        ->name('admin.dashboard.benefitTopic.sorting');
         //LEAD
         Route::resource('lead', FormIndexController::class)
         ->names('admin.dashboard.formIndex')
