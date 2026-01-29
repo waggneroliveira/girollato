@@ -2,6 +2,10 @@
     <label for="title" class="form-label">Título</label>
     <input type="text" name="title" class="form-control" id="title{{isset($benefitTopic->id)?$benefitTopic->id:''}}" value="{{isset($benefitTopic)?$benefitTopic->title:''}}" placeholder="Título">
 </div>
+<div class="mb-3">
+    <label for="number" class="form-label">Números</label>
+    <input type="text" name="number" class="form-control" id="number{{isset($benefitTopic->id)?$benefitTopic->id:''}}" value="{{isset($benefitTopic)?$benefitTopic->number:''}}" placeholder="Título">
+</div>
 <div class="col-12">
     <div class="mt-3">
         <label for="path_image" class="form-label">Imagem</label>
