@@ -27,9 +27,18 @@
                         <div class="col-12 col-lg-6">        
                             <div class="mb-3">
                                 <label for="title" class="form-label">Título</label>
-                                <input type="text" name="title" class="form-control" id="title" placeholder="Digite seu nome">
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Título">
                             </div>
-                            
+                            <div class="mb-3">
+                                <label for="subtitle" class="form-label">Subtitulo</label>
+                                <input type="text" name="subtitle" class="form-control" id="subtitle" placeholder="subtitulo">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="link" class="form-label">Link </label>
+                                <input type="text" name="link" class="form-control" id="link{{isset($about->id)?$about->id:''}}" value="{{isset($about)?$about->link:''}}" placeholder="Link">
+                            </div>
+        
                             <div class="mb-3 col-12 d-flex align-items-start flex-column">
                                 <label for="textarea-create" class="form-label">Texto</label>
                                 <textarea name="text" class="form-control col-12" id="textarea-create" rows="5"></textarea>

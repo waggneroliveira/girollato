@@ -15,6 +15,7 @@ class BenefitTopic extends Model
     
     protected $fillable = [
         'title',
+        'number',
         'active',
         'sorting',
         'path_image',

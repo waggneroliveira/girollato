@@ -36,7 +36,6 @@ class HomePageController extends Controller
         $announcements = Announcement::select(
             'exhibition',
             'link',
-            'exhibition',
             'path_image',
             'active',
             'sorting',
