@@ -48,6 +48,7 @@ class HomePageController extends Controller
         $slides = Slide::active()->sorting()->get();
         $topics = Topic::active()->sorting()->get();
         $about = About::active()->first();
+        $benefitTopics = BenefitTopic::active()->sorting()->get();
         $videos = Video::active()->sorting()->get();
         $report = Report::active()->first();
         $contact = Contact::first();
@@ -133,6 +134,7 @@ class HomePageController extends Controller
             'blogRelacionados', 
             'announcementVerticals', 
             'blogCategories', 
+            'benefitTopics', 
             'events', 
             'popUp', 
             'slides', 

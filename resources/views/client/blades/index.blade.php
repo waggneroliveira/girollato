@@ -135,41 +135,24 @@
     </section>
 @endif
 
-<section class="stats-section py-5 position-relative container-fluid">
-    <img src="{{asset('build/client/images/firula-count.svg')}}" alt="Firula" class="position-absolute top-0 left-0 firula-count">
+@if (!empty($benefitTopics))
+    <section class="stats-section py-5 position-relative container-fluid">
+        <img src="{{asset('build/client/images/firula-count.svg')}}" alt="Firula" class="position-absolute top-0 left-0 firula-count">
 
-    <div class="container">
-        <div class="row text-center align-items-center g-4">
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <h3 class="stat-number font-changa font-bold font-44" data-target="3000">0</h3>
-                    <p class="font-changa font-bold font-16 color-green">Clientes satisfeitos</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <div class="stat-item highlight-blue">
-                    <h3 class="stat-number font-changa font-bold font-44" data-target="50">0</h3>
-                    <p class="font-changa font-bold font-16 color-green">Profissionais</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <div class="stat-item highlight-yellow">
-                    <h3 class="stat-number font-changa font-bold font-44" data-target="120">0</h3>
-                    <p class="font-changa font-bold font-16 color-green">Ativos</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <h3 class="stat-number font-changa font-bold font-44" data-target="2000">0</h3>
-                    <p class="font-changa font-bold font-16 color-green">Entregas</p>
-                </div>
+        <div class="container">
+            <div class="row text-center align-items-center g-4">
+                @foreach ($benefitTopics as $parametro)                
+                    <div class="col-6 col-md-3">
+                        <div class="stat-item">
+                            <h3 class="stat-number font-changa font-bold font-44" data-target="{{$parametro->number}}">0</h3>
+                            <p class="font-changa font-bold font-16 color-green">{{$parametro->title}}</p>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
-    </div>
-</section>
+    </section>
+@endif
 
 <section class="step-to-step">
     <div class="container-fluid px-0">
