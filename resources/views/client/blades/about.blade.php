@@ -197,7 +197,7 @@
         </div>
     </section>
 
-    <section class="team-section py-5 position-relative">
+    <section id="team-section" class="team-section py-5 position-relative">
         <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
         <div class="container z-3 position-relative">
             <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">
@@ -346,7 +346,7 @@
         </div>
     </section>
 
-    <section class="coverage-section py-5 position-relative">
+    <section id="coverage-section" class="coverage-section py-5 position-relative">
         <div class="container">
             <div class="row align-items-center gy-4">
                 <!-- MAPA -->

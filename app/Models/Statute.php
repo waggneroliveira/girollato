@@ -15,6 +15,11 @@ class Statute extends Model
     
     protected $fillable = [
         'title',
+        'subtitle',
+        'text_atend',
+        'phone',
+        'btn_title',
+        'btn_number',
         'description',
         'path_file',
         'active',

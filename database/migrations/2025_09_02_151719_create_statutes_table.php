@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('statutes', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->string('subtitle')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('text_atend')->nullable();
+            $table->string('btn_title')->nullable();
+            $table->string('btn_number')->nullable();
             $table->text('description')->nullable();
             $table->string('path_file')->nullable();
             $table->boolean('active')->default(0);

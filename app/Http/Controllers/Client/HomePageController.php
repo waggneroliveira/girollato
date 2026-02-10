@@ -21,6 +21,7 @@ use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Models\StackSessionTitle;
 use App\Http\Controllers\Controller;
+use App\Models\Statute;
 
 class HomePageController extends Controller
 {
@@ -52,6 +53,7 @@ class HomePageController extends Controller
         $videos = Video::active()->sorting()->get();
         $report = Report::active()->first();
         $contact = Contact::first();
+        $statute = Statute::active()->first();
 
         // Obter as 5 categorias mais recentes das últimas notícias
         $recentCategories = BlogCategory::whereHas('blogs', function($query) {
@@ -139,6 +141,8 @@ class HomePageController extends Controller
             'popUp', 
             'slides', 
             'topics', 
+            'statute', 
+            'report', 
             'blogNoBairros')
         );
     }

@@ -19,6 +19,7 @@ use App\Http\Controllers\ReportController;
 use App\Repositories\AuditCountRepository;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\StatuteController;
 use App\Repositories\SettingThemeRepository;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -122,6 +123,10 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.benefitTopic.destroySelected');
         Route::post('parametro/sorting', [BenefitTopicController::class, 'sorting'])
         ->name('admin.dashboard.benefitTopic.sorting');
+        //Passo a passo
+        Route::resource('passo-a-passo', StatuteController::class)
+        ->names('admin.dashboard.statute')
+        ->parameters(['passo-a-passo'=>'statute']);
         //LEAD
         Route::resource('lead', FormIndexController::class)
         ->names('admin.dashboard.formIndex')
@@ -165,9 +170,9 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.blogCategory.sorting');
 
         //REPORT
-        Route::resource('sessao-anuncie', ReportController::class)
+        Route::resource('sessao-lets-go', ReportController::class)
         ->names('admin.dashboard.report')
-        ->parameters(['sessao-anuncie'=>'report']);
+        ->parameters(['sessao-lets-go'=>'report']);
 
         //DIRECTION
         Route::resource('a-direcao', DirectionController::class)

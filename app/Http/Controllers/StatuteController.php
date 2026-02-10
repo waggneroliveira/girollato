@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Repositories\SettingThemeRepository;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
+
 
 class StatuteController extends Controller
 {
@@ -30,18 +33,32 @@ class StatuteController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->except('path_image');
+        $data = $request->except('path_file');
+        $manager = new ImageManager(GdDriver::class);
 
         $request->validate([
-            'path_file' => ['nullable', 'file', 'mimes:pdf', 'max:3072'] 
+            'path_file' => ['nullable', 'file', 'image', 'max:3072', 'mimes:jpg,jpeg,png,gif'],
         ]);
 
+        // statute desktop
         if ($request->hasFile('path_file')) {
             $file = $request->file('path_file');
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.pdf';
+            $mime = $file->getMimeType();
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
 
-            // Salva direto no storage
-            Storage::putFileAs($this->pathUpload, $file, $filename);
+            if ($mime === 'image/svg+xml') {
+                Storage::putFileAs($this->pathUpload, $file, $filename);
+            } else {
+                $image = $manager->read($file)
+                    ->resize(null, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toWebp(quality: 95)
+                    ->toString();
+
+                Storage::put($this->pathUpload . $filename, $image);
+            }
 
             $data['path_file'] = $this->pathUpload . $filename;
         }
@@ -64,23 +81,33 @@ class StatuteController extends Controller
     public function update(Request $request, Statute $statute)
     {
         $data = $request->except('path_file');
+        $manager = new ImageManager(GdDriver::class);
+
         $request->validate([
-            'path_file' => ['nullable', 'file', 'mimes:pdf', 'max:3072'] 
+            'path_file' => ['nullable', 'file', 'image', 'max:3072', 'mimes:jpg,jpeg,png,gif'],
         ]);
 
         // Se veio um novo arquivo
         if ($request->hasFile('path_file')) {
             $file = $request->file('path_file');
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.pdf';
+            $mime = $file->getMimeType();
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
 
-            // Apaga o arquivo anterior (se existir)
-            if (!empty($statute->path_file) && Storage::exists($statute->path_file)) {
-                Storage::delete($statute->path_file);
+            if ($mime === 'image/svg+xml') {
+                Storage::putFileAs($this->pathUpload, $file, $filename);
+            } else {
+                $image = $manager->read($file)
+                    ->resize(null, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toWebp(quality: 95)
+                    ->toString();
+
+                Storage::put($this->pathUpload . $filename, $image);
             }
 
-            // Salva o novo PDF
-            Storage::putFileAs($this->pathUpload, $file, $filename);
-
+            Storage::delete(isset($statute->path_file)??$statute->path_file);
             $data['path_file'] = $this->pathUpload . $filename;
         }
 

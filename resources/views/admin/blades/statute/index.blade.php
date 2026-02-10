@@ -36,7 +36,7 @@
                                                 @endif
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="statute-create" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" style="max-width: 980px;">
+                                                    <div class="modal-dialog modal-dialog-centered" style="max-width: 1320px;">
                                                         <div class="modal-content">
                                                             <div class="modal-header bg-light">
                                                                 <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_create')}}</h4>
@@ -45,7 +45,7 @@
                                                             <div class="modal-body p-2 px-3 px-md-4">
                                                                 <form action="{{ route('admin.dashboard.statute.store') }}" method="POST" enctype="multipart/form-data">
                                                                     @csrf
-                                                                    @include('admin.blades.statute.form')  
+                                                                    @include('admin.blades.statute.form', ['textareaId' => 'textarea-create'])  
                                                                     <div class="d-flex justify-content-end gap-2">
                                                                         <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
                                                                         <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_create')}}</button>
@@ -71,7 +71,7 @@
                                                     </th>
                                                     {{-- <th>Link</th> --}}
                                                     <th>Título</th>
-                                                    <th>Arquivo</th>
+                                                    <th>Imagem</th>
                                                     <th>Status</th>
                                                     <th style="width: 85px;">Ações</th>
                                                 </tr>
@@ -84,13 +84,13 @@
                                                         <label><input data-index="" name="btnSelectItem" class="btnSelectItem" type="checkbox" value=""></label>
                                                     </td>
                                                     <td>{{$statute->title}}</td>
-                                                    <td class="table-user">
-                                                        @if ($statute->path_file)                                                            
-                                                            <a href="{{ asset('storage/'.$statute->path_file) }}" target="_blank" rel="noopener noreferrer" download="arquivo">
-                                                                <span class="mdi mdi-file-download-outline"></span>
-                                                            </a>
+                                                    <td class="table-statute text-start">
+                                                        @if ($statute->path_file)
+                                                            <img src="{{ asset('storage/'.$statute->path_file) }}" alt="table-statute" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
+                                                            @else      
+                                                            <img src="{{asset('build/admin/images/statutes/statute-3.jpg')}}" alt="table-statute" class="me-2 rounded-circle">
                                                         @endif
-                                                    </td>
+                                                    </td> 
                                                     <td>
                                                         @switch($statute->active)
                                                             @case(0) <span class="badge bg-danger">Inativo</span> @break
@@ -104,7 +104,7 @@
                                                         Auth::user()->hasRole('Super'))
                                                             <button class="table-edit-button btn btn-primary text-black" data-bs-toggle="modal" data-bs-target="#modal-group-edit-{{$statute->id}}" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
                                                             <div class="modal fade" id="modal-group-edit-{{$statute->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered" style="max-width: 980px;">
+                                                                <div class="modal-dialog modal-dialog-centered" style="max-width: 1320px;">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header bg-light">
                                                                             <h4 class="modal-title" id="myCenterModalLabel">Estatuto</h4>

@@ -64,27 +64,46 @@
             </div> <!-- end col -->
         @endif
         @if (Auth::user()->hasRole('Super') || 
-            Auth::user()->hasPermissionTo('usuario.tornar usuario master') ||
-            Auth::user()->hasPermissionTo('beneficios.visualizar'))
-                <div class="col-md-5 col-xl-3">
-                    <div class="card borda-cx ratio ratio-4x3 border-whi">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <a href="{{route('admin.dashboard.benefitTopic.index')}}">
-                                <div class="row">
-                                    <div class="col-12 d-flex align-items-center justify-content-center">
-                                        <div class="avatar-xl bg-hoom rounded-circle text-center">
-                                            <i class="avatar-md mdi mdi-star font-48 text-muted"></i>
-                                        </div>
+        Auth::user()->hasPermissionTo('usuario.tornar usuario master') ||
+        Auth::user()->hasPermissionTo('beneficios.visualizar'))
+            <div class="col-md-5 col-xl-3">
+                <div class="card borda-cx ratio ratio-4x3 border-whi">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a href="{{route('admin.dashboard.benefitTopic.index')}}">
+                            <div class="row">
+                                <div class="col-12 d-flex align-items-center justify-content-center">
+                                    <div class="avatar-xl bg-hoom rounded-circle text-center">
+                                        <i class="avatar-md mdi mdi-star font-48 text-muted"></i>
                                     </div>
                                 </div>
-                                <div class="mt-3 col-12 text-center">
-                                    <h5 class="text-uppercase text-muted">Parametros</h5>
+                            </div>
+                            <div class="mt-3 col-12 text-center">
+                                <h5 class="text-uppercase text-muted">Parametros</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+        @endif
+
+        <div class="col-md-5 col-xl-3">
+            <div class="card borda-cx ratio ratio-4x3 border-whi">
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="{{route('admin.dashboard.statute.index')}}">
+                        <div class="row">
+                            <div class="col-12 d-flex align-items-center justify-content-center">
+                                <div class="avatar-xl bg-hoom rounded-circle text-center">
+                                    <i class="avatar-md mdi mdi-file-document font-48 text-muted"></i>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                    </div> <!-- end card-->
-                </div> <!-- end col -->
-            @endif
+                        <div class="mt-3 col-12 text-center">
+                            <h5 class="text-uppercase text-muted">Passo a passo</h5>
+                        </div>
+                    </a>
+                </div>
+            </div> <!-- end card-->
+        </div> <!-- end col -->
     </div>
     @if (Auth::user()->hasRole('Super') || 
         Auth::user()->hasPermissionTo('usuario.tornar usuario master') ||

@@ -334,7 +334,49 @@ body {
 .step-actions .btn:hover svg, .btn-about .btn:hover svg, .btn-product:hover svg, #shareBtn:hover svg, .to-back:hover svg {
     filter: inherit;
 }
+.about-image img {
+    object-fit: cover;
+    height: 100%;
+}
+.list-step p, .list-step li{
+    font-size: 1rem;
+    font-family: "Changa", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    color: #565656;
+}
+.list-step ul{
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 13px;
+    flex-direction: column;
+}
+.list-step li{
+    font-weight: 600;
+    position: relative;
+    padding-left: 55px;
+    list-style: none;
+    margin-bottom: 15px;
+}
+.list-step li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
 
+    width: 40px;
+    height: 40px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    background-image: url('../images/ok.svg');
+}
 /* =========================
    PRODUCT
 ========================= */
