@@ -135,7 +135,7 @@
     </section>
 @endif
 
-@if (!empty($benefitTopics))
+@if ($benefitTopics->count() > 0)
     <section class="stats-section py-5 position-relative container-fluid">
         <img src="{{asset('build/client/images/firula-count.svg')}}" alt="Firula" class="position-absolute top-0 left-0 firula-count">
 
