@@ -32,6 +32,7 @@ use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\SettingEmailController;
 use App\Http\Controllers\SettingThemeController;
 use App\Http\Controllers\AuditActivityController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
@@ -168,11 +169,18 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.blogCategory.destroySelected');
         Route::post('categoria-do-blog/sorting', [BlogCategoryController::class, 'sorting'])
         ->name('admin.dashboard.blogCategory.sorting');
-
         //REPORT
         Route::resource('sessao-lets-go', ReportController::class)
         ->names('admin.dashboard.report')
         ->parameters(['sessao-lets-go'=>'report']);
+        //CATEGORIA BLOG
+        Route::resource('categoria-de-produtos', ProductCategoryController::class)
+        ->parameters(['categoria-de-produtos' => 'productCategory'])
+        ->names('admin.dashboard.productCategory');
+        Route::post('categoria-de-produtos/delete', [ProductCategoryController::class, 'destroySelected'])
+        ->name('admin.dashboard.productCategory.destroySelected');
+        Route::post('categoria-de-produtos/sorting', [ProductCategoryController::class, 'sorting'])
+        ->name('admin.dashboard.productCategory.sorting');
 
         //DIRECTION
         Route::resource('a-direcao', DirectionController::class)

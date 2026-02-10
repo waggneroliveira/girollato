@@ -254,50 +254,22 @@
     <img src="{{asset('build/client/images/firula-top-product.svg')}}" alt="Firula" class="position-absolute top-0 left-0">
     <div class="container py-5">
         <div class="row g-4">
-            <!-- Item 1 -->
-            <div class="col-12 col-md-4 mb-3 mb-lg-0">
-                <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">
-                    <img src="{{asset('build/client/images/cat-1.png')}}"
-                        class="card-img-top rounded"
-                        alt="Imagem 1">
+            @foreach ($productCategories as $productCategory)
+                <!-- Item 1 -->
+                <div class="col-12 col-md-4 mb-3 mb-lg-0">
+                    <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">
+                        <img src="{{asset('storage/' . $productCategory->path_image)}}"
+                            class="card-img-top rounded"
+                            alt="{{$productCategory->title}}">
 
-                    <div class="card-body">
-                        <a href="#" class="stretched-link text-decoration-none text-center">
-                            <h5 class="card-title font-changa text-black font-25 font-bold">Cachorro</h5>
-                        </a>
+                        <div class="card-body">
+                            <a href="#" class="stretched-link text-decoration-none text-center">
+                                <h5 class="card-title font-changa text-black font-25 font-bold">{{$productCategory->title}}</h5>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="col-12 col-md-4 mb-3 mb-lg-0">
-                <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">
-                    <img src="{{asset('build/client/images/cat-2.png')}}"
-                        class="card-img-top rounded"
-                        alt="Imagem 1">
-
-                    <div class="card-body">
-                        <a href="#" class="stretched-link text-decoration-none text-center">
-                            <h5 class="card-title font-changa text-black font-25 font-bold">Gato</h5>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="col-12 col-md-4 mb-3 mb-lg-0">
-                <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">
-                    <img src="{{asset('build/client/images/cat-3.png')}}"
-                        class="card-img-top rounded"
-                        alt="Imagem 1">
-
-                    <div class="card-body">
-                        <a href="#" class="stretched-link text-decoration-none text-center">
-                            <h5 class="card-title font-changa text-black font-25 font-bold">Pássaro</h5>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
