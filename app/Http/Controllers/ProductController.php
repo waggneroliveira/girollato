@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -79,13 +80,20 @@ class ProductController extends Controller
         }
 
         $categories = ProductCategory::active()->sorting()->get();
+        $brands = Brand::active()->sorting()->get();
 
         $productCategory = [];
 
         foreach ($categories as $category) {
             $productCategory[$category->id] = $category->title;
         }
-        return view('admin.blades.product.create', compact('categories', 'productCategory'));
+        
+        $productBrand = [];
+
+        foreach ($brands as $brand) {
+            $productBrand[$brand->id] = $brand->title;
+        }
+        return view('admin.blades.product.create', compact('categories', 'productCategory', 'productBrand'));
     }
 
     /**
@@ -101,13 +109,16 @@ class ProductController extends Controller
         $data = $request->all();
         $data['active'] = $request->active ? 1 : 0;
         $data['slug'] = Str::slug($request->title);
-        // Limpa e valida os tamanhos antes de converter para JSON
-        $sizes = array_values(array_filter($request->sizes, function($size) {
-            return !is_null($size) && trim($size) !== '';
-        }));
-        
-        // Se não houver tamanhos, salva como JSON vazio
-        $data['sizes'] = !empty($sizes) ? json_encode($sizes) : json_encode([]);    
+
+        if (isset($data['sizes'])) {
+            // Limpa e valida os tamanhos antes de converter para JSON
+            $sizes = array_values(array_filter($request->sizes, function($size) {
+                return !is_null($size) && trim($size) !== '';
+            }));
+            
+            // Se não houver tamanhos, salva como JSON vazio
+            $data['sizes'] = !empty($sizes) ? json_encode($sizes) : json_encode([]);    
+        }
 
         $manager = new ImageManager(new GdDriver());
 

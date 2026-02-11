@@ -27,10 +27,11 @@
                     <div class="row">
                         <div class="col-12 col-lg-6">
                             <div class="row">
-                                <div class="mb-3 col-4 d-flex align-items-start flex-column">
+                                <div class="mb-3 col-6 d-flex align-items-start flex-column">
                                     <label for="category-select" class="form-label">Categoria(s) <span class="text-danger">*</span></label>
                                     @php
                                         $currentCategory = isset($product) ? $product->product_category : null;
+                                        $currentBrand = isset($product) ? $product->product_brand : null;
                                     @endphp
                                 
                                     <select name="product_category_id" class="form-select" id="category-select" required>
@@ -42,10 +43,25 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="mb-3 col-8">
-                                    <label for="title" class="form-label">Título <span class="text-danger">*</span></label>
-                                    <input type="text" name="title" class="form-control" id="title" placeholder="Digite seu nome" required>
+                                <div class="mb-3 col-6 d-flex align-items-start flex-column">
+                                    <label for="brand-select" class="form-label">Marca(s) <span class="text-danger">*</span></label>
+                                    @php
+                                        $currentBrand = isset($product) ? $product->product_brand : null;
+                                    @endphp
+                                
+                                    <select name="brand_id" class="form-select" id="brand-select" required>
+                                        <option value="" disabled selected>Selecione a Marca</option>
+                                        @foreach ($productBrand as $brandValue => $brandLabel)
+                                            <option value="{{ $brandValue }}" {{ $brandValue == $currentBrand ? 'selected' : '' }}>
+                                                {{ $brandLabel }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="title" class="form-label">Título <span class="text-danger">*</span></label>
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Digite seu nome" required>
                             </div>
         
                             <div class="mb-3 col-12">

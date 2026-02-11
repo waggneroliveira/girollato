@@ -70,6 +70,7 @@
 
             <div class="mb-2 text-center text-lg-start ">
                 <span class="font-changa font-12 bg-yellow px-2 rounded-0 font-medium color-green">{{$product->category->title}}</span>
+                <span class="font-changa font-12 bg-yellow px-2 rounded-0 font-medium color-green">{{$product->brand->title}}</span>
             </div>
 
             <p class="color-grey text-center text-lg-start font-changa font-16 font-regular">
@@ -93,12 +94,16 @@
                                 $sizes = $product->sizes;
                             @endphp
                         @endif
-                        
-                        @foreach($sizes as $size)
-                            <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm" style="max-width: 90px;">
-                                {{ $size }}
-                            </button>
-                        @endforeach
+                        @if (isset($product->sizes))
+                            @foreach($sizes as $size)
+                                <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm me-2 rounded-2" style="max-width: 80px;">
+                                    {{ $size }}
+                                </button>
+                            @endforeach
+                            @else
+                            <i class="bi bi-exclamation-circle text-muted me-2"></i>
+                            <p class="color-grey text-center text-lg-start font-changa font-16 font-regular">Não disponível</p>
+                        @endif
                     </div>
 
                     <div class="col-6 m-auto m-lg-0 mt-3 mt-lg-0 col-lg-3 d-flex justify-content-center gap-2 align-items-center btn-header btn bg-yellow rounded-pill px-2">
