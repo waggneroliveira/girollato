@@ -254,7 +254,7 @@
     <img src="{{asset('build/client/images/firula-top-product.svg')}}" alt="Firula" class="position-absolute top-0 left-0">
     <div class="container py-5">
         <div class="row g-4">
-            @foreach ($productCategories as $productCategory)
+            @foreach ($productCategorieHighlights as $productCategory)
                 <!-- Item 1 -->
                 <div class="col-12 col-md-4 mb-3 mb-lg-0">
                     <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">

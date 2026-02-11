@@ -55,7 +55,7 @@ class HomePageController extends Controller
         $report = Report::active()->first();
         $contact = Contact::first();
         $statute = Statute::active()->first();
-        $productCategories = ProductCategory::active()->sorting()->get();
+        $productCategorieHighlights = ProductCategory::where('highlight', 1)->active()->sorting()->get();
 
         // Obter as 5 categorias mais recentes das últimas notícias
         $recentCategories = BlogCategory::whereHas('blogs', function($query) {
@@ -145,7 +145,7 @@ class HomePageController extends Controller
             'topics', 
             'statute', 
             'report', 
-            'productCategories', 
+            'productCategorieHighlights', 
             'blogNoBairros')
         );
     }

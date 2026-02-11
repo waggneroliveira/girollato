@@ -11,22 +11,22 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                                <li class="breadcrumb-item active"><a href="{{route('admin.dashboard.blog.index')}}">Notícias</a></li>
-                                <li class="breadcrumb-item active">Editar Notícia</li>
+                                <li class="breadcrumb-item active"><a href="{{route('admin.dashboard.product.index')}}">Produtos</a></li>
+                                <li class="breadcrumb-item active">Editar Produto</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Editar Notícia</h4>
+                        <h4 class="page-title">Editar Produto</h4>
                     </div>
                 </div>
             </div>
             <!-- end row -->
 
             <div class="row">
-                <form action="{{ route('admin.dashboard.blog.update', ['blog' => $blog->id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.dashboard.product.update', ['product' => $product->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        @include('admin.blades.blog.form')    
+                        @include('admin.blades.product.form')    
                     </div>
                     <div class="d-flex justify-content-end gap-2">
                         <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
@@ -57,7 +57,7 @@
             { name: 'colors', items: ['TextColor', 'BGColor'] },
             { name: 'tools', items: ['Maximize'] }
         ],
-        filebrowserUploadUrl: "{{ route('admin.dashboard.blog.uploadImageCkeditor') }}",
+        filebrowserUploadUrl: "{{ route('admin.dashboard.product.uploadImageCkeditor') }}",
         fileTools_requestHeaders: {
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         }

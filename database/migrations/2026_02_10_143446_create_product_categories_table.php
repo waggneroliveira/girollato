@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('path_image');
             $table->boolean('active')->default(0);
+            $table->boolean('highlight')->default(0);
             $table->integer('sorting')->default(0);
             $table->timestamps();
         });

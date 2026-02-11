@@ -38,6 +38,7 @@ class ProductCategoryController extends Controller
         $data = $request->except('path_image');
         $manager = new ImageManager(GdDriver::class);
         $data['active'] = $request->active?1:0;
+        $data['highlight'] = $request->highlight ? 1 : 0;
         $data['slug'] = Str::slug($request->title);
 
         $request->validate([
@@ -84,6 +85,7 @@ class ProductCategoryController extends Controller
         $data = $request->except('path_image');
         $manager = new ImageManager(GdDriver::class);
         $data['active'] = $request->active?1:0;
+        $data['highlight'] = $request->highlight ? 1 : 0;
         $data['slug'] = Str::slug($request->title);
 
         $request->validate([

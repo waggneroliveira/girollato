@@ -19,6 +19,7 @@ use App\Http\Controllers\ReportController;
 use App\Repositories\AuditCountRepository;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StatuteController;
 use App\Repositories\SettingThemeRepository;
 use App\Http\Controllers\Auth\AuthController;
@@ -181,7 +182,16 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.productCategory.destroySelected');
         Route::post('categoria-de-produtos/sorting', [ProductCategoryController::class, 'sorting'])
         ->name('admin.dashboard.productCategory.sorting');
-
+        //PRODUTOS
+        Route::resource('produtos', ProductController::class)
+        ->parameters(['produtos' => 'product'])
+        ->names('admin.dashboard.product');
+        Route::post('produtos/delete', [ProductController::class, 'destroySelected'])
+        ->name('admin.dashboard.product.destroySelected');
+        Route::post('produtos/sorting', [ProductController::class, 'sorting'])
+        ->name('admin.dashboard.product.sorting');
+        Route::post('produtos/uploadImageCkeditor', [ProductController::class, 'uploadImageCkeditor'])
+        ->name('admin.dashboard.product.uploadImageCkeditor');
         //DIRECTION
         Route::resource('a-direcao', DirectionController::class)
         ->parameters(['a-direcao' => 'direction'])
@@ -206,7 +216,7 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.about.destroySelected');
         Route::post('sobre/sorting', [AboutController::class, 'sorting'])
         ->name('admin.dashboard.about.sorting');
-        Route::post('blog/uploadImageCkeditorAbout', [AboutController::class, 'uploadImageCkeditorAbout'])
+        Route::post('sobre/uploadImageCkeditorAbout', [AboutController::class, 'uploadImageCkeditorAbout'])
         ->name('admin.dashboard.about.uploadImageCkeditorAbout');
         //EVENT
         Route::resource('agenda', EventController::class)

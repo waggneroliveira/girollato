@@ -11,7 +11,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-     use Notifiable, HasFactory, LogsActivity;
+    use Notifiable, HasFactory, LogsActivity;
+    
+    protected $casts = [
+        'sizes' => 'array'
+    ];
     
     protected $fillable = [
         'product_category_id',
@@ -25,10 +29,6 @@ class Product extends Model
         'sorting',
     ];
 
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
     public function category(){
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }

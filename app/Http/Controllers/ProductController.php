@@ -3,13 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Repositories\SettingThemeRepository;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 
 class ProductController extends Controller
 {
-    protected $pathUpload = 'admin/uploads/images/blog/';
+    protected $pathUpload = 'admin/uploads/images/product/';
 
-    public function index()
+    public function index(Request $request)
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
 
@@ -21,47 +32,35 @@ class ProductController extends Controller
             return view('admin.error.403', compact('settingTheme'));
         }
 
-        $categories = BlogCategory::active()->sorting()->get();
+        $categories = ProductCategory::active()->sorting()->get();
 
         // Query base
-        $blogsQuery = Blog::with([
+        $productsQuery = Product::with([
             'category',
-            'comments' => function ($query) {
-                $query->orderBy('created_at', 'desc')->with('client');
-            }
         ]);
 
         // 🔎 Aplicar filtros
         if ($request->filled('title')) {
-            $blogsQuery->where('title', 'like', '%' . $request->title . '%');
+            $productsQuery->where('title', 'like', '%' . $request->title . '%');
         }
 
-        if ($request->filled('date')) {
-            $blogsQuery->whereDate('date', $request->date);
-        }
-
-        if ($request->filled('blog_category_id')) {
-            $blogsQuery->where('blog_category_id', $request->blog_category_id);
+        if ($request->filled('product_category_id')) {
+            $productsQuery->where('product_category_id', $request->product_category_id);
         }
 
         // Paginação
-        $blogs = $blogsQuery->orderBy('date', 'desc')->paginate(60)->withQueryString();
-
-        // Contagem de comentários pendentes
-        $commentCount = Blog::with(['comments' => function ($query) {
-            $query->where('active', 0);
-        }])->get();
+        $products = $productsQuery->orderBy('sorting', 'desc')->paginate(60)->withQueryString();
 
         // Array simples de categorias [id => title]
-        $blogCategory = [];
+        $productCategory = [];
         foreach ($categories as $category) {
-            $blogCategory[$category->id] = $category->title;
+            $productCategory[$category->id] = $category->title;
         }
 
-        return view('admin.blades.blog.index', compact(
-            'blogs', 
+        return view('admin.blades.product.index', compact(
+            'products', 
             'categories', 
-            'blogCategory',
+            'productCategory',
             'settingTheme'
         ));
     }
@@ -79,15 +78,14 @@ class ProductController extends Controller
             return view('admin.error.403', compact('settingTheme'));
         }
 
-        $categories = BlogCategory::active()->sorting()->get();
+        $categories = ProductCategory::active()->sorting()->get();
 
-
-        $blogCategory = [];
+        $productCategory = [];
 
         foreach ($categories as $category) {
-            $blogCategory[$category->id] = $category->title;
+            $productCategory[$category->id] = $category->title;
         }
-        return view('admin.blades.blog.create', compact('categories', 'blogCategory'));
+        return view('admin.blades.product.create', compact('categories', 'productCategory'));
     }
 
     /**
@@ -95,11 +93,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'sizes'   => 'array',
+            'sizes.*' => 'string|max:50',
+        ]);
+        
         $data = $request->all();
         $data['active'] = $request->active ? 1 : 0;
-        $data['super_highlight'] = $request->super_highlight ? 1 : 0;
-        $data['highlight'] = $request->highlight ? 1 : 0;
         $data['slug'] = Str::slug($request->title);
+        // Limpa e valida os tamanhos antes de converter para JSON
+        $sizes = array_values(array_filter($request->sizes, function($size) {
+            return !is_null($size) && trim($size) !== '';
+        }));
+        
+        // Se não houver tamanhos, salva como JSON vazio
+        $data['sizes'] = !empty($sizes) ? json_encode($sizes) : json_encode([]);    
 
         $manager = new ImageManager(new GdDriver());
 
@@ -126,37 +134,13 @@ class ProductController extends Controller
             $data['path_image'] = $this->pathUpload . $filename; 
         }
 
-        // Imagem de capa (thumbnail)
-        if ($request->hasFile('path_image_thumbnail')) {
-            $file = $request->file('path_image_thumbnail');
-            $mime = $file->getMimeType();
-            $filename = Str::uuid() . '_thumbnail.webp';
-
-            if ($mime === 'image/svg+xml') {
-                Storage::disk('public')->putFileAs($this->pathUpload, $file, $filename);
-            } else {
-                $image = $manager->read($file)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
-
-                Storage::disk('public')->put($this->pathUpload . $filename, $image);
-            }
-
-            $data['path_image_thumbnail'] = $this->pathUpload . $filename; 
-        }
-
         try {
-            DB::beginTransaction();
-                $blog = Blog::create($data);
+            DB::beginTransaction();            
+                $product = Product::create($data);
             DB::commit();
 
             session()->flash('success', __('dashboard.response_item_create'));
-            session()->put('blogTitle', $blog->title);
-            return redirect()->back()->with('reopenModal', 'agenda-alert');
+            return redirect()->route('admin.dashboard.product.index');
         } catch (\Exception $e) {
             DB::rollback();
             Alert::error('error', __('dashboard.response_item_error_create'));
@@ -174,13 +158,13 @@ class ProductController extends Controller
             return view('admin.error.403', compact('settingTheme'));
         }
 
-        $categories = BlogCategory::active()->sorting()->get();
-        $blogCategory = [];
+        $categories = ProductCategory::active()->sorting()->get();
+        $productCategory = [];
 
         foreach ($categories as $category) {
-            $blogCategory[$category->id] = $category->title;
+            $productCategory[$category->id] = $category->title;
         }
-        return view('admin.blades.blog.edit', compact('blog', 'categories', 'blogCategory'));
+        return view('admin.blades.product.edit', compact('product', 'categories', 'productCategory'));
     }
 
      public function uploadImageCkeditor(Request $request)
@@ -193,7 +177,7 @@ class ProductController extends Controller
             $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
 
             // Caminho de armazenamento
-            $pathUpload = 'uploads/blog_images/';
+            $pathUpload = 'uploads/product_images/';
 
             $manager = ImageManager::gd(); // ou ->imagick() se preferir
 
@@ -232,8 +216,6 @@ class ProductController extends Controller
     {
          $data = $request->all();
         $data['active'] = $request->active ? 1 : 0;
-        $data['super_highlight'] = $request->super_highlight ? 1 : 0;
-        $data['highlight'] = $request->highlight ? 1 : 0;
         $data['slug'] = Str::slug($request->title);
 
         $manager = new ImageManager(new GdDriver());
@@ -258,61 +240,27 @@ class ProductController extends Controller
                 Storage::disk('public')->put($this->pathUpload . $filename, $image);
             }
 
-            if (!empty($blog->path_image)) {
-                Storage::disk('public')->delete($blog->path_image);
+            if (!empty($product->path_image)) {
+                Storage::disk('public')->delete($product->path_image);
             }
 
             $data['path_image'] = $this->pathUpload . $filename; 
         }
 
         if ($request->has('delete_path_image')) {
-            if (!empty($blog->path_image)) {
-                Storage::disk('public')->delete($blog->path_image);
+            if (!empty($product->path_image)) {
+                Storage::disk('public')->delete($product->path_image);
             }
             $data['path_image'] = null;
         }
 
-        // Imagem de capa
-        if ($request->hasFile('path_image_thumbnail')) {
-            $file = $request->file('path_image_thumbnail');
-            $mime = $file->getMimeType();
-            $filename = Str::uuid() . '_thumbnail.webp';
-
-            if ($mime === 'image/svg+xml') {
-                Storage::disk('public')->putFileAs($this->pathUpload, $file, $filename);
-            } else {
-                $image = $manager->read($file)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
-
-                Storage::disk('public')->put($this->pathUpload . $filename, $image);
-            }
-
-            if (!empty($blog->path_image_thumbnail)) {
-                Storage::disk('public')->delete($blog->path_image_thumbnail);
-            }
-
-            $data['path_image_thumbnail'] = $this->pathUpload . $filename; 
-        }
-
-        if ($request->has('delete_path_image_thumbnail')) {
-            if (!empty($blog->path_image_thumbnail)) {
-                Storage::disk('public')->delete($blog->path_image_thumbnail);
-            }
-            $data['path_image_thumbnail'] = null;
-        }
-
         try {
             DB::beginTransaction();
-                $blog->fill($data)->save();
+                $product->fill($data)->save();
             DB::commit();
 
             session()->flash('success', __('dashboard.response_item_update'));
-            return redirect()->route('admin.dashboard.blog.index');
+            return redirect()->route('admin.dashboard.product.index');
         } catch (\Exception $e) {
             DB::rollback();
             Alert::error('error', __('dashboard.response_item_error_update'));
@@ -323,44 +271,43 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        Storage::delete(isset($blog->path_image)??$blog->path_image);
-        Storage::delete(isset($blog->path_image_thumbnail)??$blog->path_image_thumbnail);
-        $blog->delete();
+        Storage::delete(isset($product->path_image)??$product->path_image);
+        $product->delete();
         Session::flash('success',__('dashboard.response_item_delete'));
         return redirect()->back();
     }
 
-        public function destroySelected(Request $request)
+    public function destroySelected(Request $request)
     {    
-        foreach ($request->deleteAll as $blogId) {
-            $blog = Blog::find($blogId);
+        foreach ($request->deleteAll as $productId) {
+            $product = Product::find($productId);
     
-            if ($blog) {
+            if ($product) {
                 activity()
                     ->causedBy(Auth::user())
-                    ->performedOn($blog)
+                    ->performedOn($product)
                     ->event('multiple_deleted')
                     ->withProperties([
                         'attributes' => [
-                            'id' => $blogId,
-                            'title' => $blog->title,
-                            'slug' => $blog->slug,
-                            'data' => $blog->date,
-                            'path_image' => $blog->path_image,
-                            'path_image_thumbnail' => $blog->path_image_thumbnail,
-                            'texto' => $blog->text,
-                            'sorting' => $blog->sorting,
-                            'active' => $blog->active,
+                            'id' => $productId,
+                            'title' => $product->title,
+                            'slug' => $product->slug,
+                            'sizes' => $product->sizes,
+                            'description' => $product->description,
+                            'text' => $product->text,
+                            'path_image' => $product->path_image,
+                            'active' => $product->active,
+                            'sorting' => $product->sorting,
                             'event' => 'multiple_deleted',
                         ]
                     ])
                     ->log('multiple_deleted');
             } else {
-                \Log::warning("Item com ID $blogId não encontrado.");
+                \Log::warning("Item com ID $productId não encontrado.");
             }
         }
     
-        $deleted = Blog::whereIn('id', $request->deleteAll)->delete();
+        $deleted = Product::whereIn('id', $request->deleteAll)->delete();
     
         if ($deleted) {
             return Response::json(['status' => 'success', 'message' => $deleted . ' '.__('dashboard.response_item_delete')]);
@@ -372,31 +319,31 @@ class ProductController extends Controller
     public function sorting(Request $request)
     {
         foreach($request->arrId as $sorting => $id) {
-            $blog = Blog::find($id);
+            $product = Product::find($id);
     
-            if ($blog) {
-                $blog->sorting = $sorting;
-                $blog->save();
+            if ($product) {
+                $product->sorting = $sorting;
+                $product->save();
             } else {
                 Log::warning("Item com ID $id não encontrado.");
             }
 
-            if($blog) {
+            if($product) {
                 activity()
                     ->causedBy(Auth::user())
-                    ->performedOn($blog)
+                    ->performedOn($product)
                     ->event('order_updated')
                     ->withProperties([
                         'attributes' => [
                             'id' => $id,
-                            'title' => $blog->title,
-                            'slug' => $blog->slug,
-                            'data' => $blog->date,
-                            'path_image' => $blog->path_image,
-                            'path_image_thumbnail' => $blog->path_image_thumbnail,
-                            'texto' => $blog->text,
-                            'sorting' => $blog->sorting,
-                            'active' => $blog->active,
+                            'title' => $product->title,
+                            'slug' => $product->slug,
+                            'sizes' => $product->sizes,
+                            'description' => $product->description,
+                            'text' => $product->text,
+                            'path_image' => $product->path_image,
+                            'active' => $product->active,
+                            'sorting' => $product->sorting,
                             'event' => 'order_updated',
                         ]
                     ])
