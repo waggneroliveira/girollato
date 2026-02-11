@@ -169,13 +169,23 @@ class ProductController extends Controller
             return view('admin.error.403', compact('settingTheme'));
         }
 
+        $product = $product->with('galleries')->find($product->id);
+        
         $categories = ProductCategory::active()->sorting()->get();
+        $brands = Brand::active()->sorting()->get();
+
         $productCategory = [];
 
         foreach ($categories as $category) {
             $productCategory[$category->id] = $category->title;
         }
-        return view('admin.blades.product.edit', compact('product', 'categories', 'productCategory'));
+
+        $productBrand = [];
+
+        foreach ($brands as $brand) {
+            $productBrand[$brand->id] = $brand->title;
+        }
+        return view('admin.blades.product.edit', compact('product', 'categories', 'productCategory', 'productBrand'));
     }
 
      public function uploadImageCkeditor(Request $request)

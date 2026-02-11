@@ -14,7 +14,7 @@ class ProductPageController extends Controller
         if (!$category && !$slug) {
             return view ('client.errors.404');
         }
-        $product = Product::with(['category' => function($query ) use ($category, $slug) {
+        $product = Product::with(['galleries', 'category' => function($query ) use ($category, $slug) {
             $query->where('slug', '=', $category);
         }])
         ->where('slug', $slug)

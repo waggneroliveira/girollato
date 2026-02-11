@@ -34,6 +34,7 @@ use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\SettingEmailController;
 use App\Http\Controllers\SettingThemeController;
 use App\Http\Controllers\AuditActivityController;
+use App\Http\Controllers\ProductGalleryController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -201,6 +202,10 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.brand.destroySelected');
         Route::post('marca/sorting', [BrandController::class, 'sorting'])
         ->name('admin.dashboard.brand.sorting');
+        //GALERIA PRODUTO
+        Route::resource('galeria/arquivo', ProductGalleryController::class)
+        ->names('admin.dashboard.gallery.productGallery')
+        ->parameters(['arquivo' => 'productGallery']);
         //DIRECTION
         Route::resource('a-direcao', DirectionController::class)
         ->parameters(['a-direcao' => 'direction'])

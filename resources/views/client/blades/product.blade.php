@@ -22,34 +22,33 @@
                 </a>
             </div>
             <div class="product-gallery p-0">
-
-                <div class="custom-gallery-carousel position-relative">
-                    <div class="swiper gallery-top border rounded-4">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide d-flex justify-content-center align-items-center"><img src="{{asset('build/client/images/prod-1.png')}}" loading=lazy alt="Imagem 1" /></div>
-                            <div class="swiper-slide d-flex justify-content-center align-items-center"><img src="{{asset('build/client/images/prod-2.png')}}" loading=lazy alt="Imagem 2" /></div>
-                            <div class="swiper-slide d-flex justify-content-center align-items-center"><img src="{{asset('build/client/images/prod-3.png')}}" loading=lazy alt="Imagem 3" /></div>
-                            <div class="swiper-slide d-flex justify-content-center align-items-center"><img src="{{asset('build/client/images/prod-1.png')}}" loading=lazy alt="Imagem 4" /></div>
-                        </div>
-                    </div>
-
-                    <!-- Fim das setas -->
-                    <div class="mt-3 100 gap-1">
-                        <div class="swiper gallery-thumbs w-100">
-                            <div class="swiper-wrapper d-flex justify-content-center align-items-center">
-                                <div class="swiper-slide thumbs-width"><img src="{{asset('build/client/images/prod-1.png')}}" loading=lazy alt="Thumb 1" class="w-100 h-100 cover" /></div>
-                                <div class="swiper-slide thumbs-width"><img src="{{asset('build/client/images/prod-2.png')}}" loading=lazy alt="Thumb 2" class="w-100 h-100 cover" /></div>
-                                <div class="swiper-slide thumbs-width"><img src="{{asset('build/client/images/prod-3.png')}}" loading=lazy alt="Thumb 3" class="w-100 h-100 cover" /></div>
-                                <div class="swiper-slide thumbs-width"><img src="{{asset('build/client/images/prod-1.png')}}" loading=lazy alt="Thumb 4" class="w-100 h-100 cover" /></div>
+                @if ($product->galleries->count())
+                    <div class="custom-gallery-carousel position-relative">
+                        <div class="swiper gallery-top border rounded-4">
+                            <div class="swiper-wrapper">
+                                @foreach ($product->galleries as $file)                                
+                                    <div class="swiper-slide d-flex justify-content-center align-items-center"><img src="{{asset('storage/' . $file->file)}}" loading="lazy" alt="Imagem 1" /></div>
+                                @endforeach
                             </div>
                         </div>
+
+                        <!-- Fim das setas -->
+                        <div class="mt-3 100 gap-1">
+                            <div class="swiper gallery-thumbs w-100">
+                                <div class="swiper-wrapper d-flex justify-content-center align-items-center">
+                                    @foreach ($product->galleries as $file) 
+                                        <div class="swiper-slide thumbs-width"><img src="{{asset('storage/' . $file->file)}}" loading="lazy" alt="Thumb 1" class="w-100 h-100 cover" /></div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Setas de navegação do Swiper -->
+                        <div class="navigation-swiper">
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
                     </div>
-                    <!-- Setas de navegação do Swiper -->
-                    <div class="navigation-swiper">
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
-                </div>
+                @endif
 
                 <div class="d-flex justify-content-center mt-4 btn-prod">
                     <a href="#" class="rounded-pill px-4 btn font-changa bg-yellow color-green font-18 font-medium text-decoration-none">

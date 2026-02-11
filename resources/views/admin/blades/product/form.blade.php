@@ -19,7 +19,7 @@
         <div class="mb-3 col-6 d-flex align-items-start flex-column">
             <label for="brand-select" class="form-label">Marca(s) <span class="text-danger">*</span></label>
             @php
-                $currentBrand = isset($product) ? $product->product_brand : null;
+                $currentBrand = isset($product) ? $product->brand_id : null;
             @endphp
 
             <select name="brand_id" class="form-select" id="brand-select" required>
