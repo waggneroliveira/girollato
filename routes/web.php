@@ -25,6 +25,7 @@ use App\Http\Controllers\Client\EventPageController;
 use App\Http\Controllers\Client\RegionPageController;
 use App\Http\Controllers\Client\BenefitPageController;
 use App\Http\Controllers\Client\ContactPageController;
+use App\Http\Controllers\Client\ProductPageController;
 use App\Http\Controllers\Client\JuridicoPageController;
 use App\Http\Controllers\Client\NoticiesPageController;
 use App\Http\Controllers\Auth\PasswordEmailClientController;
@@ -41,9 +42,12 @@ Route::get('/noticia/interna', function () {
 Route::get('/produtos', function () {
     return view('client/blades/products');
 })->name('products');
-Route::get('/produto', function () {
-    return view('client/blades/product');
-})->name('product');
+
+// Route::get('/produto', function () {
+//     return view('client/blades/product');
+// })->name('product');
+
+Route::get('produto/{category}/{slug}', [ProductPageController::class, 'productView'])->name('client.product');
 
 Route::post('login.do', [AuthClientController::class, 'authenticate'])
 ->name('client.user.authenticate');

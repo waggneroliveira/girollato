@@ -66,16 +66,14 @@
         <!-- INFO PRODUTO -->
         <div class="col-lg-7">
 
-            <h2 class="font-changa text-center text-lg-start font-48 font-bold color-green">Billy Cat 10 kg</h2>
+            <h2 class="font-changa text-center text-lg-start font-48 font-bold color-green">{{$product->title}}</h2>
 
             <div class="mb-2 text-center text-lg-start ">
-                <span class="font-changa font-12 bg-yellow px-2 rounded-0 font-medium color-green">Gato</span>
-                <span class="font-changa font-12 bg-yellow px-2 rounded-0 font-medium color-green">Billy Dog</span>
+                <span class="font-changa font-12 bg-yellow px-2 rounded-0 font-medium color-green">{{$product->category->title}}</span>
             </div>
 
             <p class="color-grey text-center text-lg-start font-changa font-16 font-regular">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Maecenas ac elementum elit.
+                {{$product->description}}
             </p>
 
             <!-- TAMANHOS -->
@@ -84,10 +82,25 @@
 
                 <div class="row flex-wrap justify-content-between mt-3">
                     <div class="btn-group m-auto m-lg-0 col-8 col-lg-5" role="group">
-                        <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm">8kg</button>
-                        <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm">30kg</button>
-                        <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm">100kg</button>
+                        @if(is_string($product->sizes))
+                            @php
+                                // Se for string, decodifica
+                                $sizes = json_decode($product->sizes, true);
+                            @endphp
+                        @else
+                            @php
+                                // Se já for array, usa direto
+                                $sizes = $product->sizes;
+                            @endphp
+                        @endif
+                        
+                        @foreach($sizes as $size)
+                            <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm">
+                                {{ $size }}
+                            </button>
+                        @endforeach
                     </div>
+
                     <div class="col-6 m-auto m-lg-0 mt-3 mt-lg-0 col-lg-3 d-flex justify-content-center gap-2 align-items-center btn-header btn bg-yellow rounded-pill px-2">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M11.6741 10.0755C11.5016 9.96226 11.3291 9.90566 11.1565 10.1321L10.4665 11.0377C10.2939 11.1509 10.1789 11.2075 9.94888 11.0943C9.08626 10.6415 7.87859 10.1321 6.84345 8.43396C6.78594 8.20755 6.90096 8.09434 7.01597 7.98113L7.53355 7.18868C7.64856 7.07547 7.59105 6.96226 7.53355 6.84906L6.84345 5.20755C6.67093 4.75472 6.4984 4.81132 6.32588 4.81132H5.86581C5.7508 4.81132 5.52077 4.86792 5.29073 5.09434C4.02556 6.33962 4.54313 8.09434 5.46326 9.22642C5.63578 9.45283 6.78594 11.4906 9.25879 12.566C11.099 13.3585 11.5016 13.2453 12.0192 13.1321C12.6518 13.0755 13.2843 12.566 13.5719 12.0566C13.6294 11.8868 13.9169 11.1509 13.6869 11.0377M9.14377 16.3585C6.78594 16.3585 5.00319 15.1132 5.00319 15.1132L2.1853 15.8491L2.8754 13.1321C2.8754 13.1321 1.72524 11.3774 1.72524 9.16981C1.72524 5.09434 5.11821 1.69811 9.31629 1.69811C13.2268 1.69811 16.5623 4.69811 16.5623 8.88679C16.5623 12.9623 13.2268 16.3019 9.14377 16.3585ZM0 18L4.77316 16.6981C6.15555 17.3947 7.69626 17.7309 9.24823 17.6747C10.8002 17.6184 12.3116 17.1715 13.6382 16.3768C14.9648 15.582 16.0622 14.4658 16.8259 13.1347C17.5895 11.8037 17.9937 10.3022 18 8.77359C18 3.90566 14.0895 0 9.14377 0C7.55639 0.00399723 5.99777 0.417245 4.62313 1.19859C3.24848 1.97993 2.10579 3.10211 1.30885 4.45336C0.511907 5.80461 0.0885224 7.33778 0.0808596 8.9002C0.0731969 10.4626 0.481524 11.9997 1.26518 13.3585" fill="#10513D"></path>
@@ -108,9 +121,9 @@
                 <span class="desc-title bg-green text-white font-changa font-20 font-medium py-1 px-4 rounded-2 ms-4 position-relative">Descrição</span>
 
                 <div class="description rounded-3 p-4 mt-1">
-                    <p class="color-grey font-changa font-16 font-regular">
-                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac elementum elit. Morbi eu arcu ipsum. Aliquam lobortis accumsan quam ac convallis. Fusce elit mauris, aliquet at odio vel, convallis vehicula nisi. Morbi vitae porttitor dolor. Integer eget metus sem. Nam venenatis mauris vel leo pulvinar, id rutrum dui varius. Nunc ac varius quam, non convallis magna. Donec suscipit commodo dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac elementum elit. Morbi eu arcu ipsum. Aliquam lobortis accumsan quam ac convallis. Fusce elit mauris, aliquet at odio vel, convallis vehicula nisi. Morbi vitae porttitor dolor. Integer eget metus sem. Nam venenatis mauris vel leo pulvinar, id rutrum dui varius. Nunc ac varius quam, non convallis magna. Donec suscipit commodo dapibus.
-                    </p>
+                    <div class="color-grey font-changa font-16 font-regular">
+                       {!!$product->text!!}
+                    </div>
                 </div>
             </div>
 
