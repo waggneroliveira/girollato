@@ -22,8 +22,8 @@ class ProductCategory extends Model
         'sorting',
     ];
 
-    public function blogs(){
-        return $this->hasMany(Blog::class, 'product_category_id');
+    public function products(){
+        return $this->hasMany(Product::class, 'product_category_id');
     }
 
     public function scopeActive($query){

@@ -105,8 +105,6 @@
                                                 <th>Imagem</th>
                                                 <th>Publicado</th>
                                                 <th>Status</th>
-                                                <th>Super destaque</th>
-                                                <th>Destaque</th>
                                                 <th style="width: 85px;">Ações</th>
                                             </tr>
                                         </thead>
@@ -136,18 +134,6 @@
                                                     <td>{{$dataFormatada}}</td>
                                                     <td class="text-center">
                                                         @switch($product->active)
-                                                            @case(0) <span class="badge bg-danger">Inativo</span> @break
-                                                            @case(1) <span class="badge bg-success">Ativo</span> @break
-                                                        @endswitch
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @switch($product->super_highlight)
-                                                            @case(0) <span class="badge bg-danger">Inativo</span> @break
-                                                            @case(1) <span class="badge bg-success">Ativo</span> @break
-                                                        @endswitch
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @switch($product->highlight)
                                                             @case(0) <span class="badge bg-danger">Inativo</span> @break
                                                             @case(1) <span class="badge bg-success">Ativo</span> @break
                                                         @endswitch

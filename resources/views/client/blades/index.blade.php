@@ -291,68 +291,29 @@
 
         <!-- Filtros -->
         <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
-        <button class="btn btn-filter text-uppercase font-changa font-18 font-semibold color-green px-4 py-2 active" data-filter="all">Todos</button>
-        <button class="btn btn-filter text-uppercase font-changa font-18 font-semibold color-green px-4 py-2" data-filter="alimentos">Alimentos</button>
-        <button class="btn btn-filter text-uppercase font-changa font-18 font-semibold color-green px-4 py-2" data-filter="racao">Ração</button>
-        <button class="btn btn-filter text-uppercase font-changa font-18 font-semibold color-green px-4 py-2" data-filter="acessorios">Acessórios</button>
-        <button class="btn btn-filter text-uppercase font-changa font-18 font-semibold color-green px-4 py-2" data-filter="nutridani">Nutridani</button>
+            <button class="btn btn-filter text-uppercase font-changa font-18 font-semibold color-green px-4 py-2 active" data-filter="all">Todos</button>
+            @foreach ($productCategories as $productCategory)
+                <button class="btn btn-filter text-uppercase font-changa font-18 font-semibold color-green px-4 py-2" data-filter="{{$productCategory->slug}}">{{$productCategory->title}}</button>
+            @endforeach
         </div>
 
         <!-- Produtos -->
         <div class="row g-4 products">
             <!-- Produto -->
-            <div class="col-6 col-sm-6 col-lg-3 product alimentos nutridani">
-                <div class="product-card">
-                    <div class="image border rounded-3 position-relative mb-3">
-                        <a href="#" class="col-12">
-                            <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
-                            <img src="{{asset('build/client/images/prod-1.png')}}" alt="">
-                        </a>
+            @foreach ($products as $product)                
+                <div class="col-6 col-sm-6 col-lg-3 product {{$product->category->slug}}">
+                    <div class="product-card">
+                        <div class="image border rounded-3 position-relative mb-3">
+                            <a href="#" class="col-12">
+                                <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
+                                <img src="{{asset('storage/' . $product->path_image)}}" alt="{{$product->title}}">
+                            </a>
+                        </div>
+                        <h6 class="font-changa font-18 font-semibold color-green">{{$product->title}}</h6>
+                        <p class="color-grey font-changa font-18 font-medium">{{$product->description}}</p>
                     </div>
-                    <h6 class="font-changa font-18 font-semibold color-green">BILLY CAT 10 KG</h6>
-                    <p class="color-grey font-changa font-18 font-medium">Gato filhote ao castrado, linha premium Nutridani</p>
                 </div>
-            </div>
-
-            <div class="col-6 col-sm-6 col-lg-3 product acessorios">
-                <div class="product-card">
-                    <div class="image border rounded-3 position-relative mb-3">
-                        <a href="#" class="col-12">
-                            <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
-                            <img src="{{asset('build/client/images/prod-2.png')}}" alt="">
-                        </a>
-                    </div>
-                    
-                    <h6 class="font-changa font-18 font-semibold color-green">LOUNGER DOG BED</h6>
-                    <p class="color-grey font-changa font-18 font-medium">Produto confort premium Nutridani, para soneca PET</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-sm-6 col-lg-3 product acessorios">
-                <div class="product-card">
-                    <div class="image border rounded-3 position-relative mb-3">
-                        <a href="#" class="col-12">
-                            <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
-                            <img src="{{asset('build/client/images/prod-3.png')}}" alt="">
-                        </a>
-                    </div>
-                    <h6 class="font-changa font-18 font-semibold color-green">ACTIVE PET DOG HARNESS</h6>
-                    <p class="color-grey font-changa font-18 font-medium">Gato filhote ao castrado, linha premium Nutridani</p>
-                </div>
-            </div>
-
-            <div class="col-6 col-sm-6 col-lg-3 product alimentos">
-                <div class="product-card">
-                    <div class="image border rounded-3 position-relative mb-3">
-                        <a href="#" class="col-12">
-                            <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
-                            <img src="{{asset('build/client/images/prod-1.png')}}" alt="">
-                        </a>
-                    </div>
-                    <h6 class="font-changa font-18 font-semibold color-green">SARA’S DOGGIE TREAT</h6>
-                    <p class="color-grey font-changa font-18 font-medium">Produto confort premium Nutridani, para soneca PET</p>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <!-- Botão -->
