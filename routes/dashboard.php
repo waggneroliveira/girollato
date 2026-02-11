@@ -10,6 +10,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PopUpController;
 use App\Http\Controllers\SlideController;
@@ -192,6 +193,14 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.product.sorting');
         Route::post('produtos/uploadImageCkeditor', [ProductController::class, 'uploadImageCkeditor'])
         ->name('admin.dashboard.product.uploadImageCkeditor');
+        //MARCAS
+        Route::resource('marca', BrandController::class)
+        ->parameters(['marca' => 'brand'])
+        ->names('admin.dashboard.brand');
+        Route::post('marca/delete', [BrandController::class, 'destroySelected'])
+        ->name('admin.dashboard.brand.destroySelected');
+        Route::post('marca/sorting', [BrandController::class, 'sorting'])
+        ->name('admin.dashboard.brand.sorting');
         //DIRECTION
         Route::resource('a-direcao', DirectionController::class)
         ->parameters(['a-direcao' => 'direction'])

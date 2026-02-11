@@ -95,7 +95,7 @@
                         @endif
                         
                         @foreach($sizes as $size)
-                            <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm">
+                            <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm" style="max-width: 90px;">
                                 {{ $size }}
                             </button>
                         @endforeach

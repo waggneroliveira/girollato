@@ -9,32 +9,19 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Product extends Model
+class Brand extends Model
 {
     use Notifiable, HasFactory, LogsActivity;
     
-    protected $casts = [
-        'sizes' => 'array'
-    ];
-    
     protected $fillable = [
-        'brand_id',
-        'product_category_id',
         'title',
         'slug',
-        'sizes',
-        'description',
-        'text',
-        'path_image',
         'active',
         'sorting',
     ];
 
-    public function category(){
-        return $this->belongsTo(ProductCategory::class, 'product_category_id');
-    }
-    public function brand(){
-        return $this->belongsTo(Brand::class, 'brand_id');
+    public function products(){
+        return $this->hasMany(Product::class, 'brand_id');
     }
 
     public function scopeActive($query){
@@ -42,7 +29,7 @@ class Product extends Model
     }
 
     public function scopeSorting($query){
-        return $query->orderby('sorting', 'DESC');
+        return $query->orderby('sorting', 'ASC');
     }
 
     public function getActivitylogOptions(): LogOptions

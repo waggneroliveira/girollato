@@ -26,36 +26,55 @@
         <label for="sizes" class="form-label">Tamanhos do produto</label>
         
         <div id="sizes-wrapper" class="mb-3 d-flex">
-            @if(isset($product) && $product->sizes)
-                <!-- Edit: Carrega os tamanhos existentes -->
-                @foreach($product->sizes as $size)
-                    <div class="d-flex mb-2 size-item">
-                        <input type="text" 
-                            class="form-control me-2" 
-                            name="sizes[]" 
-                            value="{{ $size }}" 
-                            placeholder="Ex: 1kg">
-                        <button type="button" 
-                                class="btn btn-outline-danger remove-size" 
-                                onclick="this.closest('.size-item').remove()">
-                            ×
-                        </button>
-                    </div>
-                @endforeach
-            @else
-                <!-- Create: Apenas um campo vazio -->
-                <div class="d-flex mb-2 size-item">
-                    <input type="text" 
-                        class="form-control me-2" 
-                        name="sizes[]" 
-                        placeholder="Ex: 1kg">
-                    <button type="button" 
-                            class="btn btn-outline-danger remove-size" 
-                            onclick="this.closest('.size-item').remove()">
-                        ×
-                    </button>
-                </div>
-            @endif
+@if(isset($product) && $product->sizes)
+    @php
+        // Decodifica o JSON para array
+        $sizesArray = is_string($product->sizes) ? json_decode($product->sizes, true) : $product->sizes;
+    @endphp
+    
+    @if(!empty($sizesArray))
+        @foreach($sizesArray as $size)
+            <div class="d-flex mb-2 size-item">
+                <input type="text" 
+                    class="form-control me-2" 
+                    name="sizes[]" 
+                    value="{{ $size }}" 
+                    placeholder="Ex: 1kg">
+                <button type="button" 
+                        class="btn btn-outline-danger remove-size" 
+                        onclick="this.closest('.size-item').remove()">
+                    ×
+                </button>
+            </div>
+        @endforeach
+    @else
+        <!-- Se decodificou mas está vazio -->
+        <div class="d-flex mb-2 size-item">
+            <input type="text" 
+                class="form-control me-2" 
+                name="sizes[]" 
+                placeholder="Ex: 1kg">
+            <button type="button" 
+                    class="btn btn-outline-danger remove-size" 
+                    onclick="this.closest('.size-item').remove()">
+                ×
+            </button>
+        </div>
+    @endif
+@else
+    <!-- Create: Apenas um campo vazio -->
+    <div class="d-flex mb-2 size-item">
+        <input type="text" 
+            class="form-control me-2" 
+            name="sizes[]" 
+            placeholder="Ex: 1kg">
+        <button type="button" 
+                class="btn btn-outline-danger remove-size" 
+                onclick="this.closest('.size-item').remove()">
+            ×
+        </button>
+    </div>
+@endif
         </div>
 
         <button type="button" class="btn btn-primary" onclick="addSize()">

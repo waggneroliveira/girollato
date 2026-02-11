@@ -90,7 +90,7 @@
                 <div class="col-6 col-sm-6 col-lg-4 product">
                     <div class="product-card">
                         <div class="image border rounded-3 position-relative mb-3">
-                            <a href="{{route('product')}}" class="col-12">
+                            <a href="" class="col-12">
                                 <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
                                 <img src="{{asset('build/client/images/prod-1.png')}}" alt="">
                             </a>
