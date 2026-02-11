@@ -19,7 +19,7 @@ class ProductPageController extends Controller
         }])
         ->where('slug', $slug)
         ->first();
-        dd($product);
+        // dd($product);
         return view('client.blades.product', compact(
             'product'
         ));
