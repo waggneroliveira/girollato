@@ -10,61 +10,63 @@
  
     <div class="container my-5">
         <div class="row g-4">
+            @if ($product->galleries->count())
+                <!-- GALERIA -->
+                <div class="col-lg-5">
+                    <div class="step-actions mt-4 d-flex justify-content-start mb-3">
+                        <a href="{{route('products')}}" class="rounded-3 py-1 px-3 btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
+                            <svg class="me-2" width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.23696 0L-3.8147e-05 6.237L6.23696 12.474L8.00411 10.7069L3.55505 6.237L8.0249 1.76715L6.23696 0Z" fill="#0E523E"/>
+                            </svg>
 
-            <!-- GALERIA -->
-            <div class="col-lg-5">
-                <div class="step-actions mt-4 d-flex justify-content-start mb-3">
-                    <a href="{{route('products')}}" class="rounded-3 py-1 px-3 btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
-                        <svg class="me-2" width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.23696 0L-3.8147e-05 6.237L6.23696 12.474L8.00411 10.7069L3.55505 6.237L8.0249 1.76715L6.23696 0Z" fill="#0E523E"/>
-                        </svg>
-
-                        Voltar
-                    </a>
-                </div>
-                <div class="product-gallery p-0">
-                    @if ($product->galleries->count())
-                        <div class="custom-gallery-carousel position-relative">
-                            <div class="swiper gallery-top border rounded-4">
-                                <div class="swiper-wrapper">
-                                    @foreach ($product->galleries as $file)                                
-                                        <div class="swiper-slide d-flex justify-content-center align-items-center"><img src="{{asset('storage/' . $file->file)}}" loading="lazy" alt="Imagem 1" /></div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            <!-- Fim das setas -->
-                            <div class="mt-3 100 gap-1">
-                                <div class="swiper gallery-thumbs w-100">
-                                    <div class="swiper-wrapper d-flex justify-content-center align-items-center">
-                                        @foreach ($product->galleries as $file) 
-                                            <div class="swiper-slide thumbs-width"><img src="{{asset('storage/' . $file->file)}}" loading="lazy" alt="Thumb 1" class="w-100 h-100 cover" /></div>
+                            Voltar
+                        </a>
+                    </div>
+                    <div class="product-gallery p-0">
+                        
+                            <div class="custom-gallery-carousel position-relative">
+                                <div class="swiper gallery-top border rounded-4">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($product->galleries as $file)                                
+                                            <div class="swiper-slide d-flex justify-content-center align-items-center"><img src="{{asset('storage/' . $file->file)}}" loading="lazy" alt="Imagem 1" /></div>
                                         @endforeach
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Setas de navegação do Swiper -->
-                            <div class="navigation-swiper">
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
-                            </div>
-                        </div>
-                    @endif
 
-                    <div class="d-flex justify-content-center mt-4 btn-prod">
-                        <a href="#" class="rounded-pill px-4 btn font-changa bg-yellow color-green font-18 font-medium text-decoration-none">
-                            <svg class="me-2" width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.28975 9.17017C1.30848 9.53072 1.45344 9.87123 1.70426 10.1283L6.49015 15.0333C7.04555 15.6025 7.95515 15.6025 8.51054 15.0333L13.2964 10.1283C14.18 9.22192 13.5749 7.6319 12.2858 7.6319C11.9063 7.6319 11.544 7.78129 11.2752 8.05672L8.92907 10.4621V1.46592C8.92907 1.07699 8.77679 0.708085 8.51947 0.444363C7.53737 -0.533798 6.07158 0.23571 6.07158 1.46592V10.463L3.7246 8.05757C2.88827 7.19959 1.28975 7.66954 1.28975 9.17017ZM0.466453 17.457C-0.547411 18.4961 0.236799 20 1.43064 20H13.5708C14.8526 20 15.465 18.3842 14.5904 17.5136C14.307 17.2315 13.9706 17.0713 13.5708 17.0713L1.43064 17.0705C1.0715 17.0705 0.729482 17.2091 0.466453 17.457Z" fill="#0E523E"></path>
-                            </svg>
-                            Baixar Ficha Técnica
-                        </a>
+                                <!-- Fim das setas -->
+                                <div class="mt-3 100 gap-1">
+                                    <div class="swiper gallery-thumbs w-100">
+                                        <div class="swiper-wrapper d-flex justify-content-center align-items-center">
+                                            @foreach ($product->galleries as $file) 
+                                                <div class="swiper-slide thumbs-width"><img src="{{asset('storage/' . $file->file)}}" loading="lazy" alt="Thumb 1" class="w-100 h-100 cover" /></div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Setas de navegação do Swiper -->
+                                <div class="navigation-swiper">
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                            </div>
+                        
+
+                        @if ($product->path_file <> null)                        
+                            <div class="d-flex justify-content-center mt-4 btn-prod">
+                                <a href="#" class="rounded-pill px-4 btn font-changa bg-yellow color-green font-18 font-medium text-decoration-none">
+                                    <svg class="me-2" width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.28975 9.17017C1.30848 9.53072 1.45344 9.87123 1.70426 10.1283L6.49015 15.0333C7.04555 15.6025 7.95515 15.6025 8.51054 15.0333L13.2964 10.1283C14.18 9.22192 13.5749 7.6319 12.2858 7.6319C11.9063 7.6319 11.544 7.78129 11.2752 8.05672L8.92907 10.4621V1.46592C8.92907 1.07699 8.77679 0.708085 8.51947 0.444363C7.53737 -0.533798 6.07158 0.23571 6.07158 1.46592V10.463L3.7246 8.05757C2.88827 7.19959 1.28975 7.66954 1.28975 9.17017ZM0.466453 17.457C-0.547411 18.4961 0.236799 20 1.43064 20H13.5708C14.8526 20 15.465 18.3842 14.5904 17.5136C14.307 17.2315 13.9706 17.0713 13.5708 17.0713L1.43064 17.0705C1.0715 17.0705 0.729482 17.2091 0.466453 17.457Z" fill="#0E523E"></path>
+                                    </svg>
+                                    Baixar Ficha Técnica
+                                </a>
+                            </div>
+                        @endif
+
                     </div>
-
                 </div>
-            </div>
-
+            @endif
             <!-- INFO PRODUTO -->
-            <div class="col-lg-7">
+            <div class="col-lg-7 {{ !$product->galleries->count() ? 'w-100' : '' }}">
 
                 <h2 class="font-changa text-center text-lg-start font-48 font-bold color-green">{{$product->title}}</h2>
 
@@ -83,26 +85,34 @@
 
                     <div class="row flex-wrap justify-content-between mt-3">
                         <div class="btn-group m-auto m-lg-0 col-8 col-lg-5" role="group">
-                            @if(is_string($product->sizes))
-                                @php
-                                    // Se for string, decodifica
+                            @php
+                                if (is_string($product->sizes)) {
                                     $sizes = json_decode($product->sizes, true);
-                                @endphp
-                            @else
-                                @php
-                                    // Se já for array, usa direto
+                                } else {
                                     $sizes = $product->sizes;
-                                @endphp
-                            @endif
-                            @if (isset($product->sizes))
+                                }
+
+                                // Garante que seja array
+                                $sizes = is_array($sizes) ? $sizes : [];
+
+                                // Remove null, '', false etc
+                                $sizes = collect($sizes)
+                                ->filter()
+                                ->values()
+                                ->toArray();
+                            @endphp
+
+                            @if (!empty($sizes))
                                 @foreach($sizes as $size)
                                     <button class="btn btn-outline-secondary color-grey font-changa font-16 font-regular btn-sm me-2 rounded-2" style="max-width: 80px;">
                                         {{ $size }}
                                     </button>
                                 @endforeach
-                                @else
+                            @else
                                 <i class="bi bi-exclamation-circle text-muted me-2"></i>
-                                <p class="color-grey text-center text-lg-start font-changa font-16 font-regular">Não disponível</p>
+                                <p class="color-grey text-center text-lg-start font-changa font-16 font-regular">
+                                    Não disponível
+                                </p>
                             @endif
                         </div>
 
