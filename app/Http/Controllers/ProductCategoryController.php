@@ -74,6 +74,7 @@ class ProductCategoryController extends Controller
             session()->flash('success', __('dashboard.response_item_create'));
             return redirect()->back();
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();            
             Alert::error('error', __('dashboard.response_item_error_create'));
             return redirect()->back();

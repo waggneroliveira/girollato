@@ -26,6 +26,7 @@ class Product extends Model
         'description',
         'text',
         'path_image',
+        'path_file',
         'active',
         'sorting',
     ];

@@ -102,8 +102,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'sizes'   => 'array',
-            'sizes.*' => 'string|max:50',
+            'sizes'   => 'array|nullable',
+            'sizes.*' => 'string|max:50|nullable',
+            'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'],
+            'path_file' => ['nullable', 'file', 'mimes:pdf', 'max:3072'] 
         ]);
         
         $data = $request->all();
@@ -118,6 +120,8 @@ class ProductController extends Controller
             
             // Se não houver tamanhos, salva como JSON vazio
             $data['sizes'] = !empty($sizes) ? json_encode($sizes) : json_encode([]);    
+        }else{
+            $data['sizes'] = null;
         }
 
         $manager = new ImageManager(new GdDriver());
@@ -145,14 +149,25 @@ class ProductController extends Controller
             $data['path_image'] = $this->pathUpload . $filename; 
         }
 
+        if ($request->hasFile('path_file')) {
+            $file = $request->file('path_file');
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.pdf';
+
+            // Salva direto no storage
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+
+            $data['path_file'] = $this->pathUpload . $filename;
+        }
+        
         try {
             DB::beginTransaction();            
                 $product = Product::create($data);
             DB::commit();
 
             session()->flash('success', __('dashboard.response_item_create'));
-            return redirect()->route('admin.dashboard.product.index');
+            return redirect()->route('admin.dashboard.product.edit', $product->id);
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             Alert::error('error', __('dashboard.response_item_error_create'));
             return redirect()->back();
@@ -169,7 +184,9 @@ class ProductController extends Controller
             return view('admin.error.403', compact('settingTheme'));
         }
 
-        $product = $product->with('galleries')->find($product->id);
+        $product = $product->with(['galleries' => function($query){
+            $query->orderBy('sorting', 'ASC');
+        }])->find($product->id);
         
         $categories = ProductCategory::active()->sorting()->get();
         $brands = Brand::active()->sorting()->get();
@@ -235,11 +252,18 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-         $data = $request->all();
+        $data = $request->all();
         $data['active'] = $request->active ? 1 : 0;
         $data['slug'] = Str::slug($request->title);
 
         $manager = new ImageManager(new GdDriver());
+
+        $request->validate([
+            'sizes'   => 'array|nullable',
+            'sizes.*' => 'string|max:50|nullable',
+            'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'],
+            'path_file' => ['nullable', 'file', 'mimes:pdf', 'max:3072'] 
+        ]);
 
         // Imagem principal
         if ($request->hasFile('path_image')) {
@@ -275,6 +299,29 @@ class ProductController extends Controller
             $data['path_image'] = null;
         }
 
+                if ($request->hasFile('path_file')) {
+            $file = $request->file('path_file');
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.pdf';
+
+            // Apaga o arquivo anterior (se existir)
+            if (!empty($product->path_file) && Storage::exists($product->path_file)) {
+                Storage::delete($product->path_file);
+            }
+
+            // Salva o novo PDF
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+
+            $data['path_file'] = $this->pathUpload . $filename;
+        }
+
+                // Se o usuário pediu para remover via Dropify
+        if ($request->has('delete_path_file')) {
+            if (!empty($product->path_file) && Storage::exists($product->path_file)) {
+                Storage::delete($product->path_file);
+            }
+            $data['path_file'] = null;
+        }
+
         try {
             DB::beginTransaction();
                 $product->fill($data)->save();
@@ -293,6 +340,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         Storage::delete(isset($product->path_image)??$product->path_image);
+        Storage::delete(isset($product->path_file)??$product->path_file);
         $product->delete();
         Session::flash('success',__('dashboard.response_item_delete'));
         return redirect()->back();
@@ -317,6 +365,7 @@ class ProductController extends Controller
                             'description' => $product->description,
                             'text' => $product->text,
                             'path_image' => $product->path_image,
+                            'path_file' => $product->path_file,
                             'active' => $product->active,
                             'sorting' => $product->sorting,
                             'event' => 'multiple_deleted',

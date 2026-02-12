@@ -42,55 +42,55 @@
         <label for="sizes" class="form-label">Tamanhos do produto</label>
         
         <div id="sizes-wrapper" class="mb-3 d-flex">
-@if(isset($product) && $product->sizes)
-    @php
-        // Decodifica o JSON para array
-        $sizesArray = is_string($product->sizes) ? json_decode($product->sizes, true) : $product->sizes;
-    @endphp
-    
-    @if(!empty($sizesArray))
-        @foreach($sizesArray as $size)
-            <div class="d-flex mb-2 size-item">
-                <input type="text" 
-                    class="form-control me-2" 
-                    name="sizes[]" 
-                    value="{{ $size }}" 
-                    placeholder="Ex: 1kg">
-                <button type="button" 
-                        class="btn btn-outline-danger remove-size" 
-                        onclick="this.closest('.size-item').remove()">
-                    ×
-                </button>
-            </div>
-        @endforeach
-    @else
-        <!-- Se decodificou mas está vazio -->
-        <div class="d-flex mb-2 size-item">
-            <input type="text" 
-                class="form-control me-2" 
-                name="sizes[]" 
-                placeholder="Ex: 1kg">
-            <button type="button" 
-                    class="btn btn-outline-danger remove-size" 
-                    onclick="this.closest('.size-item').remove()">
-                ×
-            </button>
-        </div>
-    @endif
-@else
-    <!-- Create: Apenas um campo vazio -->
-    <div class="d-flex mb-2 size-item">
-        <input type="text" 
-            class="form-control me-2" 
-            name="sizes[]" 
-            placeholder="Ex: 1kg">
-        <button type="button" 
-                class="btn btn-outline-danger remove-size" 
-                onclick="this.closest('.size-item').remove()">
-            ×
-        </button>
-    </div>
-@endif
+            @if(isset($product) && $product->sizes)
+                @php
+                    // Decodifica o JSON para array
+                    $sizesArray = is_string($product->sizes) ? json_decode($product->sizes, true) : $product->sizes;
+                @endphp
+                
+                @if(!empty($sizesArray))
+                    @foreach($sizesArray as $size)
+                        <div class="d-flex mb-2 size-item">
+                            <input type="text" 
+                                class="form-control me-2" 
+                                name="sizes[]" 
+                                value="{{ $size }}" 
+                                placeholder="Ex: 1kg">
+                            <button type="button" 
+                                    class="btn btn-outline-danger remove-size" 
+                                    onclick="this.closest('.size-item').remove()">
+                                ×
+                            </button>
+                        </div>
+                    @endforeach
+                @else
+                    <!-- Se decodificou mas está vazio -->
+                    <div class="d-flex mb-2 size-item">
+                        <input type="text" 
+                            class="form-control me-2" 
+                            name="sizes[]" 
+                            placeholder="Ex: 1kg">
+                        <button type="button" 
+                                class="btn btn-outline-danger remove-size" 
+                                onclick="this.closest('.size-item').remove()">
+                            ×
+                        </button>
+                    </div>
+                @endif
+            @else
+                <!-- Create: Apenas um campo vazio -->
+                <div class="d-flex mb-2 size-item">
+                    <input type="text" 
+                        class="form-control me-2" 
+                        name="sizes[]" 
+                        placeholder="Ex: 1kg">
+                    <button type="button" 
+                            class="btn btn-outline-danger remove-size" 
+                            onclick="this.closest('.size-item').remove()">
+                        ×
+                    </button>
+                </div>
+            @endif
         </div>
 
         <button type="button" class="btn btn-primary" onclick="addSize()">
@@ -166,13 +166,13 @@
             </div>
         </div>
         
-        {{-- <div class="col-12">
+        <div class="col-12">
             <div class="mt-3">
-                <label for="path_image" class="form-label">Imagem</label>
-                <input type="file" name="path_image" data-plugins="dropify" data-default-file="{{isset($product)?$product->path_image<>''?url('storage/'.$product->path_image):'':''}}"  />
-                <p class="text-muted text-center mt-2 mb-0">{{__('dashboard.text_img_size')}} <b class="text-danger">2 MB</b>.</p>
+                <label for="path_file" class="form-label">Ficha Técnica</label>
+                <input type="file" name="path_file" data-plugins="dropify" data-default-file="{{isset($product)?$product->path_file<>''?url('storage/'.$product->path_file):'':''}}"  />
+                <p class="text-muted text-center mt-2 mb-0">{{__('dashboard.text_img_size')}} <b class="text-danger">3 MB</b>.</p>
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>
 

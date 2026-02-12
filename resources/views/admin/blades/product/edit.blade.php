@@ -147,7 +147,7 @@
                                             </tr>
                                         </thead>
                                         
-                                        <tbody data-route="{{route('admin.dashboard.product.sorting')}}">
+                                        <tbody data-route="{{route('admin.dashboard.gallery.productGallery.sorting')}}">
                                             @foreach ($product->galleries as $key => $file)
                                                 <tr data-code="{{$file->id}}">
                                                     <td><span class="btnDrag mdi mdi-drag-horizontal font-22"></span></td>

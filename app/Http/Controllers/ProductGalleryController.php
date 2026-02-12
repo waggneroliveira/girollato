@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\ProductGallery;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
 
 class ProductGalleryController extends Controller
 {
@@ -72,9 +73,34 @@ class ProductGalleryController extends Controller
 
     public function sorting(Request $request)
     {
-        foreach($request->arrId as $sorting => $id){
-            ProductGallery::where('id', $id)->update(['sorting' => $sorting]);
+        foreach($request->arrId as $sorting => $id) {
+            $productGallery = ProductGallery::find($id);
+    
+            if ($productGallery) {
+                $productGallery->sorting = $sorting;
+                $productGallery->save();
+            } else {
+                Log::warning("Item com ID $id não encontrado.");
+            }
+
+            if($productGallery) {
+                activity()
+                    ->causedBy(Auth::user())
+                    ->performedOn($productGallery)
+                    ->event('order_updated')
+                    ->withProperties([
+                        'attributes' => [
+                            'id' => $id,
+                            'path_image' => $productGallery->path_image,
+                            'event' => 'order_updated',
+                        ]
+                    ])
+                    ->log('order_updated');
+            } else {
+                \Log::warning("Item com ID $id não encontrado.");
+            }
         }
+    
         return Response::json(['status' => 'success']);
     }
 }

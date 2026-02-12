@@ -206,6 +206,8 @@ Route::prefix('painel/')->group(function () {
         Route::resource('galeria/arquivo', ProductGalleryController::class)
         ->names('admin.dashboard.gallery.productGallery')
         ->parameters(['arquivo' => 'productGallery']);
+        Route::post('galeria/sorting', [ProductGalleryController::class, 'sorting'])
+        ->name('admin.dashboard.gallery.productGallery.sorting');
         //DIRECTION
         Route::resource('a-direcao', DirectionController::class)
         ->parameters(['a-direcao' => 'direction'])

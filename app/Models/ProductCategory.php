@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Spatie\Activitylog\LogOptions;
+use App\Models\Product;
 use App\Services\ActivityLogService;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductCategory extends Model
 {
