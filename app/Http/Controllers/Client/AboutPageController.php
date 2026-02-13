@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Models\About;
-use App\Models\Report;
-use App\Models\Contact;
-use App\Models\Partner;
-use App\Models\Statute;
-use App\Models\Direction;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\About;
+use App\Models\BenefitTopic;
+use App\Models\Contact;
+use App\Models\Direction;
+use App\Models\Partner;
+use App\Models\Report;
+use App\Models\Statute;
+use App\Models\Topic;
+use Illuminate\Http\Request;
 
 class AboutPageController extends Controller
 {
     public function index(){
-        $abouts = About::active()->sorting()->get();
+        $about = About::active()->first();
+        $topics = Topic::active()->sorting()->get();
+        $benefitTopics = BenefitTopic::active()->sorting()->get();
         $partners = Partner::active()->sorting()->get();
         $contact = Contact::first();
         $statute = Statute::active()->first();
         $directions = Direction::active()->sorting()->get();
         $report = Report::active()->first();
 
-        return view('client.blades.about', compact('report', 'directions', 'statute', 'contact', 'partners', 'abouts'));
+        return view('client.blades.about', compact('benefitTopics', 'topics', 'report', 'directions', 'statute', 'contact', 'partners', 'about'));
     }
 }

@@ -8,18 +8,13 @@ use App\Models\About;
 use App\Models\Event;
 use App\Models\PopUp;
 use App\Models\Slide;
-use App\Models\Stack;
 use App\Models\Topic;
 use App\Models\Video;
 use App\Models\Report;
 use App\Models\Contact;
-use App\Models\Partner;
-use App\Models\Unionized;
 use App\Models\Announcement;
 use App\Models\BenefitTopic;
 use App\Models\BlogCategory;
-use Illuminate\Http\Request;
-use App\Models\StackSessionTitle;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -57,17 +52,20 @@ class HomePageController extends Controller
         $contact = Contact::first();
         $statute = Statute::active()->first();
         $productCategorieHighlights = ProductCategory::whereHas('products', function($query) {
-            $query->active();
+            $query->active()->whereHas('brand', fn($q) => $q->active());
         })
         ->where('highlight', 1)
         ->active()      
         ->sorting()     
         ->get();
-        $productCategories = ProductCategory::whereHas('products', function($query) {
-            $query->active()->whereHas('category', function($active) {
-                $active->where('active', 1);
-            });
-        })->active()->sorting()->get();
+
+        $productCategories = ProductCategory::whereHas('products', function($query){
+            $query->active()->whereHas('brand', fn($q) => $q->active());
+        })
+        ->active()
+        ->sorting()
+        ->get();
+        
         $products = Product::whereHas('category', function($query){
             $query->active();
         })

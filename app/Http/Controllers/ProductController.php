@@ -299,7 +299,7 @@ class ProductController extends Controller
             $data['path_image'] = null;
         }
 
-                if ($request->hasFile('path_file')) {
+        if ($request->hasFile('path_file')) {
             $file = $request->file('path_file');
             $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.pdf';
 
@@ -324,12 +324,14 @@ class ProductController extends Controller
 
         try {
             DB::beginTransaction();
+            // dd($data);
                 $product->fill($data)->save();
             DB::commit();
 
             session()->flash('success', __('dashboard.response_item_update'));
             return redirect()->route('admin.dashboard.product.index');
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             Alert::error('error', __('dashboard.response_item_error_update'));
             return redirect()->back();

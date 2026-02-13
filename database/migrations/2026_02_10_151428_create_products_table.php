@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->longText('text')->nullable();
             $table->string('path_image')->nullable();
+            $table->string('path_file')->nullable();
             $table->boolean('active')->default(0);
             $table->integer('sorting')->default(0);
             $table->json('sizes')->nullable();

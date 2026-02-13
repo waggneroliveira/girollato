@@ -217,12 +217,11 @@
     <section class="lets-go bg-grey-light py-5">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                @if ($report->path_image <> null)
-                    
+                @if ($report->path_image <> null)                    
+                    <div class="content-left col-12 col-lg-6">
+                        <img src="{{asset('storage/' . $report->path_image)}}" alt="Carro de entrega" class="w-100">
+                    </div>
                 @endif
-                <div class="content-left col-12 col-lg-6">
-                    <img src="{{asset('storage/' . $report->path_image)}}" alt="Carro de entrega" class="w-100">
-                </div>
                 <div class="content-left col-12 col-lg-6">
                     <h3 class="about-title font-changa font-50 font-bold color-green mb-3">
                         {{$report->title}}
@@ -258,9 +257,11 @@
                 @foreach ($productCategorieHighlights as $productCategory)
                     <div class="col-12 col-md-4 mb-3 mb-lg-0">
                         <div class="card p-4 d-flex flex-row justify-content-center align-items-center border-0 rounded-4 bg-yellow">
-                            <img src="{{asset('storage/' . $productCategory->path_image)}}"
-                                class="card-img-top rounded"
-                                alt="{{$productCategory->title}}">
+                            @if ($productCategory->path_image <> null)                                
+                                <img src="{{asset('storage/' . $productCategory->path_image)}}"
+                                    class="card-img-top rounded"
+                                    alt="{{$productCategory->title}}">
+                            @endif
 
                             <div class="card-body text-center">
                                 <a href="{{ route('products', ['category' => $productCategory->slug]) }}" 

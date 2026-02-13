@@ -105,15 +105,22 @@ class ProductPageController extends Controller
             
         }
 
-        $product = Product::with(['category' => function($query ) use ($category) {
-            $query->where('slug', '=', $category)->active()->sorting();
-        }])
-        ->with(['galleries' => function($query){
-            $query->sorting();
-        }])
+        $product = Product::with(['category', 'brand', 'galleries' => fn($q) => $q->active()->sorting()])
+        ->whereHas('category', fn($q) => $q->active())
+        ->whereHas('brand', fn($q) => $q->active())
         ->where('slug', $slug)
         ->active()
         ->first();
+
+        // $product = Product::with(['category' => function($query) use ($category) {
+        //     $query->where('slug', '=', $category)->active()->sorting();
+        // }])
+        // ->with(['galleries' => function($query){
+        //     $query->sorting();
+        // }])
+        // ->where('slug', $slug)
+        // ->active()
+        // ->first();
 
         if ($product == null) {
             return view('client.errors.404');
