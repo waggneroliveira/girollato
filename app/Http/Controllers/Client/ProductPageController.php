@@ -112,16 +112,6 @@ class ProductPageController extends Controller
         ->active()
         ->first();
 
-        // $product = Product::with(['category' => function($query) use ($category) {
-        //     $query->where('slug', '=', $category)->active()->sorting();
-        // }])
-        // ->with(['galleries' => function($query){
-        //     $query->sorting();
-        // }])
-        // ->where('slug', $slug)
-        // ->active()
-        // ->first();
-
         if ($product == null) {
             return view('client.errors.404');
         }

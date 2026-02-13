@@ -156,13 +156,20 @@
                                 <h6 class="mb-0 font-changa font-medium font-18 color-green">{{$representative->title}}</h6>
                                 <small class="color-grey font-changa font-15 font-regular d-block mb-2">{{$representative->description}}</small>
                                 <div class="d-flex justify-content-center align-items-center flex-wrap">
-                                    <span class="color-green font-changa font-16 font-medium w-100 mb-2">Enviar mensagem</span>
-                                    <a href="mailto:{{$representative->email}}" target="_blank" rel="noopener noreferrer" class="me-1 btn btn-team bg-green text-white font-changa font-15 font-regular rounded-pill d-flex justify-content-center align-items-center" style="width: 35px; height:35px">
-                                        <i class="bi bi-envelope"></i>
-                                    </a>
-                                    <a href="tel:{{$representative->whatsapp}}" target="_blank" rel="noopener noreferrer" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-pill d-flex justify-content-center align-items-center" style="width: 35px; height:35px">
-                                        <i class="bi bi-whatsapp"></i>
-                                    </a>
+                                    @if ($representative->email <> null || $representative->whatsapp <> null)                                        
+                                        <span class="color-green font-changa font-16 font-medium w-100 mb-2">Enviar mensagem</span>
+                                        @if ($representative->email <> null)
+                                            <a href="mailto:{{$representative->email}}" target="_blank" rel="noopener noreferrer" class="me-1 btn btn-team bg-green text-white font-changa font-15 font-regular rounded-pill d-flex justify-content-center align-items-center" style="width: 35px; height:35px">
+                                                <i class="bi bi-envelope"></i>
+                                            </a>
+                                        @endif
+                                        @if ($representative->whatsapp <> null)                                        
+                                            <a href="tel:{{$representative->whatsapp}}" target="_blank" rel="noopener noreferrer" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-pill d-flex justify-content-center align-items-center" style="width: 35px; height:35px">
+                                                <i class="bi bi-whatsapp"></i>
+                                            </a>
+                                        @endif
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
@@ -173,16 +180,17 @@
     </section>
 
     <section class="video-section">
-        <div class="video-container position-relative">
-            <!-- Thumbnail -->
+        <div class="video-container position-relative" 
+            data-video="{{$video->link}}">
+            
             <img
-                src="https://img.youtube.com/vi/qyGUoxcTfvw/maxresdefault.jpg"
                 alt="Vídeo institucional"
                 class="video-thumb"
                 loading="eager"
-                >
-            <!-- Botão Play -->
+            >
+
             <button class="video-play-btn" aria-label="Reproduzir vídeo"></button>
+
         </div>
     </section>
 
@@ -258,14 +266,14 @@
         <img src="{{asset('build/client/images/firula-about.svg')}}" alt="Firula" class="position-absolute bottom-0 start-0">
     </section>
 
-    <script>
+    {{-- <script>
         //Video youtube
           document.querySelector('.video-play-btn').addEventListener('click', function () {
             const container = this.closest('.video-container');
 
             container.innerHTML = `
             <iframe
-                src="https://www.youtube.com/embed/qyGUoxcTfvw?si=oVEe4FJtOr4dBzjp"
+                src="{{$video->link}}"
                 frameborder="0"
                 allow="autoplay; encrypted-media"
                 allowfullscreen
@@ -303,6 +311,145 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 
+<script>
+    // Normaliza URL
+    function norm(url) {
+        if (!url) return "";
+        return url.startsWith("//") ? window.location.protocol + url : url;
+    }
+
+    // Converte para embed (YouTube / Vimeo)
+    function toEmbed(rawUrl) {
+        const urlStr = norm(rawUrl);
+        if (!urlStr) return "";
+
+        let u;
+        try { u = new URL(urlStr); } catch { return urlStr; }
+
+        const host = u.hostname.replace(/^www\./, "");
+
+        // YouTube
+        if (host.includes("youtube.com") || host.includes("youtu.be")) {
+
+            if (u.pathname.startsWith("/embed/")) return u.toString();
+
+            if (host === "youtu.be" && u.pathname.length > 1) {
+                const id = u.pathname.split("/")[1];
+                return `https://www.youtube.com/embed/${id}?autoplay=1`;
+            }
+
+            if (u.pathname.startsWith("/shorts/")) {
+                const id = u.pathname.split("/")[2] || u.pathname.split("/")[1];
+                return `https://www.youtube.com/embed/${id}?autoplay=1`;
+            }
+
+            const v = u.searchParams.get("v");
+            if (v) return `https://www.youtube.com/embed/${v}?autoplay=1`;
+
+            const parts = u.pathname.split("/").filter(Boolean);
+            if (parts.length >= 1) {
+                const id = parts.pop();
+                return `https://www.youtube.com/embed/${id}?autoplay=1`;
+            }
+        }
+
+        // Vimeo
+        if (host.includes("vimeo.com")) {
+
+            if (host === "player.vimeo.com") return u.toString();
+
+            const parts = u.pathname.split("/").filter(Boolean);
+            const last = parts[parts.length - 1];
+            if (/^\d+$/.test(last)) {
+                return `https://player.vimeo.com/video/${last}?autoplay=1`;
+            }
+        }
+
+        return urlStr;
+    }
+
+    // Video youtube
+    document.querySelector('.video-play-btn').addEventListener('click', function () {
+
+        const container = this.closest('.video-container');
+        const rawUrl = container.getAttribute('data-video');
+        const embedUrl = toEmbed(rawUrl);
+
+        container.innerHTML = `
+            <iframe
+                src="${embedUrl}"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                style="width:100%; height:100%;">
+            </iframe>
+        `;
+    });
+
+
+        function getYouTubeId(url) {
+        try {
+            const u = new URL(url);
+            const host = u.hostname.replace(/^www\./, "");
+
+            if (host === "youtu.be") {
+                return u.pathname.split("/")[1];
+            }
+
+            if (u.pathname.startsWith("/shorts/")) {
+                return u.pathname.split("/")[2] || u.pathname.split("/")[1];
+            }
+
+            const v = u.searchParams.get("v");
+            if (v) return v;
+
+            const parts = u.pathname.split("/").filter(Boolean);
+            return parts.pop();
+        } catch {
+            return null;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const container = document.querySelector(".video-container");
+        const img = container.querySelector(".video-thumb");
+        const rawUrl = container.getAttribute("data-video");
+
+        const videoId = getYouTubeId(rawUrl);
+
+        if (videoId) {
+            img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        }
+    });
+
+    const section = document.getElementById("mvwSection");
+    const cards = document.querySelectorAll(".mvw-card");
+
+    function changeBackground(card) {
+        const bg = card.getAttribute("data-bg");
+        section.style.backgroundImage = `url(${bg})`;
+
+        cards.forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+    }
+
+    cards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+            if (window.innerWidth > 768) {
+                changeBackground(card);
+            }
+        });
+    });
+
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            if (window.innerWidth <= 768) {
+                changeBackground(card);
+            }
+        });
+    });
+</script>
 @endsection

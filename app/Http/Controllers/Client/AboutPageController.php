@@ -11,6 +11,7 @@ use App\Models\Partner;
 use App\Models\Report;
 use App\Models\Statute;
 use App\Models\Topic;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class AboutPageController extends Controller
@@ -23,8 +24,9 @@ class AboutPageController extends Controller
         $contact = Contact::first();
         $statute = Statute::active()->first();
         $directions = Direction::active()->sorting()->get();
+        $video = Video::active()->first();
         $report = Report::active()->first();
 
-        return view('client.blades.about', compact('benefitTopics', 'topics', 'report', 'directions', 'statute', 'contact', 'partners', 'about'));
+        return view('client.blades.about', compact('video', 'benefitTopics', 'topics', 'report', 'directions', 'statute', 'contact', 'partners', 'about'));
     }
 }
