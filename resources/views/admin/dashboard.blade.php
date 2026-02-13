@@ -244,7 +244,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 col-12 text-center">
-                                    <h5 class="text-uppercase text-muted">Tópico Sobre</h5>
+                                    <h5 class="text-uppercase text-muted">Representantes</h5>
                                 </div>
                             </a>
                         </div>

@@ -209,12 +209,12 @@ Route::prefix('painel/')->group(function () {
         Route::post('galeria/sorting', [ProductGalleryController::class, 'sorting'])
         ->name('admin.dashboard.gallery.productGallery.sorting');
         //DIRECTION
-        Route::resource('a-direcao', DirectionController::class)
-        ->parameters(['a-direcao' => 'direction'])
+        Route::resource('representantes', DirectionController::class)
+        ->parameters(['representantes' => 'direction'])
         ->names('admin.dashboard.direction');
-        Route::post('a-direcao/delete', [DirectionController::class, 'destroySelected'])
+        Route::post('representantes/delete', [DirectionController::class, 'destroySelected'])
         ->name('admin.dashboard.direction.destroySelected');
-        Route::post('a-direcao/sorting', [DirectionController::class, 'sorting'])
+        Route::post('representantes/sorting', [DirectionController::class, 'sorting'])
         ->name('admin.dashboard.direction.sorting');
         //VIDEO
         Route::resource('videos', VideoController::class)

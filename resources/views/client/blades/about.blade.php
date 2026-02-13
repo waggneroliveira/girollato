@@ -146,125 +146,22 @@
             </h3>
             <div class="row g-4">
                 <!-- Card -->
-                <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="team-card position-relative">
-                        <div class="team-image">
-                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
-                        </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
-                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
-                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card -->
-                <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="team-card position-relative">
-                        <div class="team-image">
-                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
-                        </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
-                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
-                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                            </a>
+                @foreach ($directions as $representative)                    
+                    <div class="col-6 col-sm-6 col-lg-3">
+                        <div class="team-card position-relative">
+                            <div class="team-image">
+                                <img src="{{asset('storage/' . $representative->path_image)}}" alt="{{$representative->title}}">
+                            </div>
+                            <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
+                                <h6 class="mb-0 font-changa font-medium font-18 color-green">{{$representative->title}}</h6>
+                                <small class="color-grey font-changa font-15 font-regular d-block mb-2">{{$representative->description}}</small>
+                                <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
+                                    <i class="bi bi-envelope me-1"></i> Enviar mensagem
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Card -->
-                <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="team-card position-relative">
-                        <div class="team-image">
-                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
-                        </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
-                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
-                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card -->
-                <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="team-card position-relative">
-                        <div class="team-image">
-                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
-                        </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
-                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
-                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card -->
-                <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="team-card position-relative">
-                        <div class="team-image">
-                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
-                        </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
-                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
-                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card -->
-                <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="team-card position-relative">
-                        <div class="team-image">
-                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
-                        </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
-                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
-                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card -->
-                <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="team-card position-relative">
-                        <div class="team-image">
-                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
-                        </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
-                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
-                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card -->
-                <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="team-card position-relative">
-                        <div class="team-image">
-                            <img src="{{asset('build/client/images/team.png')}}" alt="Wagner Moura">
-                        </div>
-                        <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
-                            <h6 class="mb-0 font-changa font-medium font-18 color-green">Wagner Moura</h6>
-                            <small class="color-grey font-changa font-15 font-regular d-block mb-2">Vendas Internas</small>
-                            <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
