@@ -139,20 +139,6 @@
                 You must agree before submitting.
             </div>
         </div>
-        <div class="form-check">
-            <input name="super_highlight" {{ isset($product->super_highlight) && $product->super_highlight == 1 ? 'checked' : '' }} type="checkbox" class="form-check-input" id="invalidCheck2{{isset($product->id)?$product->id:''}}" />
-            <label class="form-check-label" for="invalidCheck2{{isset($product->id)?$product->id:''}}">Super destaque?</label>
-            <div class="invalid-feedback">
-                You must agree before submitting.
-            </div>
-        </div>
-        <div class="form-check">
-            <input name="highlight" {{ isset($product->highlight) && $product->highlight == 1 ? 'checked' : '' }} type="checkbox" class="form-check-input" id="invalidCheck3{{isset($product->id)?$product->id:''}}" />
-            <label class="form-check-label" for="invalidCheck3{{isset($product->id)?$product->id:''}}">Destaque?</label>
-            <div class="invalid-feedback">
-                You must agree before submitting.
-            </div>
-        </div>
     </div>
 </div>
 

@@ -39,15 +39,16 @@ Route::get('/', function () {
 Route::get('/noticia/interna', function () {
     return view('client/blades/blog-inner');
 });
-Route::get('/produtos', function () {
-    return view('client/blades/products');
-})->name('products');
+// Route::get('/produtos', function () {
+//     return view('client/blades/products');
+// })->name('products');
 
 // Route::get('/produto', function () {
 //     return view('client/blades/product');
 // })->name('product');
 
 Route::get('produto/{category}/{slug}', [ProductPageController::class, 'productView'])->name('client.product');
+Route::get('produtos', [ProductPageController::class, 'productAll'])->name('products');
 
 Route::post('login.do', [AuthClientController::class, 'authenticate'])
 ->name('client.user.authenticate');

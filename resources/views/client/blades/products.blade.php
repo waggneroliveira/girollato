@@ -13,70 +13,66 @@
 
             <aside class="filter-aside">
                 <!-- Categorias -->
-                <div class="filter-box mb-4 bg-grey-light rounded-4 overflow-hidden">
-                    <div class="filter-title filter-toggle bg-grey-medium d-flex justify-content-center align-items-center py-1">
-                        <i class="bi bi-list"></i>
-                        <span class="font-changa font-20 font-semibold color-green ms-2">Categorias</span>
-                    </div>
+                @if ($productCategories->count())                    
+                    <div class="filter-box mb-4 bg-grey-light rounded-4 overflow-hidden">
+                        <div class="filter-title filter-toggle bg-grey-medium d-flex justify-content-center align-items-center py-1">
+                            <i class="bi bi-list"></i>
+                            <span class="font-changa font-20 font-semibold color-green ms-2">Categorias</span>
+                        </div>
 
-                    <ul class="filter-list">
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border active">Gato</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Cachorro</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Pássaro</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Grãos e Alimentos</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Petiscos</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Granulados Sanitários</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Acessórios</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Higiene e Limpeza</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Controle de pragas</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Jardinagem</li>
-                    </ul>
-                </div>
+                        <ul class="filter-list">
+                            <li data-category="all" class="filter-item text-center color-grey font-changa font-16 font-medium py-2 border filter-item {{ request('category') == null || request('category') == 'all' ? 'active' : '' }}">Todos</li>
+                            @foreach ($productCategories as $category)                            
+                                <li data-category="{{$category->slug}}" class="filter-item text-center color-grey font-changa font-16 font-medium py-2 border {{ request('category') == $category->slug ? 'active' : '' }}">{{$category->title}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <!-- Marcas -->
-                <div class="filter-box mb-4 bg-grey-light rounded-4 overflow-hidden">
-                    <div class="filter-title filter-toggle bg-grey-medium d-flex justify-content-center align-items-center py-1">
-                        <i class="bi bi-list"></i>
-                        <span class="font-changa font-20 font-semibold color-green ms-2">Marcas</span>
-                    </div>
+                @if ($brands->count())                    
+                    <div class="filter-box mb-4 bg-grey-light rounded-4 overflow-hidden">
+                        <div class="filter-title filter-toggle bg-grey-medium d-flex justify-content-center align-items-center py-1">
+                            <i class="bi bi-list"></i>
+                            <span class="font-changa font-20 font-semibold color-green ms-2">Marcas</span>
+                        </div>
 
-                    <ul class="filter-list">
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border active">Nutricon</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">AUK</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Faisca</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Turboaçã</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Cão Criador</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Billy Dog</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Kau</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Kindy</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Quartz</li>
-                        <li class="text-center color-grey font-changa font-16 font-medium py-2 border">Miuk</li>
-                    </ul>
-                </div>
+                        <ul class="filter-list">
+                            <li data-brand="all" class="text-center color-grey font-changa font-16 font-medium py-2 border filter-brand {{ request('brand') == null || request('brand') == 'all' ? 'active' : '' }}" data-brand="all">Todas</li>
+                            @foreach ($brands as $brand)                            
+                                <li data-brand="{{$brand->slug}}" class="text-center color-grey font-changa font-16 font-medium py-2 border filter-brand {{ request('brand') == $brand->slug ? 'active' : '' }}">{{$brand->title}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
             </aside>
             <script>
-            document.querySelectorAll('.filter-toggle').forEach(title => {
-                title.addEventListener('click', () => {
-                    const box = title.closest('.filter-box');
-                    box.classList.toggle('active');
+                document.querySelectorAll('.filter-toggle').forEach(title => {
+                    title.addEventListener('click', () => {
+                        const box = title.closest('.filter-box');
+                        box.classList.toggle('active');
+                    });
                 });
-            });
             </script>
 
         </div>
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-lg-9 {{ !$brands->count() && !$productCategories->count() ? 'w-100' : '' }}">
             <div class="row justify-content-between">
                 <div class="col-12 col-lg-8">
-                    <h2 class="about-title font-changa font-28 font-bold color-green">Gato</h2>
+                    <h2 id="products-title" class="about-title font-changa font-28 font-bold color-green">{{$title}}</h2>
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="search-wrapper w-100 justify-content-end">
-                        <input 
-                            type="text" 
-                            class="form-control search-input font-changa font-16 font-medium color-grey" 
-                            placeholder="Pesquisar..."
-                        >
+                        <form action="">
+                            <input 
+                                type="text" 
+                                name="search"
+                                value="{{ request('search') }}"
+                                class="form-control search-input font-changa font-16 font-medium color-grey search-field"
+                                placeholder="Pesquisar..."
+                            >
+                        </form>
                         <div class="bg-green px-2 py-1 rounded-3">
                             <i class="bi bi-search search-icon text-white font-20"></i>
                         </div>
@@ -85,62 +81,98 @@
             </div>
 
             <!-- Produtos -->
-            <div class="row g-4 products mt-5">
-                <!-- Produto -->
-                <div class="col-6 col-sm-6 col-lg-4 product">
-                    <div class="product-card">
-                        <div class="image border rounded-3 position-relative mb-3">
-                            <a href="" class="col-12">
-                                <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
-                                <img src="{{asset('build/client/images/prod-1.png')}}" alt="">
-                            </a>
-                        </div>
-                        <h6 class="font-changa font-18 font-semibold color-green">BILLY CAT 10 KG</h6>
-                        <p class="color-grey font-changa font-18 font-medium">Gato filhote ao castrado, linha premium Nutridani</p>
-                    </div>
-                </div>
-    
-                <div class="col-6 col-sm-6 col-lg-4">
-                    <div class="product-card">
-                        <div class="image border rounded-3 position-relative mb-3">
-                            <a href="#" class="col-12">
-                                <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
-                                <img src="{{asset('build/client/images/prod-2.png')}}" alt="">
-                            </a>
-                        </div>
-                        
-                        <h6 class="font-changa font-18 font-semibold color-green">LOUNGER DOG BED</h6>
-                        <p class="color-grey font-changa font-18 font-medium">Produto confort premium Nutridani, para soneca PET</p>
-                    </div>
-                </div>
-    
-                <div class="col-6 col-sm-6 col-lg-4">
-                    <div class="product-card">
-                        <div class="image border rounded-3 position-relative mb-3">
-                            <a href="#" class="col-12">
-                                <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
-                                <img src="{{asset('build/client/images/prod-3.png')}}" alt="">
-                            </a>
-                        </div>
-                        <h6 class="font-changa font-18 font-semibold color-green">ACTIVE PET DOG HARNESS</h6>
-                        <p class="color-grey font-changa font-18 font-medium">Gato filhote ao castrado, linha premium Nutridani</p>
-                    </div>
-                </div>
-    
-                <div class="col-6 col-sm-6 col-lg-4">
-                    <div class="product-card">
-                        <div class="image border rounded-3 position-relative mb-3">
-                            <a href="#" class="col-12">
-                                <span class="btn btn-view font-changa font-16 font-medium opacity-0 col-10 col-lg-5">Ver Produto</span>
-                                <img src="{{asset('build/client/images/prod-1.png')}}" alt="">
-                            </a>
-                        </div>
-                        <h6 class="font-changa font-18 font-semibold color-green">SARA’S DOGGIE TREAT</h6>
-                        <p class="color-grey font-changa font-18 font-medium">Produto confort premium Nutridani, para soneca PET</p>
-                    </div>
-                </div>
+            <div id="products-container" class="row g-4 products mt-4">
+                @include('client.includes.products')
             </div>
         </div>
     </div>
 </div>
+
+<script>
+
+    function applyFilters(params) {
+
+        const url = new URL(window.location.href);
+
+        Object.keys(params).forEach(key => {
+            if (params[key]) {
+                url.searchParams.set(key, params[key]);
+            } else {
+                url.searchParams.delete(key);
+            }
+        });
+
+        fetch(url.toString(), {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('products-container').innerHTML = data.html;
+            document.getElementById('products-title').innerText = data.title;
+            history.pushState({}, '', url);
+        });
+    }
+
+    // Categoria
+    document.querySelectorAll('.filter-item').forEach(item => {
+        item.addEventListener('click', function () {
+
+            const category = this.getAttribute('data-category');
+            const brand = new URLSearchParams(window.location.search).get('brand');
+            const search = new URLSearchParams(window.location.search).get('search');
+
+            applyFilters({
+                category: category === 'all' ? null : category,
+                brand: brand,
+                search: search
+            });
+
+        });
+    });
+
+    // Marca
+    document.querySelectorAll('.filter-brand').forEach(item => {
+        item.addEventListener('click', function () {
+
+            const brand = this.getAttribute('data-brand');
+            const category = new URLSearchParams(window.location.search).get('category');
+            const search = new URLSearchParams(window.location.search).get('search');
+
+            applyFilters({
+                brand: brand === 'all' ? null : brand,
+                category: category,
+                search: search
+            });
+
+        });
+    });
+
+    // Search com debounce
+    let debounceTimer;
+
+    document.querySelector('.search-field').addEventListener('keyup', function() {
+
+        clearTimeout(debounceTimer);
+
+        debounceTimer = setTimeout(() => {
+
+            const search = this.value;
+            const category = new URLSearchParams(window.location.search).get('category');
+            const brand = new URLSearchParams(window.location.search).get('brand');
+
+            applyFilters({
+                search: search.length ? search : null,
+                category: category,
+                brand: brand
+            });
+
+        }, 400);
+
+    });
+
+    document.querySelectorAll('.filter-item').forEach(el => el.classList.remove('active'));
+    this.classList.add('active');
+</script>
 @endsection

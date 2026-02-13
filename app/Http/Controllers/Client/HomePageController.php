@@ -56,13 +56,24 @@ class HomePageController extends Controller
         $report = Report::active()->first();
         $contact = Contact::first();
         $statute = Statute::active()->first();
-        $productCategorieHighlights = ProductCategory::where('highlight', 1)->active()->sorting()->get();
+        $productCategorieHighlights = ProductCategory::whereHas('products', function($query) {
+            $query->active();
+        })
+        ->where('highlight', 1)
+        ->active()      
+        ->sorting()     
+        ->get();
         $productCategories = ProductCategory::whereHas('products', function($query) {
             $query->active()->whereHas('category', function($active) {
                 $active->where('active', 1);
             });
         })->active()->sorting()->get();
-        $products = Product::active()->sorting()->get();
+        $products = Product::whereHas('category', function($query){
+            $query->active();
+        })
+        ->whereHas('brand', function($query){
+            $query->active();
+        })->active()->sorting()->get();
 
         // Obter as 5 categorias mais recentes das últimas notícias
         $recentCategories = BlogCategory::whereHas('blogs', function($query) {
