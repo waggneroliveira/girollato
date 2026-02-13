@@ -3,8 +3,22 @@
     <input type="text" name="title" class="form-control" id="title{{isset($direction->id)?$direction->id:''}}" value="{{isset($direction)?$direction->title:''}}" placeholder="Digite seu nome">
 </div>
 <div class="mb-3">
-    <label for="description" class="form-label">Descrição</label>
+    <label for="description" class="form-label">Função</label>
     <input type="text" name="description" class="form-control" id="description{{isset($direction->id)?$direction->id:''}}" value="{{isset($direction)?$direction->description:''}}" placeholder="Descrição">
+</div>
+<div class="mb-3">
+    <label for="email" class="form-label">E-mail</label>
+    <input type="mail" name="email" class="form-control" id="email{{isset($direction->id)?$direction->id:''}}" value="{{isset($direction)?$direction->email:''}}" placeholder="Digite o e-mail">
+</div>
+<div class="mb-3">
+    <label for="whatsapp" class="form-label">Whatsapp</label>
+    <input 
+        type="text" 
+        name="whatsapp" 
+        class="form-control whatsapp-mask" 
+        id="whatsapp{{isset($direction->id)?$direction->id:''}}" 
+        value="{{isset($direction)?$direction->whatsapp:''}}" 
+        placeholder="(11) 91234-5678">
 </div>
 <div class="col-12">
     <div class="mt-3">

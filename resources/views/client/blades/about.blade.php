@@ -155,9 +155,15 @@
                             <div class="team-body text-center position-absolute col-11 z-3 bg-white py-2 py-lg-3 px-1 px-lg-2">
                                 <h6 class="mb-0 font-changa font-medium font-18 color-green">{{$representative->title}}</h6>
                                 <small class="color-grey font-changa font-15 font-regular d-block mb-2">{{$representative->description}}</small>
-                                <a href="#" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-5 px-2 px-lg-5">
-                                    <i class="bi bi-envelope me-1"></i> Enviar mensagem
-                                </a>
+                                <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                    <span class="color-green font-changa font-16 font-medium w-100 mb-2">Enviar mensagem</span>
+                                    <a href="mailto:{{$representative->email}}" target="_blank" rel="noopener noreferrer" class="me-1 btn btn-team bg-green text-white font-changa font-15 font-regular rounded-pill d-flex justify-content-center align-items-center" style="width: 35px; height:35px">
+                                        <i class="bi bi-envelope"></i>
+                                    </a>
+                                    <a href="tel:{{$representative->whatsapp}}" target="_blank" rel="noopener noreferrer" class="btn btn-team bg-green text-white font-changa font-15 font-regular rounded-pill d-flex justify-content-center align-items-center" style="width: 35px; height:35px">
+                                        <i class="bi bi-whatsapp"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

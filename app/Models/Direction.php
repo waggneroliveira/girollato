@@ -18,6 +18,8 @@ class Direction extends Model
         'description',
         'path_image',
         'active',
+        'email',
+        'whatsapp',
         'sorting',
     ];
 
