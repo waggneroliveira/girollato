@@ -96,44 +96,29 @@
         </div>
     </section>
 @endif
-
+@if ($reports->count())
     <section class="mvw-section d-flex justify-content-center align-items-end" id="mvwSection">
         <div class="mvw-overlay"></div>
         <div class="container">
             <div class="mvw-cards row justify-content-center flex-wrap">
-                <div class="col-12 col-lg-4 mvw-card d-flex justify-content-center align-items-start active" data-bg="{{asset('build/client/images/missao.png')}}">
-                    <div class="icon rounded-circle bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset('build/client/images/dog-1.png')}}" alt="">
+                @foreach ($reports as $report)                    
+                    <div class="col-12 col-lg-4 mvw-card d-flex justify-content-center align-items-start active" data-bg="{{asset('storage/' . $report->path_image)}}">
+                        @if ($report->path_file <> null)                            
+                            <div class="icon rounded-circle bg-white d-flex justify-content-center align-items-center">
+                                <img src="{{asset('storage/' . $report->path_file)}}" alt="{{$report->title}}">
+                            </div>
+                        @endif
+                        <div class="description ms-2 col-8">
+                            <h4 class="color-yellow font-changa font-30 font-semibold">{{$report->title}}</h4>
+                            <p class="text-white font-changa font-16 font-regular mb-0">{{$report->description}}</p>
+                        </div>
                     </div>
-                    <div class="description ms-2 col-8">
-                        <h4 class="color-yellow font-changa font-30 font-semibold">Missão</h4>
-                        <p class="text-white font-changa font-16 font-regular mb-0">Well gaudy hound hired set flailed much followed less this maternal well unavoidable crudely aloof more save groomed.</p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-lg-4 mvw-card d-flex justify-content-center align-items-start" data-bg="{{asset('build/client/images/visao.png')}}">
-                    <div class="icon rounded-circle bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset('build/client/images/dog-2.png')}}" alt="">
-                    </div>
-                    <div class="description ms-2 col-8">                        
-                        <h4 class="color-yellow font-changa font-30 font-semibold">Visão</h4>
-                        <p class="text-white font-changa font-16 font-regular mb-0">Well gaudy hound hired set flailed much followed less this maternal well unavoidable crudely aloof more save groomed.</p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-lg-4 mvw-card d-flex justify-content-center align-items-start" data-bg="{{asset('build/client/images/valores.png')}}">
-                    <div class="icon rounded-circle bg-white d-flex justify-content-center align-items-center">
-                        <img src="{{asset('build/client/images/dog-3.png')}}" alt="">
-                    </div>
-                    <div class="description ms-2 col-8">                        
-                        <h4 class="color-yellow font-changa font-30 font-semibold">Valores</h4>
-                        <p class="text-white font-changa font-16 font-regular mb-0">Well gaudy hound hired set flailed much followed less this maternal well unavoidable crudely aloof more save groomed.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
-
+@endif
+@if ($directions->count())
     <section id="team-section" class="team-section py-5 position-relative">
         <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
         <div class="container z-3 position-relative">
@@ -178,6 +163,7 @@
             </div>
         </div>
     </section>
+@endif
 
     <section class="video-section">
         <div class="video-container position-relative" 
@@ -266,52 +252,6 @@
         <img src="{{asset('build/client/images/firula-about.svg')}}" alt="Firula" class="position-absolute bottom-0 start-0">
     </section>
 
-    {{-- <script>
-        //Video youtube
-          document.querySelector('.video-play-btn').addEventListener('click', function () {
-            const container = this.closest('.video-container');
-
-            container.innerHTML = `
-            <iframe
-                src="{{$video->link}}"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-                style="width:100%; height:100%;">
-            </iframe>
-            `;
-        });
-        
-
-        const section = document.getElementById("mvwSection");
-        const cards = document.querySelectorAll(".mvw-card");
-
-        function changeBackground(card) {
-            const bg = card.getAttribute("data-bg");
-            section.style.backgroundImage = `url(${bg})`;
-
-            cards.forEach(c => c.classList.remove("active"));
-            card.classList.add("active");
-        }
-
-        // Desktop (hover)
-        cards.forEach(card => {
-                card.addEventListener("mouseenter", () => {
-                    if (window.innerWidth > 768) {
-                        changeBackground(card);
-                    }
-                });
-        });
-
-        // Mobile (click)
-        cards.forEach(card => {
-            card.addEventListener("click", () => {
-                if (window.innerWidth <= 768) {
-                    changeBackground(card);
-                }
-            });
-        });
-    </script> --}}
 
 <script>
     // Normaliza URL

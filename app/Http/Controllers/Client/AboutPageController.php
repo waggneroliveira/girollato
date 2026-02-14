@@ -25,8 +25,8 @@ class AboutPageController extends Controller
         $statute = Statute::active()->first();
         $directions = Direction::active()->sorting()->get();
         $video = Video::active()->first();
-        $report = Report::active()->first();
+        $reports = Report::active()->get();
 
-        return view('client.blades.about', compact('video', 'benefitTopics', 'topics', 'report', 'directions', 'statute', 'contact', 'partners', 'about'));
+        return view('client.blades.about', compact('video', 'benefitTopics', 'topics', 'reports', 'directions', 'statute', 'contact', 'partners', 'about'));
     }
 }

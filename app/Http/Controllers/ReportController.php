@@ -24,9 +24,9 @@ class ReportController extends Controller
             !Auth::user()->hasPermissionTo('denuncie.visualizar')){
             return view('admin.error.403', compact('settingTheme'));
         }
-        $report = Report::first();
+        $reports = Report::get();
 
-       return view('admin.blades.report.index', compact('report'));
+       return view('admin.blades.report.index', compact('reports'));
     }
 
    
@@ -37,7 +37,7 @@ class ReportController extends Controller
 
         $request->validate([
             'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'],
-            'path_file' => ['nullable', 'file', 'mimes:pdf', 'max:3072'] 
+            'path_file' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'] 
         ]);
 
         if ($request->hasFile('path_image')) {
@@ -62,15 +62,30 @@ class ReportController extends Controller
             $data['path_image'] = $this->pathUpload . $filename;
         }
 
+        //icone
         if ($request->hasFile('path_file')) {
             $file = $request->file('path_file');
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.pdf';
+            $mime = $file->getMimeType();
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
 
-            // Salva direto no storage
-            Storage::putFileAs($this->pathUpload, $file, $filename);
+            if ($mime === 'image/svg+xml') {
+                Storage::putFileAs($this->pathUpload, $file, $filename);
+            } else {
+                $image = $manager->read($file)
+                    ->resize(null, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toWebp(quality: 95)
+                    ->toString();
+
+                Storage::put($this->pathUpload . $filename, $image);
+            }
 
             $data['path_file'] = $this->pathUpload . $filename;
         }
+
+
 
         $data['active'] = $request->active ? 1 : 0;
 
@@ -95,7 +110,7 @@ class ReportController extends Controller
 
         $request->validate([
             'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'],
-            'path_file' => ['nullable', 'file', 'mimes:pdf', 'max:3072'] 
+            'path_file' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'] 
         ]);
 
         // report desktop
@@ -127,28 +142,34 @@ class ReportController extends Controller
             $data['path_image'] = null;
         }
 
+        //icone
         if ($request->hasFile('path_file')) {
             $file = $request->file('path_file');
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.pdf';
+            $mime = $file->getMimeType();
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
 
-            // Apaga o arquivo anterior (se existir)
-            if (!empty($report->path_file) && Storage::exists($report->path_file)) {
-                Storage::delete($report->path_file);
+            if ($mime === 'image/svg+xml') {
+                Storage::putFileAs($this->pathUpload, $file, $filename);
+            } else {
+                $image = $manager->read($file)
+                    ->resize(null, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toWebp(quality: 95)
+                    ->toString();
+
+                Storage::put($this->pathUpload . $filename, $image);
             }
 
-            // Salva o novo PDF
-            Storage::putFileAs($this->pathUpload, $file, $filename);
-
+            Storage::delete(isset($report->path_file)??$report->path_file);
             $data['path_file'] = $this->pathUpload . $filename;
         }
 
-        if ($request->has('delete_path_file')) {
-            if (!empty($report->path_file) && Storage::exists($report->path_file)) {
-                Storage::delete($report->path_file);
-            }
+        if (isset($request->delete_path_file)) {
+            Storage::delete(isset($report->path_file)??$report->path_file);
             $data['path_file'] = null;
         }
-
 
         $data['active'] = $request->active ? 1 : 0;
 

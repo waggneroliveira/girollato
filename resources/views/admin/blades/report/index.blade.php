@@ -11,10 +11,10 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Sessão Anuncie</li>
+                                    <li class="breadcrumb-item active">Missão Visão e Valores</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Sessão Anuncie</h4>
+                            <h4 class="page-title">Missão Visão e Valores</h4>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                                             Auth::user()->can('sessao anuncie.criar') ||
                                             Auth::user()->can('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
-                                                @if (!isset($report))                                                
+                                                @if ($reports->count() < 3)                                                
                                                     <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#report-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
                                                 @endif
                                                 <!-- Modal -->
@@ -60,24 +60,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if (isset($report))                                    
-                                    <div class="table-responsive">
-                                        <table class="table-sortable table table-centered table-nowrap table-striped">
-                                            <thead>
-                                                <tr>
-                                                    {{-- <th></th> --}}
-                                                    <th class="bs-checkbox">
-                                                        <label><input name="btnSelectAll" type="checkbox"></label>
-                                                    </th>
-                                                    {{-- <th>Link</th> --}}
-                                                    <th>Título</th>
-                                                    <th>Arquivo</th>
-                                                    <th>Status</th>
-                                                    <th style="width: 85px;">Ações</th>
-                                                </tr>
-                                            </thead>
-        
-                                            <tbody>
+                                                                   
+                                <div class="table-responsive">
+                                    <table class="table-sortable table table-centered table-nowrap table-striped">
+                                        <thead>
+                                            <tr>
+                                                {{-- <th></th> --}}
+                                                <th class="bs-checkbox">
+                                                    <label><input name="btnSelectAll" type="checkbox"></label>
+                                                </th>
+                                                {{-- <th>Link</th> --}}
+                                                <th>Título</th>
+                                                <th>Arquivo</th>
+                                                <th>Status</th>
+                                                <th style="width: 85px;">Ações</th>
+                                            </tr>
+                                        </thead>
+    
+                                        <tbody>
+                                            @foreach ($reports as $report)                                                
                                                 <tr>
                                                     {{-- <td><span class="btnDrag mdi mdi-drag-horizontal font-22"></span></td> --}}
                                                     <td class="bs-checkbox">
@@ -138,11 +139,11 @@
                                                         @endif
                                                     </td>
                                                 </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                @endif
-
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
                                 {{-- PAGINATION --}}
                                 <div class="mt-3 float-end">
                                    {{-- {{$report->links()}} --}}
