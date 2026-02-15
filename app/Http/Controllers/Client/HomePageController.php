@@ -10,7 +10,7 @@ use App\Models\PopUp;
 use App\Models\Slide;
 use App\Models\Topic;
 use App\Models\Video;
-use App\Models\Report;
+use App\Models\letsgo;
 use App\Models\Contact;
 use App\Models\Announcement;
 use App\Models\BenefitTopic;
@@ -48,7 +48,7 @@ class HomePageController extends Controller
         $about = About::active()->first();
         $benefitTopics = BenefitTopic::active()->sorting()->get();
         $videos = Video::active()->sorting()->get();
-        $report = Report::active()->first();
+        $letsgo = Letsgo::active()->first();
         $contact = Contact::first();
         $statute = Statute::active()->first();
         $productCategorieHighlights = ProductCategory::whereHas('products', function($query) {
@@ -160,7 +160,7 @@ class HomePageController extends Controller
             'slides', 
             'topics', 
             'statute', 
-            'report', 
+            'letsgo', 
             'productCategorieHighlights', 
             'productCategories', 
             'products', 

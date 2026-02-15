@@ -25,7 +25,9 @@
 *::after {
     box-sizing: border-box;
 }
-
+h4{
+    padding: 0 !important;
+}
 html,
 body {
     overflow-x: hidden;
@@ -1017,4 +1019,28 @@ body {
 }
 .to-back{
     border: 1px solid var(--green-color);
+}
+
+.list-service strong{
+    font-family: "Changa", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color: var(--yellow-color);
+}
+.list-service ul{
+    column-count: 2;
+    column-gap: 30px; 
+    width: 96%;
+    margin: 0 auto;
+}
+.list-service ul li{
+    font-family: "Changa", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--black-color)
 }

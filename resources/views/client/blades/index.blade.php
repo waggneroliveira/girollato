@@ -213,20 +213,20 @@
     </section>
 @endif
 
-@if (isset($report))
+@if (isset($letsgo))
     <section class="lets-go bg-grey-light py-5">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                @if ($report->path_image <> null)                    
+                @if ($letsgo->path_image <> null)                    
                     <div class="content-left col-12 col-lg-6">
-                        <img src="{{asset('storage/' . $report->path_image)}}" alt="Carro de entrega" class="w-100">
+                        <img src="{{asset('storage/' . $letsgo->path_image)}}" alt="Carro de entrega" class="w-100">
                     </div>
                 @endif
                 <div class="content-left col-12 col-lg-6">
                     <h3 class="about-title font-changa font-50 font-bold color-green mb-3">
-                        {{$report->title}}
+                        {{$letsgo->title}}
                     </h3>
-                    <p class="color-grey font-changa font-16 font-regular text-center text-lg-start">{{$report->description}}</p>
+                    <p class="color-grey font-changa font-16 font-regular text-center text-lg-start">{{$letsgo->description}}</p>
                     <div class="step-actions gap-3 d-flex mt-4 flex-wrap justify-content-center justify-content-lg-start">
                         <a href="{{route('about')}}#coverage-section" class="rounded-pill px-4 btn-hero btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
                             Onde Distribuimos

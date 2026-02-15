@@ -191,11 +191,11 @@
                         </span>
 
                         <h3 class="about-title font-changa font-50 font-bold color-green mb-3 position-relative">                            
-                            Onde atendemos
+                            {{$serviceLocation->title}}
                         </h3>
                     </div>
                     <img 
-                        src="{{asset('build/client/images/mapa.png')}}" 
+                        src="{{asset('storage/' .$serviceLocation->path_image)}}" 
                         alt="Mapa de cobertura"
                         class="img-fluid coverage-map"
                         >
@@ -204,46 +204,8 @@
                 <div class="col-12 col-lg-6 mt-0">
                     <!-- BAHIA -->
                     <div class="state-block mb-4">
-                        <h4 class="state-title color-yellow font-changa font-40 font-medium">Bahia</h4>
-                        <div class="row">
-                            <div class="col-6">
-                                <ul class="state-list">
-                                    <li class="font-changa font-20 font-medium">Salvador</li>
-                                    <li class="font-changa font-20 font-medium">Amélia Rodrigues</li>
-                                    <li class="font-changa font-20 font-medium">Saubara</li>
-                                    <li class="font-changa font-20 font-medium">Terra Nova</li>
-                                </ul>
-                            </div>
-                            <div class="col-6">
-                                <ul class="state-list">
-                                    <li class="font-changa font-20 font-medium">Lauro de Freitas</li>
-                                    <li class="font-changa font-20 font-medium">Santo Amaro</li>
-                                    <li class="font-changa font-20 font-medium">São Sebastião do Passé</li>
-                                    <li class="font-changa font-20 font-medium">Madre de Deus</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- SERGIPE -->
-                    <div class="state-block">
-                        <h4 class="state-title color-yellow font-changa font-40 font-medium">Sergipe</h4>
-                        <div class="row">
-                            <div class="col-6">
-                                <ul class="state-list">
-                                    <li class="font-changa font-20 font-medium">Salvador</li>
-                                    <li class="font-changa font-20 font-medium">Amélia Rodrigues</li>
-                                    <li class="font-changa font-20 font-medium">Saubara</li>
-                                    <li class="font-changa font-20 font-medium">Terra Nova</li>
-                                </ul>
-                            </div>
-                            <div class="col-6">
-                                <ul class="state-list">
-                                    <li class="font-changa font-20 font-medium">Lauro de Freitas</li>
-                                    <li class="font-changa font-20 font-medium">Santo Amaro</li>
-                                    <li class="font-changa font-20 font-medium">São Sebastião do Passé</li>
-                                    <li class="font-changa font-20 font-medium">Madre de Deus</li>
-                                </ul>
-                            </div>
+                        <div class="row list-service col-11 col-lg-12 m-auto">
+                            {!! $serviceLocation->description !!}
                         </div>
                     </div>
                 </div>

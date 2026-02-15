@@ -38,6 +38,8 @@ use App\Http\Controllers\ProductGalleryController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\LetsgoController;
+use App\Http\Controllers\ServiceLocationController;
 
 Route::get('painel/', function () {
     return redirect()->route('admin.dashboard.painel');
@@ -173,10 +175,18 @@ Route::prefix('painel/')->group(function () {
         Route::post('categoria-do-blog/sorting', [BlogCategoryController::class, 'sorting'])
         ->name('admin.dashboard.blogCategory.sorting');
         //REPORT
-        Route::resource('sessao-lets-go', ReportController::class)
+        Route::resource('missao-visao-e-valores', ReportController::class)
         ->names('admin.dashboard.report')
-        ->parameters(['sessao-lets-go'=>'report']);
-        //CATEGORIA BLOG
+        ->parameters(['missao-visao-e-valores'=>'report']);
+        //LETSGO
+        Route::resource('sessao-lets-go', LetsgoController::class)
+        ->names('admin.dashboard.letsgo')
+        ->parameters(['sessao-lets-go'=>'letsgo']);
+        //ONDE ATENDEMOS
+        Route::resource('onde-atendemos', ServiceLocationController::class)
+        ->names('admin.dashboard.serviceLocation')
+        ->parameters(['onde-atendemos'=>'serviceLocation']);
+        
         Route::resource('categoria-de-produtos', ProductCategoryController::class)
         ->parameters(['categoria-de-produtos' => 'productCategory'])
         ->names('admin.dashboard.productCategory');

@@ -64,6 +64,9 @@
   }
 }
 @media (max-width: 530px) {
+    .list-service ul{
+        column-count: 1;
+    }
     .blog-content .col-6.col-md-6.col-lg-4{
         height: 320px;
         padding: 0px 5px 0px 5px;

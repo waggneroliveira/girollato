@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Models\Direction;
 use App\Models\Partner;
 use App\Models\Report;
+use App\Models\ServiceLocation;
 use App\Models\Statute;
 use App\Models\Topic;
 use App\Models\Video;
@@ -26,7 +27,8 @@ class AboutPageController extends Controller
         $directions = Direction::active()->sorting()->get();
         $video = Video::active()->first();
         $reports = Report::active()->get();
+        $serviceLocation = ServiceLocation::active()->first();
 
-        return view('client.blades.about', compact('video', 'benefitTopics', 'topics', 'reports', 'directions', 'statute', 'contact', 'partners', 'about'));
+        return view('client.blades.about', compact('serviceLocation', 'video', 'benefitTopics', 'topics', 'reports', 'directions', 'statute', 'contact', 'partners', 'about'));
     }
 }
