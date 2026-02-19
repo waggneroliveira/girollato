@@ -11,9 +11,9 @@
                 <!-- Infos -->
                 <div class="col-12 col-lg-5">
                     <span class="about-subtitle faq-eyebrow color-yellow font-changa font-16 font-bold d-block mb-2 text-end m-0 z-3 position-relative">Fale Conosco</span>
-                    <h2 class="faq-title font-changa font-50 font-bold color-green mt-2 mb-3">Entre em contato</h2>
+                    <h2 class="faq-title font-changa font-50 font-bold color-green mt-2 mb-3">{{$contact->name_section}}</h2>
                     <p class="faq-text color-grey font-changa font-16 font-regular text-center text-lg-start">
-                        Sua primeira entrega inicia a partir de uma conversa conosco!
+                        {{$contact->text}}
                     </p>
     
                     <ul class="list-unstyled">
@@ -23,9 +23,8 @@
                             </div>
                             <div>
                                 <span class="color-green font-changa font-16 font-semibold">Endereço</span>
-                                <p class="color-grey font-changa font-16 font-regular">
-                                    Alameda Maia, 144 - Quingoma, Lauro de Freitas - BA.<br>
-                                    CEP: 42725-610
+                                <p class="color-grey font-changa font-16 font-regular col-12 col-lg-10">
+                                    {{$contact->address_one}}
                                 </p>
                             </div>
                         </li>
@@ -36,7 +35,7 @@
                             </div>
                             <div>
                                 <span class="color-green font-changa font-16 font-semibold">Telefone</span>
-                                <p class="color-grey font-changa font-16 font-regular">(71) 99628-8037</p>
+                                <p class="color-grey font-changa font-16 font-regular">{{$contact->phone_one}}</p>
                             </div>
                         </li>
     
@@ -46,7 +45,7 @@
                             </div>
                             <div>
                                 <span class="color-green font-changa font-16 font-semibold">E-mail</span>
-                                <p class="color-grey font-changa font-16 font-regular">contato@girolato.com.br</p>
+                                <p class="color-grey font-changa font-16 font-regular">{{$contact->name_one}}</p>
                             </div>
                         </li>
                     </ul>
@@ -86,36 +85,24 @@
                                 </div>
                             </form>
                         </div>
-                        @if (isset($contact->maps) && $contact->maps != null)                    
-                            <div class="col-lg-4">
-                                <div class="ratio ratio-1x1 rounded border overflow-hidden">
-                                    <iframe
-                                    src="{{$contact->maps}}"
-                                    width="100%"
-                                    height="100%"
-                                    style="border:0;"
-                                    allowfullscreen=""
-                                    loading="lazy">
-                                    </iframe>                        
-                                </div>
-                            </div>
-                        @endif
                     </div>
                 </div>
             </div>
         </div>
         <!-- Mapa -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="ratio ratio-21x9 rounded overflow-hidden shadow-sm">
-                    <iframe
-                        src="https://www.google.com/maps?q=Lauro%20de%20Freitas%20BA&output=embed"
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+        @if (isset($contact->maps) && $contact->maps != null) 
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="ratio ratio-21x9 rounded overflow-hidden shadow-sm">
+                        <iframe
+                            src="{{$contact->maps}}"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

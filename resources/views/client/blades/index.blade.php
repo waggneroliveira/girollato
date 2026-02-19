@@ -136,7 +136,7 @@
 @endif
 
 @if ($benefitTopics->count())
-    <section class="stats-section py-5 position-relative container-fluid">
+    <section id="stats-section" class="stats-section py-5 position-relative container-fluid">
         <img src="{{asset('build/client/images/firula-count.svg')}}" alt="Firula" class="position-absolute top-0 left-0 firula-count">
 
         <div class="container">
@@ -393,7 +393,7 @@
     </section>
 @endif
 
-<section class="faq-section pt-5 bg-grey-light">
+<section id="faq" class="faq-section pt-5 bg-grey-light">
     <div class="container">
         <div class="row align-items-start g-5">
 

@@ -29,7 +29,7 @@
                                 <li>Vá ao Google Maps e encontre o local desejado</li>
                                 <li>Clique no botão "Compartilhar" e depois em "Incorporar um mapa"</li>
                                 <li>Selecione e copie todo o código iframe</li>
-                                <li>Cole o código no campo abaixo - o link será extraído automaticamente</li>
+                                <li>Cole o código no campo acima - o link será extraído automaticamente</li>
                             </ol>
                         </div>
                     </div>
@@ -87,15 +87,20 @@
                 <div class="mb-3 col-lg-6 col-12">
                     <label for="name_one" class="form-label">E-mail</label>
                     <input type="text" name="name_one" class="form-control" id="name_one"
-                        value="{{ isset($contact)?$contact->name_one:'' }}" placeholder="Título">
+                        value="{{ isset($contact)?$contact->name_one:'' }}" placeholder="E-mail">
                 </div>
                 <div class="mb-3 col-lg-6 col-12">
                     <label for="phone_one" class="form-label">Telefone</label>
                     <input type="text" name="phone_one" class="form-control" id="phone_one"
                         value="{{ isset($contact)?$contact->phone_one:'' }}" placeholder="Telefone">
                 </div>
+                <div class="col-12">
+                    <label for="address_one" class="form-label">Endereço</label>
+                    <textarea name="address_one" id="address_one" placeholder="Texto" class="form-control" rows="5">{{ isset($contact)?$contact->address_one:'' }}</textarea>
+                </div>
             </div> 
         </div>
+
     </div>
 </div>
 
