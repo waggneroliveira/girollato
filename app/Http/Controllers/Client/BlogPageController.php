@@ -102,10 +102,7 @@ class BlogPageController extends Controller
         }
 
         $blogInner = Blog::with([
-            'category',
-            'comments' => function ($query) {
-                $query->where('active', 1)->orderBy('created_at', 'desc')->with('client');
-            }
+            'category'
         ])
         ->whereHas('category')
         ->where('slug', $slug)
@@ -135,6 +132,7 @@ class BlogPageController extends Controller
         ->get();
 
         $blogCategories = BlogCategory::whereHas('blogs')->active()->sorting()->get();
+
         $announcements = Announcement::select(
             'exhibition',
             'link',

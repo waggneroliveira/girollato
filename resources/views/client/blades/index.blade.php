@@ -337,111 +337,61 @@
         </div>
     </section>
 @endif
-<section class="blog position-relative">
-    <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
-    <div class="container z-3 position-relative">
-        <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">
-            Conheça aqui!
-        </span>
+@if ($blogHighlights->count())
+    <section class="blog position-relative">
+        <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
+        <div class="container z-3 position-relative">
+            <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">
+                Conheça aqui!
+            </span>
 
-        <h3 class="about-title font-changa font-50 font-bold color-green mb-3 text-center">
-            Novidades <span class="color-grey">e artigos</span>
-        </h3>
+            <h3 class="about-title font-changa font-50 font-bold color-green mb-3 text-center">
+                Novidades <span class="color-grey">e artigos</span>
+            </h3>
 
-        <div class="row g-4 mt-5">
+            <div class="row g-4 mt-5">
 
-            <div class="swiper blog-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <article class="post-card">
-                            <a href="">
-                                <img src="{{asset('build/client/images/blog-1.png')}}" alt="">
-                                <div class="post-overlay">
-                                    <h5 class="font-changa font-18 font-bold text-white mb-3">
-                                        Qual a melhor ração para fêmeas com filhotes?
-                                    </h5>
-                                    <p class="font-16 font-regular text-white mb-3">
-                                        Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
-                                    </p>
-                                    <span class="date font-16 font-regular text-white">
-                                    04 Set 2026
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="post-card">
-                            <a href="">
-                                <img src="{{asset('build/client/images/blog-2.png')}}" alt="">
-                                <div class="post-overlay">
-                                    <h5 class="font-changa font-18 font-bold text-white mb-3">
-                                        Por que os cães amam petiscos?
-                                    </h5>
-                                    <p class="font-16 font-regular text-white mb-3">
-                                        Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
-                                    </p>
-                                    <span class="date font-16 font-regular text-white">
-                                    04 Set 2026
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="post-card">
-                            <a href="">
-                                <img src="{{asset('build/client/images/blog-1.png')}}" alt="">
-                                <div class="post-overlay">
-                                    <h5 class="font-changa font-18 font-bold text-white mb-3">
-                                        Qual a melhor ração para fêmeas com filhotes?
-                                    </h5>
-                                    <p class="font-16 font-regular text-white mb-3">
-                                        Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
-                                    </p>
-                                    <span class="date font-16 font-regular text-white">
-                                    04 Mar 2026
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="post-card">
-                            <a href="">
-                                <img src="{{asset('build/client/images/blog-2.png')}}" alt="">
-                                <div class="post-overlay">
-                                    <h5 class="font-changa font-18 font-bold text-white mb-3">
-                                        Por que os cães amam petiscos?
-                                    </h5>
-                                    <p class="font-16 font-regular text-white mb-3">
-                                        Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
-                                    </p>
-                                    <span class="date font-16 font-regular text-white">
-                                    04 Set 2026
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
+                <div class="swiper blog-swiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($blogHighlights as $blogHighlight)                        
+                            <div class="swiper-slide">
+                                <article class="post-card">
+                                    <a href="{{route('blog-inner', ['slug' => $blogHighlight->slug])}}">
+                                        <img src="{{asset('storage/' . $blogHighlight->path_image_thumbnail)}}" alt="">
+                                        <div class="post-overlay">
+                                            <h5 class="font-changa font-18 font-bold text-white mb-3">
+                                                {{$blogHighlight->title}}
+                                            </h5>
+                                            <p class="font-16 font-regular text-white mb-3">
+                                                {{substr(strip_tags($blogHighlight->text), 0, 100)}}
+                                            </p>
+                                            <span class="date font-16 font-regular text-white">
+                                                {{ $blogHighlight->date->translatedFormat('d M Y') }}
+                                            </span>
+                                        </div>
+                                    </a>
+                                </article>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
+                <!-- Dots -->
+                <div class="swiper-pagination-blog mt-4 position-relative d-flex justify-content-center align-items-center"></div>
+
             </div>
-            <!-- Dots -->
-            <div class="swiper-pagination-blog mt-4 position-relative d-flex justify-content-center align-items-center"></div>
 
+            <!-- Botão -->
+            <div class="step-actions mt-4 d-flex justify-content-center justify-content-lg-end">
+                <a href="#" class="rounded-pill px-4 btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
+                    Ver todos os artigos
+                    <svg class="ms-2" width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.78794 12.474L8.02494 6.237L1.78794 -1.90735e-06L0.02079 1.76715L4.46985 6.237L0 10.7068L1.78794 12.474Z" fill="#0E523E"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
-
-        <!-- Botão -->
-        <div class="step-actions mt-4 d-flex justify-content-center justify-content-lg-end">
-            <a href="#" class="rounded-pill px-4 btn font-changa bg-green text-white font-18 font-medium text-decoration-none" rel="noopener noreferrer">
-                Ver todos os artigos
-                <svg class="ms-2" width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.78794 12.474L8.02494 6.237L1.78794 -1.90735e-06L0.02079 1.76715L4.46985 6.237L0 10.7068L1.78794 12.474Z" fill="#0E523E"></path>
-                </svg>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
+@endif
 
 <section class="faq-section pt-5 bg-grey-light">
     <div class="container">
@@ -628,102 +578,52 @@
     </div>
 </section>
 
-<section id="depoiment" class="depoiment py-5 position-relative">
-    <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
-    <div class="container z-3 position-relative">
-        <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">
-            Experiência de quem viveu!
-        </span>
+@if ($depoiments->count())
+    <section id="depoiment" class="depoiment py-5 position-relative">
+        <img src="{{asset('build/client/images/firula-blog.svg')}}" alt="Firula blog" class="firula-blog position-absolute top-0 left-0">
+        <div class="container z-3 position-relative">
+            <span class="blog-subtitle color-yellow font-changa font-16 font-bold d-block mb-2 m-auto me-0">
+                Experiência de quem viveu!
+            </span>
 
-        <h3 class="about-title font-changa font-50 font-bold color-green mb-3 text-center">
-            Depoimentos
-        </h3>
-    </div>
-    <div class="col-11 m-auto me-0">
-        <div class="swiper testimonial-swiper">
-            <div class="swiper-wrapper">
-
-                <!-- Slide -->
-                <div class="swiper-slide">
-                    <div class="testimonial-card">
-                        <div class="icon mb-3">
-                            <img src="{{asset('build/client/images/dep-1.png')}}" alt="Depoimento">
-                        </div>
-
-                        <p class="color-grey font-changa font-16 font-regular text-start">
-                        “Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text
-                        ever since the 1500s...”
-                        </p>
-
-                        <div class="author">
-                            <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">Iza Souza</h5>
-                            <span class="color-grey font-changa font-16 font-regular">Diretora Comercial</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="testimonial-card">
-                        <div class="icon mb-3">
-                            <img src="{{asset('build/client/images/dep-2.png')}}" alt="Depoimento 2">
-                        </div>
-
-                        <p class="color-grey font-changa font-16 font-regular text-start">
-                        “Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has survived...”
-                        </p>
-
-                        <div class="author">
-                            <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">Iza Souza</h5>
-                            <span class="color-grey font-changa font-16 font-regular">Diretora Comercial</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="testimonial-card">
-                        <div class="icon mb-3">
-                            <img src="{{asset('build/client/images/dep-3.png')}}" alt="Depoimento 3">
-                        </div>
-
-                        <p class="color-grey font-changa font-16 font-regular text-start">
-                        “Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry...”
-                        </p>
-
-                        <div class="author">
-                            <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">Iza Souza</h5>
-                            <span class="color-grey font-changa font-16 font-regular">Diretora Comercial</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="testimonial-card">
-                        <div class="icon mb-3">
-                            <img src="{{asset('build/client/images/dep-2.png')}}" alt="Depoimento 4">
-                        </div>
-
-                        <p class="color-grey font-changa font-16 font-regular text-start">
-                        “Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry...”
-                        </p>
-
-                        <div class="author">
-                            <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">Iza Souza</h5>
-                            <span class="color-grey font-changa font-16 font-regular">Diretora Comercial</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Dots -->
-            <div class="swiper-pagination mt-4 position-relative d-flex justify-content-center align-items-center"></div>
+            <h3 class="about-title font-changa font-50 font-bold color-green mb-3 text-center">
+                Depoimentos
+            </h3>
         </div>
-    </div>
-</section>
+        <div class="col-11 m-auto me-0">
+            <div class="swiper testimonial-swiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide -->
+                    @foreach ($depoiments as $depoiment)                    
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                @if ($depoiment->path_image <> null)                                
+                                    <div class="icon mb-3">
+                                        <img src="{{asset('storage/' . $depoiment->path_image)}}" alt="Depoimento-{{$depoiment->id}}">
+                                    </div>
+                                @endif
+
+                                <div class="text color-grey font-changa font-16 font-regular text-start">
+                                    {!!$depoiment->text!!}
+                                </div>
+
+                                <div class="author">
+                                    <h5 class="color-green font-changa font-16 font-medium mb-0 mt-3">{{$depoiment->name}}</h5>
+                                    <span class="color-grey font-changa font-16 font-regular">{{$depoiment->function}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+
+                <!-- Dots -->
+                <div class="swiper-pagination mt-4 position-relative d-flex justify-content-center align-items-center"></div>
+            </div>
+        </div>
+    </section>
+@endif
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

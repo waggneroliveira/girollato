@@ -79,7 +79,7 @@ Route::middleware([AuthClientMiddleware::class])->group(function () {
 Route::get('contato', [ContactPageController::class, 'index'])
 ->name('contact');
 Route::post('send-contact', [FormIndexController::class, 'store'])->name('send-contact');
-Route::get('noticias/{slug}', [BlogPageController::class, 'blogInner'])
+Route::get('noticia/{slug}', [BlogPageController::class, 'blogInner'])
 ->name('blog-inner');
 Route::get('noticias', [BlogPageController::class, 'index'])->name('blogAll');
 Route::get('noticias/categoria/{category?}', [BlogPageController::class, 'index'])->name('blog');

@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers\Client;
 
-use Carbon\Carbon;
-use App\Models\Blog;
+use App\Http\Controllers\Controller;
 use App\Models\About;
-use App\Models\Event;
-use App\Models\PopUp;
-use App\Models\Slide;
-use App\Models\Topic;
-use App\Models\Video;
-use App\Models\letsgo;
-use App\Models\Contact;
 use App\Models\Announcement;
 use App\Models\BenefitTopic;
+use App\Models\Blog;
 use App\Models\BlogCategory;
-use App\Http\Controllers\Controller;
+use App\Models\Contact;
+use App\Models\Depoiment;
+use App\Models\Event;
+use App\Models\Letsgo;
+use App\Models\PopUp;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Slide;
 use App\Models\Statute;
+use App\Models\Topic;
+use App\Models\Video;
+use Carbon\Carbon;
 
 class HomePageController extends Controller
 {
@@ -49,6 +50,7 @@ class HomePageController extends Controller
         $benefitTopics = BenefitTopic::active()->sorting()->get();
         $videos = Video::active()->sorting()->get();
         $letsgo = Letsgo::active()->first();
+        $depoiments = Depoiment::active()->sorting()->get();
         $contact = Contact::first();
         $statute = Statute::active()->first();
         $productCategorieHighlights = ProductCategory::whereHas('products', function($query) {
@@ -143,6 +145,7 @@ class HomePageController extends Controller
         $popUp = PopUp::active()->first();
         
         return view('client.blades.index', compact(
+            'depoiments', 
             'latestNews', 
             'recentCategories', 
             'contact',   

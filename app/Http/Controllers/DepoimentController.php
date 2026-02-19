@@ -2,36 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
-use Illuminate\Support\Str;
+use App\Models\Depoiment;
+use App\Repositories\SettingThemeRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
-use RealRashid\SweetAlert\Facades\Alert;
-use App\Repositories\SettingThemeRepository;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
+use Intervention\Image\ImageManager;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class AboutController extends Controller
+class DepoimentController extends Controller
 {
-    protected $pathUpload = 'admin/uploads/images/about/';
-
+    protected $pathUpload = 'admin/uploads/images/depoiment/';
     public function index()
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') && 
-          !Auth::user()->hasPermissionTo('sobre nos.visualizar')){
+
+        if(
+            !Auth::user()->hasRole('Super') && 
+            !Auth::user()->can('usuario.tornar usuario master') && 
+            !Auth::user()->hasPermissionTo('noticias.visualizar')
+        ){
             return view('admin.error.403', compact('settingTheme'));
         }
 
-        $abouts = About::get();
+        $depoiments = Depoiment::sorting()->get();
 
-        return view('admin.blades.about.index', compact('abouts'));
+        return view('admin.blades.depoiment.index', compact('depoiments'));
     }
+
     public function store(Request $request)
     {
         $data = $request->except('path_image');
@@ -41,7 +43,6 @@ class AboutController extends Controller
             'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif']
         ]);
 
-        // about desktop
         if ($request->hasFile('path_image')) {
             $file = $request->file('path_image');
             $mime = $file->getMimeType();
@@ -68,7 +69,7 @@ class AboutController extends Controller
 
         try {
             DB::beginTransaction();
-            About::create($data);
+            Depoiment::create($data);
             DB::commit();
             session()->flash('success', __('dashboard.response_item_create'));
         } catch (\Exception $e) {
@@ -76,79 +77,10 @@ class AboutController extends Controller
             Alert::error('Erro', __('dashboard.response_item_error_create'));
         }
 
-        return redirect()->route('admin.dashboard.about.index');
+        return redirect()->route('admin.dashboard.depoiment.index');
     }
 
-    public function create(){
-        $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') &&  
-          !Auth::user()->hasPermissionTo('sobre nos.visualizar') &&
-          !Auth::user()->hasPermissionTo('sobre nos.criar')){
-            return view('admin.error.403', compact('settingTheme'));
-        }
-
-        return view('admin.blades.about.create');
-    }
-
-    public function edit(About $about){
-        $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') && 
-          !Auth::user()->hasPermissionTo('sobre nos.visualizar') && 
-          !Auth::user()->hasPermissionTo('sobre nos.editar')){
-            return view('admin.error.403', compact('settingTheme'));
-        }
-
-        return view('admin.blades.about.edit', compact('about'));
-    }
-
-    public function uploadImageCkeditorAbout(Request $request)
-    {
-        if ($request->hasFile('upload')) {
-            $file = $request->file('upload');
-            $mime = $file->getMimeType();
-
-            // Nome do arquivo sem extensão + .webp
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
-
-            // Caminho de armazenamento
-            $pathUpload = 'uploads/blog_images/';
-
-            $manager = ImageManager::gd(); // ou ->imagick() se preferir
-
-            if ($mime === 'image/svg+xml') {
-                // Apenas copiar o SVG sem conversão
-                Storage::disk('public')->putFileAs($pathUpload, $file, $filename);
-            } else {
-                // Converter em WEBP
-                $image = $manager->read($file)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
-
-                Storage::disk('public')->put($pathUpload . $filename, $image);
-            }
-
-            $url = asset('storage/' . $pathUpload . $filename);
-
-            return response()->json([
-                'uploaded' => 1,
-                'fileName' => $filename,
-                'url' => $url
-            ]);
-        }
-
-        return response()->json([
-            'uploaded' => 0,
-            'error' => ['message' => 'Upload falhou.']
-        ]);
-    }
-
-    public function update(Request $request, About $about)
+    public function update(Request $request, Depoiment $depoiment)
     {
         $data = $request->except('path_image');
         $manager = new ImageManager(GdDriver::class);
@@ -157,7 +89,6 @@ class AboutController extends Controller
             'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif']
         ]);
 
-        // about desktop
         if ($request->hasFile('path_image')) {
             $file = $request->file('path_image');
             $mime = $file->getMimeType();
@@ -177,12 +108,12 @@ class AboutController extends Controller
                 Storage::put($this->pathUpload . $filename, $image);
             }
 
-            Storage::delete(isset($about->path_image)??$about->path_image);
+            Storage::delete(isset($depoiment->path_image)??$depoiment->path_image);
             $data['path_image'] = $this->pathUpload . $filename;
         }
 
         if (isset($request->delete_path_image)) {
-            Storage::delete(isset($about->path_image)??$about->path_image);
+            Storage::delete(isset($depoiment->path_image)??$depoiment->path_image);
             $data['path_image'] = null;
         }
 
@@ -190,7 +121,7 @@ class AboutController extends Controller
 
         try {
             DB::beginTransaction();
-            $about->fill($data)->save();
+            $depoiment->fill($data)->save();
             DB::commit();
             session()->flash('success', __('dashboard.response_item_update'));
         } catch (\Exception $e) {
@@ -198,45 +129,49 @@ class AboutController extends Controller
             Alert::error('Erro', __('dashboard.response_item_error_update'));
         }
 
-        return redirect()->route('admin.dashboard.about.index');
+        return redirect()->route('admin.dashboard.depoiment.index');
     }
 
-    public function destroy(About $about)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Depoiment $depoiment)
     {
-        Storage::delete(isset($about->path_image)??$about->path_image);
-        $about->delete();
+        Storage::delete(isset($depoiment->path_image)??$depoiment->path_image);
+        $depoiment->delete();
         Session::flash('success',__('dashboard.response_item_delete'));
         return redirect()->back();
     }
 
-    public function destroySelected(Request $request)
+        public function destroySelected(Request $request)
     {    
-        foreach ($request->deleteAll as $aboutId) {
-            $about = About::find($aboutId);
+        foreach ($request->deleteAll as $depoimentId) {
+            $depoiment = Depoiment::find($depoimentId);
     
-            if ($about) {
+            if ($depoiment) {
                 activity()
                     ->causedBy(Auth::user())
-                    ->performedOn($about)
+                    ->performedOn($depoiment)
                     ->event('multiple_deleted')
                     ->withProperties([
                         'attributes' => [
-                            'id' => $aboutId,
-                            'path_image' => $about->path_image,
-                            'title' => $about->title,
-                            'text' => $about->text,
-                            'sorting' => $about->sorting,
-                            'active' => $about->active,
+                            'id' => $depoimentId,
+                            'name' => $depoiment->name,
+                            'function' => $depoiment->function,
+                            'path_image' => $depoiment->path_image,
+                            'text' => $depoiment->text,
+                            'sorting' => $depoiment->sorting,
+                            'active' => $depoiment->active,
                             'event' => 'multiple_deleted',
                         ]
                     ])
                     ->log('multiple_deleted');
             } else {
-                \Log::warning("Item com ID $aboutId não encontrado.");
+                \Log::warning("Item com ID $depoimentId não encontrado.");
             }
         }
     
-        $deleted = About::whereIn('id', $request->deleteAll)->delete();
+        $deleted = Depoiment::whereIn('id', $request->deleteAll)->delete();
     
         if ($deleted) {
             return Response::json(['status' => 'success', 'message' => $deleted . ' '.__('dashboard.response_item_delete')]);
@@ -248,28 +183,29 @@ class AboutController extends Controller
     public function sorting(Request $request)
     {
         foreach($request->arrId as $sorting => $id) {
-            $about = About::find($id);
+            $depoiment = Depoiment::find($id);
     
-            if ($about) {
-                $about->sorting = $sorting;
-                $about->save();
+            if ($depoiment) {
+                $depoiment->sorting = $sorting;
+                $depoiment->save();
             } else {
                 Log::warning("Item com ID $id não encontrado.");
             }
 
-            if($about) {
+            if($depoiment) {
                 activity()
                     ->causedBy(Auth::user())
-                    ->performedOn($about)
+                    ->performedOn($depoiment)
                     ->event('order_updated')
                     ->withProperties([
                         'attributes' => [
                             'id' => $id,
-                            'path_image' => $about->path_image,
-                            'title' => $about->title,
-                            'text' => $about->text,
-                            'sorting' => $about->sorting,
-                            'active' => $about->active,
+                            'name' => $depoiment->name,
+                            'function' => $depoiment->function,
+                            'path_image' => $depoiment->path_image,
+                            'text' => $depoiment->text,
+                            'sorting' => $depoiment->sorting,
+                            'active' => $depoiment->active,
                             'event' => 'order_updated',
                         ]
                     ])

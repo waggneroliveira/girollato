@@ -14,15 +14,11 @@
             <div class="row g-4">
                 <div class="position-relative mb-3">
                     <article>
-                        <img class="img-fluid rounded-3 w-100 image-inner d-flex justify-content-center align-items-center mb-4" src="{{asset('build/client/images/blog-inner.png')}}" alt="Cargos em Marketing têm salários mais altos em 2026" loading="lazy">
-                        <h2 class="mb-3 font-changa font-30 font-bold">Cargos em Marketing têm salários mais altos em 2026</h2>
+                        <img class="img-fluid rounded-3 w-100 image-inner d-flex justify-content-center align-items-center mb-4" src="{{asset('storage/' . $blogInner->path_image)}}" alt="{{$blogInner->title}}" loading="lazy">
+                        <h2 class="mb-3 font-changa font-30 font-bold">{{$blogInner->title}}</h2>
 
                         <div class="color-grey font-changa font-16 font-regular">
-                            <p>
-                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some injected or words cool don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden In the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some injected or words which don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden In the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                d dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
-                            </p>
+                            {!! $blogInner->text !!}
                         </div>                         
                     </article>
 
@@ -78,64 +74,47 @@
             </div>
    
             <!-- Categorias -->
-            <div class="card border-0 shadow-sm mb-4 bg-grey-light px-3 col-12 col-lg-10">
-               <div class="card-body">
-                     <h5 class="font-changa font-24 font-bold mb-3 color-green">Categories</h5>
-   
-                     <ul class="list-unstyled mb-0">
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">PETS</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">25</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Gatos</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Cachorros</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">7</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Estilo de Vida</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">8</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Nutrição</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Banho</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2">
-                           <span class="font-changa font-16 font-semibold">Brinquedos</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">9</span>
-                        </li>
-                     </ul>
+            @if ($blogCategories->count())               
+               <div class="card border-0 shadow-sm mb-4 bg-grey-light px-3 col-12 col-lg-10">
+                  <div class="card-body">
+                        <h5 class="font-changa font-24 font-bold mb-3 color-green">Categories</h5>
+      
+                        <ul class="list-unstyled mb-0">
+                           @foreach ($blogCategories as $category)                           
+                              <li class="d-flex justify-content-between py-2 border-bottom">
+                                 <span class="font-changa font-16 font-semibold">{{$category->title}}</span>
+                                 <span class="color-yellow font-changa font-16 font-semibold">{{$category->blogs->count()}}</span>
+                              </li>
+                           @endforeach
+                        </ul>
+                  </div>
                </div>
-            </div>
+            @endif
    
             <!-- Relacionados -->
-            <div class="card border-0 shadow-sm col-12 col-lg-10 relacionados bg-grey-light">
-               <div class="card-body">
-                     <h5 class="font-changa font-24 font-bold mb-3 color-green">Relacionados</h5>
-   
-                     @for($r = 0; $r < 6; $r++)
-                        <div class="d-flex mb-3">
-                           <div class="image me-2 rounded">
-                              <img src="{{asset('build/client/images/blog-' . (($r % 2) + 1) . '.png')}}" class="me-3" alt="">
+            @if ($blogRelacionados->count())               
+               <div class="card border-0 shadow-sm col-12 col-lg-10 relacionados bg-grey-light">
+                  <div class="card-body">
+                        <h5 class="font-changa font-24 font-bold mb-3 color-green">Relacionados</h5>
+      
+                        @foreach ($blogRelacionados as $relacionado)  
+                           <div class="mb-3">
+                              <a href="{{route('blog-inner', ['slug' => $relacionado->slug])}}" class="d-flex text-decoration-none text-reset">
+                                 <div class="image me-2 rounded">
+                                    <img src="{{asset('storage/' . $relacionado->path_image)}}" class="me-3" alt="{{$relacionado->title}}">
+                                 </div>
+                                 <div class="col-9">
+                                    <h6 class="font-changa font-16 font-semibold">
+                                       {{$relacionado->title}}
+                                    </h6>
+                                    <small class="color-grey font-changa font-16 font-regular">{{ $relacionado->date->translatedFormat('d M Y') }}</small>
+                                 </div>
+                              </a>
                            </div>
-                           <div class="col-9">
-                              <h6 class="font-changa font-16 font-semibold">
-                                    Calopsita e suas vantagens no mundo PET...
-                              </h6>
-                              <small class="color-grey font-changa font-16 font-regular">Jun 22, 2026</small>
-                           </div>
-                        </div>
-                     @endfor
+                        @endforeach
+                  </div>
                </div>
-            </div>
-   
+            @endif   
          </aside>
       </div>
    </div>

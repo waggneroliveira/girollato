@@ -14,6 +14,10 @@ class Blog extends Model
     
     use Notifiable, HasFactory, LogsActivity;
     
+    protected $casts = [
+        'date' => 'datetime',
+    ];
+
     protected $fillable = [
         'blog_category_id',
         'title',

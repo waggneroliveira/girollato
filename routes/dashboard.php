@@ -38,6 +38,7 @@ use App\Http\Controllers\ProductGalleryController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\DepoimentController;
 use App\Http\Controllers\LetsgoController;
 use App\Http\Controllers\ServiceLocationController;
 
@@ -186,7 +187,7 @@ Route::prefix('painel/')->group(function () {
         Route::resource('onde-atendemos', ServiceLocationController::class)
         ->names('admin.dashboard.serviceLocation')
         ->parameters(['onde-atendemos'=>'serviceLocation']);
-        
+        //CATEGORIA PRODUTO
         Route::resource('categoria-de-produtos', ProductCategoryController::class)
         ->parameters(['categoria-de-produtos' => 'productCategory'])
         ->names('admin.dashboard.productCategory');
@@ -194,6 +195,14 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.productCategory.destroySelected');
         Route::post('categoria-de-produtos/sorting', [ProductCategoryController::class, 'sorting'])
         ->name('admin.dashboard.productCategory.sorting');
+        //DEPOIMENT
+        Route::resource('depoimento', DepoimentController::class)
+        ->parameters(['depoimento' => 'depoiment'])
+        ->names('admin.dashboard.depoiment');
+        Route::post('depoimento/delete', [DepoimentController::class, 'destroySelected'])
+        ->name('admin.dashboard.depoiment.destroySelected');
+        Route::post('depoimento/sorting', [DepoimentController::class, 'sorting'])
+        ->name('admin.dashboard.depoiment.sorting');
         //PRODUTOS
         Route::resource('produtos', ProductController::class)
         ->parameters(['produtos' => 'product'])
