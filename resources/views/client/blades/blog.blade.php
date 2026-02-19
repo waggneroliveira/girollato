@@ -13,26 +13,26 @@
          <div class="blog-content col-12 col-lg-8 mt-5 mt-lg-0">
             <div class="row g-4">
    
-               @for($i = 0; $i < 12; $i++)
+               @foreach($blogAll as $blog)
                   <div class="col-6 col-md-6 col-lg-4 m-0 mb-2 mb-lg-0 mt-0 mt-lg-4">
                      <article class="post-card">
-                           <a href="">
-                              <img src="{{asset('build/client/images/blog-' . (($i % 2) + 1) . '.png')}}" alt="">
+                           <a href="{{route('blog-inner', ['slug' => $blog->slug])}}">
+                              <img src="{{asset('storage/' . $blog->path_image_thumbnail)}}" alt="{{$blog->title}}">
                               <div class="post-overlay">
                                  <h5 class="font-changa font-18 font-bold text-white mb-2 mb-lg-3">
-                                       Qual a melhor ração para fêmeas com filhotes?
+                                    {{$blog->title}}
                                  </h5>
                                  <p class="font-16 font-regular text-white mb-1 mb-lg-3">
-                                       Proin viverra nisi at nisl imperdiet auctor. Donec iet auctor...
+                                    {{substr(strip_tags($blog->text), 0, 100)}}
                                  </p>
                                  <span class="date font-16 font-regular text-white">
-                                       04 Set 2026
+                                    {{ $blog->date->translatedFormat('d M Y') }}
                                  </span>
                               </div>
                            </a>
                      </article>
                   </div>
-               @endfor
+               @endforeach
       
             </div>
    
@@ -60,63 +60,45 @@
             </div>
    
             <!-- Categorias -->
-            <div class="card border-0 shadow-sm mb-4 bg-grey-light px-3 col-12 col-lg-10">
-               <div class="card-body">
-                     <h5 class="font-changa color-green font-24 font-bold mb-3">Categories</h5>
-   
-                     <ul class="list-unstyled mb-0">
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">PETS</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">25</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Gatos</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Cachorros</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">7</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Estilo de Vida</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">8</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Nutrição</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2 border-bottom">
-                           <span class="font-changa font-16 font-semibold">Banho</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">3</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2">
-                           <span class="font-changa font-16 font-semibold">Brinquedos</span>
-                           <span class="color-yellow font-changa font-16 font-semibold">9</span>
-                        </li>
-                     </ul>
+            @if ($blogCategories->count())               
+               <div class="card border-0 shadow-sm mb-4 bg-grey-light px-3 col-12 col-lg-10">
+                  <div class="card-body">
+                        <h5 class="font-changa font-24 font-bold mb-3 color-green">Categories</h5>
+      
+                        <ul class="list-unstyled mb-0">
+                           @foreach ($blogCategories as $category)                           
+                              <li class="d-flex justify-content-between py-2 border-bottom">
+                                 <span class="font-changa font-16 font-semibold">{{$category->title}}</span>
+                                 <span class="color-yellow font-changa font-16 font-semibold">{{$category->blogs->count()}}</span>
+                              </li>
+                           @endforeach
+                        </ul>
+                  </div>
                </div>
-            </div>
-   
+            @endif
+
             <!-- Relacionados -->
-            <div class="card border-0 shadow-sm col-12 col-lg-10 relacionados bg-grey-light">
-               <div class="card-body">
-                     <h5 class="font-changa color-green font-24 font-bold mb-3">Relacionados</h5>
-   
-                     @for($r = 0; $r < 6; $r++)
-                        <div class="d-flex mb-3">
-                           <div class="image me-2 rounded">
-                              <img src="{{asset('build/client/images/blog-' . (($r % 2) + 1) . '.png')}}" class="me-3" alt="">
+            @if ($blogSeeAlso->count())               
+               <div class="card border-0 shadow-sm col-12 col-lg-10 relacionados bg-grey-light">
+                  <div class="card-body">
+                        <h5 class="font-changa color-green font-24 font-bold mb-3">Veja também</h5>
+      
+                        @foreach ($blogSeeAlso as $blogSeeToo)              
+                           <div class="d-flex mb-3">
+                              <div class="image me-2 rounded">
+                                 <img src="{{asset('storage/' . $blogSeeToo->path_image_thumbnail)}}" class="me-3" alt="{{$blogSeeToo->title}}">
+                              </div>
+                              <div class="col-9">
+                                 <h6 class="font-changa font-16 font-semibold">
+                                    {{$blogSeeToo->title}}
+                                 </h6>
+                                 <small class="color-grey font-changa font-16 font-regular">{{ $blogSeeToo->date->translatedFormat('d M Y') }}</small>
+                              </div>
                            </div>
-                           <div class="col-9">
-                              <h6 class="font-changa font-16 font-semibold">
-                                    Calopsita e suas vantagens no mundo PET...
-                              </h6>
-                              <small class="color-grey font-changa font-16 font-regular">Jun 22, 2026</small>
-                           </div>
-                        </div>
-                     @endfor
+                        @endforeach
+                  </div>
                </div>
-            </div>
+            @endif
    
          </aside>
       </div>

@@ -31,7 +31,7 @@ class HomePageController extends Controller
 
         $blogHighlights = Blog::whereHas('category', function($active){
             $active->where('active', 1);
-        })->highlightOnly()->active()->sorting()->limit(2)->get();
+        })->highlightOnly()->active()->sorting()->limit(4)->get();
         $announcements = Announcement::select(
             'exhibition',
             'link',

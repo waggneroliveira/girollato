@@ -16,23 +16,11 @@ class BlogPageController extends Controller
     {
         $search = $request->input('search');
         $blogCategories = BlogCategory::whereHas('blogs')->active()->sorting()->get();
-        $blogSuperHighlights = Blog::whereHas('category', function($active){
-            $active->where('active', 1);
-        })->superHighlightOnly()->active()->sorting()->limit(6)->get();
-        $blogHighlights = Blog::whereHas('category', function($active){
-            $active->where('active', 1);
-        })->highlightOnly()->active()->sorting()->limit(4)->get();
-
-        $superHighlightIds = $blogSuperHighlights->pluck('id');
-        $highlightIds = $blogHighlights->pluck('id');        
-
-        $excludedIds = $superHighlightIds->merge($highlightIds);
 
         $blogAll = Blog::with('category')
         ->whereHas('category', function($active){
             $active->where('active', 1);
         });
-        // ->whereNotIn('id', $excludedIds);
 
         if ($category) {
             $blogAll = $blogAll->whereHas('category', function($query) use ($category) {
@@ -50,47 +38,18 @@ class BlogPageController extends Controller
         ->whereHas('category', function($active){
             $active->where('active', 1);
         })
-        // ->whereNotIn('id', $excludedIds->merge($blogAll->pluck('id')))
+        ->whereNotIn('id', $blogAll->pluck('id'))
         ->active()
         ->inRandomOrder()
         ->limit(4)
         ->get();
-        $announcements = Announcement::select(
-            'exhibition',
-            'link',
-            'exhibition',
-            'path_image',
-            'active',
-            'sorting',
-        )
-        ->where('exhibition', '=', 'mobile')
-        ->orWhere('exhibition', '=', 'horizontal')
-        ->active()
-        ->sorting()
-        ->get();
 
-        $announcementVerticals = Announcement::select(
-            'exhibition',
-            'link',
-            'exhibition',
-            'path_image',
-            'active',
-            'sorting',
-        )
-        ->where('exhibition', '=', 'vertical')
-        ->active()
-        ->sorting()
-        ->get();
         $popUp = PopUp::active()->first();
 
         return view('client.blades.blog', compact(
             'blogCategories',
-            'blogSuperHighlights',
-            'blogHighlights',
             'blogAll',
             'blogSeeAlso',
-            'announcements',
-            'announcementVerticals',
             'popUp',
         ));
     }
