@@ -36,9 +36,6 @@ require __DIR__ . '/dashboard.php';
 Route::get('/', function () {
     return redirect()->route('index');
 });
-Route::get('/noticia/interna', function () {
-    return view('client/blades/blog-inner');
-});
 
 Route::get('produto/{category}/{slug}', [ProductPageController::class, 'productView'])->name('client.product');
 Route::get('produtos', [ProductPageController::class, 'productAll'])->name('products');
@@ -79,11 +76,11 @@ Route::middleware([AuthClientMiddleware::class])->group(function () {
 Route::get('contato', [ContactPageController::class, 'index'])
 ->name('contact');
 Route::post('send-contact', [FormIndexController::class, 'store'])->name('send-contact');
-Route::get('noticia/{slug}', [BlogPageController::class, 'blogInner'])
+Route::get('blog/{slug}', [BlogPageController::class, 'blogInner'])
 ->name('blog-inner');
-Route::get('noticias', [BlogPageController::class, 'index'])->name('blogAll');
-Route::get('noticias/categoria/{category?}', [BlogPageController::class, 'index'])->name('blog');
-Route::post('noticias/search', [BlogPageController::class, 'index'])->name('blog-search');
+Route::get('blog', [BlogPageController::class, 'index'])->name('blogAll');
+Route::get('blog/categoria/{category?}', [BlogPageController::class, 'index'])->name('blog');
+Route::post('blog/search', [BlogPageController::class, 'index'])->name('blog-search');
 Route::post('send-newsletter', [NewsletterController::class, 'store'])->name('send-newsletter');
 Route::post('cliente/cadastro', [ClientController::class, 'store'])->name('register-client');
 Route::get('/', [HomePageController::class, 'index'])->name('index');

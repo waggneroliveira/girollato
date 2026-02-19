@@ -11,10 +11,12 @@ use App\Models\BlogCategory;
 use App\Models\Contact;
 use App\Models\Depoiment;
 use App\Models\Event;
+use App\Models\Faq;
 use App\Models\Letsgo;
 use App\Models\PopUp;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\SessaoFaq;
 use App\Models\Slide;
 use App\Models\Statute;
 use App\Models\Topic;
@@ -53,6 +55,8 @@ class HomePageController extends Controller
         $depoiments = Depoiment::active()->sorting()->get();
         $contact = Contact::first();
         $statute = Statute::active()->first();
+        $faqs = Faq::active()->sorting()->get();
+        $sessaoFaq = SessaoFaq::active()->first();
         $productCategorieHighlights = ProductCategory::whereHas('products', function($query) {
             $query->active()->whereHas('brand', fn($q) => $q->active());
         })
@@ -145,6 +149,8 @@ class HomePageController extends Controller
         $popUp = PopUp::active()->first();
         
         return view('client.blades.index', compact(
+            'sessaoFaq', 
+            'faqs', 
             'depoiments', 
             'latestNews', 
             'recentCategories', 

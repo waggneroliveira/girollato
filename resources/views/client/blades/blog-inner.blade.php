@@ -80,10 +80,12 @@
                         <h5 class="font-changa font-24 font-bold mb-3 color-green">Categories</h5>
       
                         <ul class="list-unstyled mb-0">
-                           @foreach ($blogCategories as $category)                           
-                              <li class="d-flex justify-content-between py-2 border-bottom">
-                                 <span class="font-changa font-16 font-semibold">{{$category->title}}</span>
-                                 <span class="color-yellow font-changa font-16 font-semibold">{{$category->blogs->count()}}</span>
+                           @foreach ($blogCategories as $blogCategory)                           
+                              <li class="py-2 border-bottom">
+                                 <a href="{{route('blog', ['category' => $blogCategory->slug])}}" class="d-flex justify-content-between text-decoration-none text-reset">
+                                    <span class="font-changa font-16 font-semibold">{{$blogCategory->title}}</span>
+                                    <span class="color-yellow font-changa font-16 font-semibold">{{$blogCategory->blogs->count()}}</span>
+                                 </a>
                               </li>
                            @endforeach
                         </ul>

@@ -1,0 +1,143 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\SessaoFaq;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Repositories\SettingThemeRepository;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
+
+class SessaoFaqController extends Controller
+{
+    protected $pathUpload = 'admin/uploads/images/sessao-faq/';
+    public function index()
+    {
+        $settingTheme = (new SettingThemeRepository())->settingTheme();
+        if(!Auth::user()->hasRole('Super') && 
+          !Auth::user()->can('usuario.tornar usuario master') && 
+          !Auth::user()->hasPermissionTo('estatuto.visualizar')){
+            return view('admin.error.403', compact('settingTheme'));
+        }
+       $sessaoFaq = SessaoFaq::first();
+
+        return view('admin.blades.sessaoFaq.index', compact('sessaoFaq'));
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->except('path_file');
+        $manager = new ImageManager(GdDriver::class);
+
+        $request->validate([
+            'path_file' => ['nullable', 'file', 'image', 'max:3072', 'mimes:jpg,jpeg,png,gif'],
+        ]);
+
+        // sessaoFaq desktop
+        if ($request->hasFile('path_file')) {
+            $file = $request->file('path_file');
+            $mime = $file->getMimeType();
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
+
+            if ($mime === 'image/svg+xml') {
+                Storage::putFileAs($this->pathUpload, $file, $filename);
+            } else {
+                $image = $manager->read($file)
+                    ->resize(null, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toWebp(quality: 95)
+                    ->toString();
+
+                Storage::put($this->pathUpload . $filename, $image);
+            }
+
+            $data['path_file'] = $this->pathUpload . $filename;
+        }
+
+        $data['active'] = $request->active ? 1 : 0;
+
+        try {
+            DB::beginTransaction();
+            SessaoFaq::create($data);
+            DB::commit();
+            session()->flash('success', __('dashboard.response_item_create'));
+        } catch (\Exception $e) {
+            DB::rollback();
+            Alert::error('Erro', __('dashboard.response_item_error_create'));
+        }
+
+        return redirect()->back();
+    }
+
+    public function update(Request $request, SessaoFaq $sessaoFaq)
+    {
+        $data = $request->except('path_file');
+        $manager = new ImageManager(GdDriver::class);
+
+        $request->validate([
+            'path_file' => ['nullable', 'file', 'image', 'max:3072', 'mimes:jpg,jpeg,png,gif'],
+        ]);
+
+
+        if ($request->hasFile('path_file')) {
+            $file = $request->file('path_file');
+            $mime = $file->getMimeType();
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
+
+            if ($mime === 'image/svg+xml') {
+                Storage::putFileAs($this->pathUpload, $file, $filename);
+            } else {
+                $image = $manager->read($file)
+                    ->resize(null, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toWebp(quality: 95)
+                    ->toString();
+
+                Storage::put($this->pathUpload . $filename, $image);
+            }
+
+            Storage::delete(isset($sessaoFaq->path_file)??$sessaoFaq->path_file);
+            $data['path_file'] = $this->pathUpload . $filename;
+        }
+
+        // Se o usuário pediu para remover via Dropify
+        if ($request->has('delete_path_file')) {
+            if (!empty($sessaoFaq->path_file) && Storage::exists($sessaoFaq->path_file)) {
+                Storage::delete($sessaoFaq->path_file);
+            }
+            $data['path_file'] = null;
+        }
+
+        $data['active'] = $request->active ? 1 : 0;
+
+        try {
+            DB::beginTransaction();
+            $sessaoFaq->fill($data)->save();
+            DB::commit();
+            session()->flash('success', __('dashboard.response_item_update'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Alert::error('Erro', __('dashboard.response_item_error_update'));
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function destroy(SessaoFaq $sessaoFaq)
+    {
+        Storage::delete(isset($sessaoFaq->path_file)??$sessaoFaq->path_file);
+        $sessaoFaq->delete();
+        Session::flash('success',__('dashboard.response_item_delete'));
+        return redirect()->back();
+    }
+}

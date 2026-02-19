@@ -39,8 +39,10 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DepoimentController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LetsgoController;
 use App\Http\Controllers\ServiceLocationController;
+use App\Http\Controllers\SessaoFaqController;
 
 Route::get('painel/', function () {
     return redirect()->route('admin.dashboard.painel');
@@ -203,6 +205,18 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.depoiment.destroySelected');
         Route::post('depoimento/sorting', [DepoimentController::class, 'sorting'])
         ->name('admin.dashboard.depoiment.sorting');
+        //SESSAO FAQ
+        Route::resource('sessao-faq', SessaoFaqController::class)
+        ->names('admin.dashboard.sessaoFaq')
+        ->parameters(['sessao-faq'=>'sessaoFaq']);
+        //FAQ
+        Route::resource('pergunta', FaqController::class)
+        ->parameters(['pergunta' => 'faq'])
+        ->names('admin.dashboard.faq');
+        Route::post('pergunta/delete', [FaqController::class, 'destroySelected'])
+        ->name('admin.dashboard.faq.destroySelected');
+        Route::post('pergunta/sorting', [FaqController::class, 'sorting'])
+        ->name('admin.dashboard.faq.sorting');
         //PRODUTOS
         Route::resource('produtos', ProductController::class)
         ->parameters(['produtos' => 'product'])

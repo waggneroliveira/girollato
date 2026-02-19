@@ -38,10 +38,7 @@ class BlogController extends Controller
 
         // Query base
         $blogsQuery = Blog::with([
-            'category',
-            'comments' => function ($query) {
-                $query->orderBy('created_at', 'desc')->with('client');
-            }
+            'category'
         ]);
 
         // 🔎 Aplicar filtros

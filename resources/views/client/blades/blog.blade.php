@@ -12,7 +12,12 @@
       <div class="row mt-0 mt-lg-5 justify-content-between flex-column-reverse flex-lg-row">
          <div class="blog-content col-12 col-lg-8 mt-5 mt-lg-0">
             <div class="row g-4">
-   
+               <div class="col-12">
+                  @if (Route::currentRouteName() == 'blog-search')
+                     <a href="{{ route('blog') }}" class="col-12 col-lg-2 text-center text-decoration-none d-block bg-green font-changa font-medium text-white py-2 font-15 rounded-2">Limpar filtro</a>
+                  @endif
+               </div>
+
                @foreach($blogAll as $blog)
                   <div class="col-6 col-md-6 col-lg-4 m-0 mb-2 mb-lg-0 mt-0 mt-lg-4">
                      <article class="post-card">
@@ -43,9 +48,10 @@
             <!-- Busca -->
             <div class="card border-0 shadow-sm mb-4 bg-grey-light col-12 col-lg-10">
                <div class="card-body p-4">
-                     <form class="position-relative">
+                     <form action="{{route('blog-search')}}" class="position-relative" method="post">
+                        @csrf
                         <input
-                           type="text"
+                          type="search" name="search"
                            class="form-control rounded-3 ps-4 pe-5"
                            placeholder="Pesquise aqui..."
                         >
@@ -66,10 +72,12 @@
                         <h5 class="font-changa font-24 font-bold mb-3 color-green">Categories</h5>
       
                         <ul class="list-unstyled mb-0">
-                           @foreach ($blogCategories as $category)                           
-                              <li class="d-flex justify-content-between py-2 border-bottom">
-                                 <span class="font-changa font-16 font-semibold">{{$category->title}}</span>
-                                 <span class="color-yellow font-changa font-16 font-semibold">{{$category->blogs->count()}}</span>
+                           @foreach ($blogCategories as $blogCategory)                           
+                              <li class="py-2 border-bottom">
+                                 <a href="{{route('blog', ['category' => $blogCategory->slug])}}" class="d-flex justify-content-between d-flex text-decoration-none text-reset">
+                                    <span class="font-changa font-16 font-semibold">{{$blogCategory->title}}</span>
+                                    <span class="color-yellow font-changa font-16 font-semibold">{{$blogCategory->blogs->count()}}</span>
+                                 </a>
                               </li>
                            @endforeach
                         </ul>
@@ -85,15 +93,17 @@
       
                         @foreach ($blogSeeAlso as $blogSeeToo)              
                            <div class="d-flex mb-3">
-                              <div class="image me-2 rounded">
-                                 <img src="{{asset('storage/' . $blogSeeToo->path_image_thumbnail)}}" class="me-3" alt="{{$blogSeeToo->title}}">
-                              </div>
-                              <div class="col-9">
-                                 <h6 class="font-changa font-16 font-semibold">
-                                    {{$blogSeeToo->title}}
-                                 </h6>
-                                 <small class="color-grey font-changa font-16 font-regular">{{ $blogSeeToo->date->translatedFormat('d M Y') }}</small>
-                              </div>
+                              <a href="{{route('blog-inner', ['slug' => $blogSeeToo->slug])}}" class="d-flex text-decoration-none text-reset">
+                                 <div class="image me-2 rounded">
+                                    <img src="{{asset('storage/' . $blogSeeToo->path_image_thumbnail)}}" class="me-3" alt="{{$blogSeeToo->title}}">
+                                 </div>
+                                 <div class="col-9">
+                                    <h6 class="font-changa font-16 font-semibold">
+                                       {{$blogSeeToo->title}}
+                                    </h6>
+                                    <small class="color-grey font-changa font-16 font-regular">{{ $blogSeeToo->date->translatedFormat('d M Y') }}</small>
+                                 </div>
+                              </a>
                            </div>
                         @endforeach
                   </div>
