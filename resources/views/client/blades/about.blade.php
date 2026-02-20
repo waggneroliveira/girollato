@@ -164,7 +164,7 @@
         </div>
     </section>
 @endif
-
+@if (isset($video) && $video->link <> null)
     <section class="video-section">
         <div class="video-container position-relative" 
             data-video="{{$video->link}}">
@@ -179,7 +179,8 @@
 
         </div>
     </section>
-    
+@endif
+@if (isset($serviceLocation))
     <section id="coverage-section" class="coverage-section py-5 position-relative">
         <div class="container">
             <div class="row align-items-center gy-4">
@@ -213,145 +214,146 @@
         </div>
         <img src="{{asset('build/client/images/firula-about.svg')}}" alt="Firula" class="position-absolute bottom-0 start-0">
     </section>
+@endif
 
 
-<script>
-    // Normaliza URL
-    function norm(url) {
-        if (!url) return "";
-        return url.startsWith("//") ? window.location.protocol + url : url;
-    }
-
-    // Converte para embed (YouTube / Vimeo)
-    function toEmbed(rawUrl) {
-        const urlStr = norm(rawUrl);
-        if (!urlStr) return "";
-
-        let u;
-        try { u = new URL(urlStr); } catch { return urlStr; }
-
-        const host = u.hostname.replace(/^www\./, "");
-
-        // YouTube
-        if (host.includes("youtube.com") || host.includes("youtu.be")) {
-
-            if (u.pathname.startsWith("/embed/")) return u.toString();
-
-            if (host === "youtu.be" && u.pathname.length > 1) {
-                const id = u.pathname.split("/")[1];
-                return `https://www.youtube.com/embed/${id}?autoplay=1`;
-            }
-
-            if (u.pathname.startsWith("/shorts/")) {
-                const id = u.pathname.split("/")[2] || u.pathname.split("/")[1];
-                return `https://www.youtube.com/embed/${id}?autoplay=1`;
-            }
-
-            const v = u.searchParams.get("v");
-            if (v) return `https://www.youtube.com/embed/${v}?autoplay=1`;
-
-            const parts = u.pathname.split("/").filter(Boolean);
-            if (parts.length >= 1) {
-                const id = parts.pop();
-                return `https://www.youtube.com/embed/${id}?autoplay=1`;
-            }
+    <script>
+        // Normaliza URL
+        function norm(url) {
+            if (!url) return "";
+            return url.startsWith("//") ? window.location.protocol + url : url;
         }
 
-        // Vimeo
-        if (host.includes("vimeo.com")) {
+        // Converte para embed (YouTube / Vimeo)
+        function toEmbed(rawUrl) {
+            const urlStr = norm(rawUrl);
+            if (!urlStr) return "";
 
-            if (host === "player.vimeo.com") return u.toString();
+            let u;
+            try { u = new URL(urlStr); } catch { return urlStr; }
 
-            const parts = u.pathname.split("/").filter(Boolean);
-            const last = parts[parts.length - 1];
-            if (/^\d+$/.test(last)) {
-                return `https://player.vimeo.com/video/${last}?autoplay=1`;
-            }
-        }
-
-        return urlStr;
-    }
-
-    // Video youtube
-    document.querySelector('.video-play-btn').addEventListener('click', function () {
-
-        const container = this.closest('.video-container');
-        const rawUrl = container.getAttribute('data-video');
-        const embedUrl = toEmbed(rawUrl);
-
-        container.innerHTML = `
-            <iframe
-                src="${embedUrl}"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-                style="width:100%; height:100%;">
-            </iframe>
-        `;
-    });
-
-
-        function getYouTubeId(url) {
-        try {
-            const u = new URL(url);
             const host = u.hostname.replace(/^www\./, "");
 
-            if (host === "youtu.be") {
-                return u.pathname.split("/")[1];
+            // YouTube
+            if (host.includes("youtube.com") || host.includes("youtu.be")) {
+
+                if (u.pathname.startsWith("/embed/")) return u.toString();
+
+                if (host === "youtu.be" && u.pathname.length > 1) {
+                    const id = u.pathname.split("/")[1];
+                    return `https://www.youtube.com/embed/${id}?autoplay=1`;
+                }
+
+                if (u.pathname.startsWith("/shorts/")) {
+                    const id = u.pathname.split("/")[2] || u.pathname.split("/")[1];
+                    return `https://www.youtube.com/embed/${id}?autoplay=1`;
+                }
+
+                const v = u.searchParams.get("v");
+                if (v) return `https://www.youtube.com/embed/${v}?autoplay=1`;
+
+                const parts = u.pathname.split("/").filter(Boolean);
+                if (parts.length >= 1) {
+                    const id = parts.pop();
+                    return `https://www.youtube.com/embed/${id}?autoplay=1`;
+                }
             }
 
-            if (u.pathname.startsWith("/shorts/")) {
-                return u.pathname.split("/")[2] || u.pathname.split("/")[1];
+            // Vimeo
+            if (host.includes("vimeo.com")) {
+
+                if (host === "player.vimeo.com") return u.toString();
+
+                const parts = u.pathname.split("/").filter(Boolean);
+                const last = parts[parts.length - 1];
+                if (/^\d+$/.test(last)) {
+                    return `https://player.vimeo.com/video/${last}?autoplay=1`;
+                }
             }
 
-            const v = u.searchParams.get("v");
-            if (v) return v;
-
-            const parts = u.pathname.split("/").filter(Boolean);
-            return parts.pop();
-        } catch {
-            return null;
+            return urlStr;
         }
-    }
 
-    document.addEventListener("DOMContentLoaded", function () {
+        // Video youtube
+        document.querySelector('.video-play-btn').addEventListener('click', function () {
 
-        const container = document.querySelector(".video-container");
-        const img = container.querySelector(".video-thumb");
-        const rawUrl = container.getAttribute("data-video");
+            const container = this.closest('.video-container');
+            const rawUrl = container.getAttribute('data-video');
+            const embedUrl = toEmbed(rawUrl);
 
-        const videoId = getYouTubeId(rawUrl);
+            container.innerHTML = `
+                <iframe
+                    src="${embedUrl}"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen
+                    style="width:100%; height:100%;">
+                </iframe>
+            `;
+        });
 
-        if (videoId) {
-            img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+            function getYouTubeId(url) {
+            try {
+                const u = new URL(url);
+                const host = u.hostname.replace(/^www\./, "");
+
+                if (host === "youtu.be") {
+                    return u.pathname.split("/")[1];
+                }
+
+                if (u.pathname.startsWith("/shorts/")) {
+                    return u.pathname.split("/")[2] || u.pathname.split("/")[1];
+                }
+
+                const v = u.searchParams.get("v");
+                if (v) return v;
+
+                const parts = u.pathname.split("/").filter(Boolean);
+                return parts.pop();
+            } catch {
+                return null;
+            }
         }
-    });
 
-    const section = document.getElementById("mvwSection");
-    const cards = document.querySelectorAll(".mvw-card");
+        document.addEventListener("DOMContentLoaded", function () {
 
-    function changeBackground(card) {
-        const bg = card.getAttribute("data-bg");
-        section.style.backgroundImage = `url(${bg})`;
+            const container = document.querySelector(".video-container");
+            const img = container.querySelector(".video-thumb");
+            const rawUrl = container.getAttribute("data-video");
 
-        cards.forEach(c => c.classList.remove("active"));
-        card.classList.add("active");
-    }
+            const videoId = getYouTubeId(rawUrl);
 
-    cards.forEach(card => {
-        card.addEventListener("mouseenter", () => {
-            if (window.innerWidth > 768) {
-                changeBackground(card);
+            if (videoId) {
+                img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
             }
         });
-    });
 
-    cards.forEach(card => {
-        card.addEventListener("click", () => {
-            if (window.innerWidth <= 768) {
-                changeBackground(card);
-            }
+        const section = document.getElementById("mvwSection");
+        const cards = document.querySelectorAll(".mvw-card");
+
+        function changeBackground(card) {
+            const bg = card.getAttribute("data-bg");
+            section.style.backgroundImage = `url(${bg})`;
+
+            cards.forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+        }
+
+        cards.forEach(card => {
+            card.addEventListener("mouseenter", () => {
+                if (window.innerWidth > 768) {
+                    changeBackground(card);
+                }
+            });
         });
-    });
-</script>
+
+        cards.forEach(card => {
+            card.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {
+                    changeBackground(card);
+                }
+            });
+        });
+    </script>
 @endsection
