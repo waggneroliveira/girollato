@@ -14,16 +14,33 @@ public function filterUsersByPermissions($users)
     $permissoes = [
         'auditoria.visualizar',
         'email.visualizar',
-        'categorias do blog.visualizar',
-        'newsletter.visualizar',
+        'categorias de produtos.visualizar',
+        'categorias de noticias.visualizar',
         'lead contato.visualizar',
         'contato.visualizar',
         'grupo.visualizar',
         'slides.visualizar',
         'notificacao.visualizar',
         'usuario.visualizar',
+        'marcas.visualizar',
+        'depoimento.visualizar',
+        'missao visao e valores.visualizar',
+        'noticias.visualizar',
+        'onde atendemos.visualizar',
+        'parametro.visualizar',
+        'passo a passo.visualizar',
+        'perguntas e respostas.visualizar',
+        'produtos.visualizar',
+        'representantes.visualizar',
+        'sesssao lets go.visualizar',
+        'sesssao faq.visualizar',
+        'slide.visualizar',
+        'sobre nos.visualizar',
+        'topico.visualizar',
+        'usuario.visualizar',
+        'video.visualizar',
     ];
-
+    
     // Se for Super, vê tudo (menos o próprio Super com id 1)
     if ($user->hasRole('Super')) {
         return $users->where('id', '<>', 1);

@@ -94,7 +94,7 @@
                         <li class="menu-title">Listagem</li>
                         @if (Auth::user()->hasRole('Super') || 
                         Auth::user()->hasPermissionTo('usuario.tornar usuario master') ||
-                        Auth::user()->hasPermissionTo('videos.visualizar') )
+                        Auth::user()->hasPermissionTo('video.visualizar') )
                             <li class="menu-item">
                                 <a href="#menuDashboards" data-bs-toggle="collapse" class="menu-link">
                                     <span class="menu-icon"><i class="mdi mdi-play-circle"></i></span>
@@ -105,7 +105,7 @@
                                     <ul class="sub-menu">
                                         @if (Auth::user()->hasRole('Super') || 
                                         Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
-                                        Auth::user()->hasPermissionTo('videos.visualizar'))
+                                        Auth::user()->hasPermissionTo('video.visualizar'))
                                             <li class="menu-item">
                                                 <a href="{{route('admin.dashboard.video.index')}}" class="menu-link">
                                                     <span class="menu-text">Vídeos</span>
@@ -119,7 +119,7 @@
                         @if (Auth::user()->hasRole('Super') || 
                         Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
                         Auth::user()->hasPermissionTo('sobre nos.visualizar') || 
-                        Auth::user()->hasPermissionTo('topico sobre.visualizar'))
+                        Auth::user()->hasPermissionTo('topico.visualizar'))
                             <li class="menu-item">
                                 <a href="#about" data-bs-toggle="collapse" class="menu-link">
                                     <span class="menu-icon"><i class="mdi mdi-help-circle"></i></span>
@@ -139,7 +139,7 @@
                                         @endif
                                         @if (Auth::user()->hasRole('Super') || 
                                         Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
-                                        Auth::user()->hasPermissionTo('topico sobre.visualizar'))
+                                        Auth::user()->hasPermissionTo('topico.visualizar'))
                                             <li class="menu-item">
                                                 <a href="{{route('admin.dashboard.direction.index')}}" class="menu-link">
                                                     <span class="menu-text">Tópico Sobre</span>
@@ -148,40 +148,6 @@
                                         @endif
                                     </ul>
                                 </div>
-                            </li>
-                        @endif
-                        @if (Auth::user()->hasRole('Super') || 
-                        Auth::user()->hasPermissionTo('usuario.tornar usuario master') ||
-                        Auth::user()->hasPermissionTo('sessao anuncie.visualizar'))
-                            <li class="menu-item">
-                                <a href="#servicos" data-bs-toggle="collapse" class="menu-link">
-                                    <span class="menu-icon"><i class="mdi mdi-toolbox"></i></span>
-                                    <span class="menu-text"> Sessão Anuncie </span>
-                                    <span class="badge bg-success rounded-pill ms-auto">4</span>
-                                </a>
-                                <div class="collapse" id="servicos">
-                                    <ul class="sub-menu">
-                                        @if (Auth::user()->hasRole('Super') || 
-                                        Auth::user()->hasPermissionTo('usuario.tornar usuario master') ||
-                                        Auth::user()->hasPermissionTo('sessao anuncie.visualizar'))
-                                            <li class="menu-item">
-                                                <a href="{{route('admin.dashboard.report.index')}}" class="menu-link">
-                                                    <span class="menu-text">Sessão Anuncie</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </li>
-                        @endif
-                        @if (Auth::user()->hasRole('Super') || 
-                        Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
-                        Auth::user()->hasPermissionTo('agenda.visualizar'))
-                            <li class="menu-item">
-                                <a href="{{route('admin.dashboard.event.index')}}" class="menu-link">
-                                    <span class="menu-icon"><i class="mdi mdi-calendar-outline"></i></span>
-                                    <span class="menu-text"> Agenda</span>
-                                </a>
                             </li>
                         @endif
                         @if (Auth::user()->hasRole('Super') || 

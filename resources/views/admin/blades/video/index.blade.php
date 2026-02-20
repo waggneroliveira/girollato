@@ -11,10 +11,10 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Vídeos</li>
+                                    <li class="breadcrumb-item active">Vídeo</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Vídeos</h4>
+                            <h4 class="page-title">Vídeo</h4>
                         </div>
                     </div>
                 </div>
@@ -27,19 +27,19 @@
                                 <div class="row mb-2">
                                     <div class="col-12 d-flex justify-between">
                                         <div class="col-6">
-                                            @if (Auth::user()->can('videos.visualizar') &&
-                                            Auth::user()->can('videos.remover') ||
+                                            @if (Auth::user()->can('video.visualizar') &&
+                                            Auth::user()->can('video.remover') ||
                                             Auth::user()->can('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
                                                 <button id="btSubmitDelete" data-route="{{route('admin.dashboard.video.destroySelected')}}" type="button" class="btSubmitDelete btn btn-danger" style="display: none;">{{__('dashboard.btn_delete_all')}}</button>
                                             @endif
                                         </div>
                                         <div class="col-6 d-flex justify-content-end">
-                                            @if (Auth::user()->can('videos.visualizar') &&
-                                            Auth::user()->can('videos.criar') ||
+                                            @if (Auth::user()->can('video.visualizar') &&
+                                            Auth::user()->can('video.criar') ||
                                             Auth::user()->can('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
-                                                @if (isset($videos) && $videos->count() < 1)                                                    
+                                                @if (isset($video) && $video->count() < 1)                                                    
                                                     <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#video-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
                                                 @endif
                                                 <!-- Modal -->
@@ -82,7 +82,7 @@
                                         </thead>
     
                                         <tbody data-route="{{route('admin.dashboard.video.sorting')}}">
-                                            @foreach ($videos as $key => $video)
+                                            @foreach ($video as $key => $video)
                                                 <tr data-code="{{$video->id}}">
                                                     <td><span class="btnDrag mdi mdi-drag-horizontal font-22"></span></td>
                                                     <td class="bs-checkbox">
@@ -96,8 +96,8 @@
                                                         @endswitch
                                                     </td>
                                                     <td class="d-flex gap-lg-1 justify-center">
-                                                        @if (Auth::user()->can('videos.visualizar') &&
-                                                        Auth::user()->can('videos.editar') ||
+                                                        @if (Auth::user()->can('video.visualizar') &&
+                                                        Auth::user()->can('video.editar') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <button class="table-edit-button btn btn-primary text-black" data-bs-toggle="modal" data-bs-target="#modal-group-edit-{{$video->id}}" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
@@ -124,8 +124,8 @@
                                                             </div><!-- /.modal -->                                                        
                                                         @endif
 
-                                                        @if (Auth::user()->can('videos.visualizar') &&
-                                                        Auth::user()->can('videos.remover') ||
+                                                        @if (Auth::user()->can('video.visualizar') &&
+                                                        Auth::user()->can('video.remover') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <form action="{{route('admin.dashboard.video.destroy',['video' => $video->id])}}" style="width: 30px" method="POST">

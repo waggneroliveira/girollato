@@ -14,22 +14,16 @@ class PermissionsSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            'topico sobre'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
-            'anuncio'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
             'auditoria'=>[
                 'Visualizar',
             ],
-            'categorias do noticias'=>[
+            'categorias de produtos'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'categorias de noticias'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
@@ -41,7 +35,7 @@ class PermissionsSeeder extends Seeder
                 'Visualizar',
                 'Remover'
             ],
-            'sessao anuncie'=>[
+            'depoimento'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
@@ -51,12 +45,6 @@ class PermissionsSeeder extends Seeder
                 'Visualizar',
                 'configurar smtp',
                 'testar conexao smtp'
-            ],
-            'agenda'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
             ],
             'grupo'=>[
                 'Criar',
@@ -68,7 +56,15 @@ class PermissionsSeeder extends Seeder
                 'Visualizar',
                 'Remover'
             ],
-            'newsletter'=>[
+            'marcas'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'missao visao e valores'=>[
+                'Criar',
+                'Editar',                
                 'Visualizar',
                 'Remover'
             ],
@@ -76,14 +72,73 @@ class PermissionsSeeder extends Seeder
                 'Criar',
                 'Editar',                
                 'Visualizar',
-                'Aprovar, Reprovar ou Remover Comentário',
                 'Remover'
             ],
             'notificacao'=>[               
                 'Visualizar',
                 'Notificacao de auditoria',
             ],
+            'onde atendemos'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'parametro'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'passo a passo'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'perguntas e respostas'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'produtos'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'representantes'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'sesssao lets go'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'sesssao faq'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'slide'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
             'sobre nos'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],
+            'topico'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
@@ -98,7 +153,7 @@ class PermissionsSeeder extends Seeder
                 'Atribuir grupos',
                 'Tornar usuario master'
             ],
-            'videos'=>[
+            'video'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
