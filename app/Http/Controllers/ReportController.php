@@ -19,10 +19,11 @@ class ReportController extends Controller
     public function index()
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-            !Auth::user()->can('usuario.tornar usuario master') && 
-            !Auth::user()->hasPermissionTo('denuncie.visualizar')){
-            return view('admin.error.403', compact('settingTheme'));
+
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('missao visao e valores.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
         $reports = Report::get();
 

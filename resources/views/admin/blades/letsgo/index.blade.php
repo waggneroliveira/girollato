@@ -11,10 +11,10 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Sessão lets Go</li>
+                                    <li class="breadcrumb-item active">Sessão Lets Go</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Sessão lets Go</h4>
+                            <h4 class="page-title">Sessão Lets Go</h4>
                         </div>
                     </div>
                 </div>
@@ -27,8 +27,8 @@
                                 <div class="row mb-2">
                                     <div class="col-12 d-flex justify-end">
                                         <div class="col-12 d-flex justify-content-end">
-                                            @if (Auth::user()->can('sessao anuncie.visualizar') &&
-                                            Auth::user()->can('sessao anuncie.criar') ||
+                                            @if (Auth::user()->can('sesssao lets go.visualizar') &&
+                                            Auth::user()->can('sesssao lets go.criar') ||
                                             Auth::user()->can('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
                                                 @if (!$letsgo)                                                
@@ -99,8 +99,8 @@
                                                         @endswitch
                                                     </td>
                                                     <td class="d-flex gap-lg-1 justify-center">
-                                                        @if (Auth::user()->can('sessao anuncie.visualizar') &&
-                                                        Auth::user()->can('sessao anuncie.editar') ||
+                                                        @if (Auth::user()->can('sesssao lets go.visualizar') &&
+                                                        Auth::user()->can('sesssao lets go.editar') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <button class="table-edit-button btn btn-primary text-black" data-bs-toggle="modal" data-bs-target="#modal-group-edit-{{$letsgo->id}}" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
@@ -127,8 +127,8 @@
                                                             </div><!-- /.modal -->                                                        
                                                         @endif
 
-                                                        @if (Auth::user()->can('sessao anuncie.visualizar') &&
-                                                        Auth::user()->can('sessao anuncie.remover') ||
+                                                        @if (Auth::user()->can('sesssao lets go.visualizar') &&
+                                                        Auth::user()->can('sesssao lets go.remover') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <form action="{{route('admin.dashboard.letsgo.destroy',['letsgo' => $letsgo->id])}}" style="width: 30px" method="POST">

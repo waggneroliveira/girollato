@@ -21,12 +21,10 @@ class DepoimentController extends Controller
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
 
-        if(
-            !Auth::user()->hasRole('Super') && 
-            !Auth::user()->can('usuario.tornar usuario master') && 
-            !Auth::user()->hasPermissionTo('noticias.visualizar')
-        ){
-            return view('admin.error.403', compact('settingTheme'));
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('depoimento.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
 
         $depoiments = Depoiment::sorting()->get();

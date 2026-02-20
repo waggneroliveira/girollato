@@ -22,10 +22,11 @@ class ProductCategoryController extends Controller
     public function index(Request $request)
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') && 
-          !Auth::user()->hasPermissionTo('categorias do noticias.visualizar')){
-            return view('admin.error.403', compact('settingTheme'));
+
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('categorias de produtos.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
 
         $blogCategories = productCategory::sorting()->get();

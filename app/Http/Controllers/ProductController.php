@@ -25,12 +25,10 @@ class ProductController extends Controller
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
 
-        if(
-            !Auth::user()->hasRole('Super') && 
-            !Auth::user()->can('usuario.tornar usuario master') && 
-            !Auth::user()->hasPermissionTo('noticias.visualizar')
-        ){
-            return view('admin.error.403', compact('settingTheme'));
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('produtos.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
 
         $categories = ProductCategory::active()->sorting()->get();
@@ -72,10 +70,14 @@ class ProductController extends Controller
     public function create()
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') &&  
-          !Auth::user()->hasPermissionTo('noticias.visualizar') &&
-          !Auth::user()->hasPermissionTo('noticias.criar')){
+
+        $user = Auth::user();
+
+        if (!$user->hasRole('Super') &&
+            !$user->can('usuario.tornar usuario master') &&
+            !($user->hasPermissionTo('produtos.visualizar') &&
+            $user->hasPermissionTo('produtos.criar'))
+        ) {
             return view('admin.error.403', compact('settingTheme'));
         }
 
@@ -177,10 +179,13 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') && 
-          !Auth::user()->hasPermissionTo('noticias.visualizar') && 
-          !Auth::user()->hasPermissionTo('noticias.editar')){
+        $user = Auth::user();
+
+        if (!$user->hasRole('Super') &&
+            !$user->can('usuario.tornar usuario master') &&
+            !($user->hasPermissionTo('produtos.visualizar') &&
+            $user->hasPermissionTo('produtos.editar'))
+        ) {
             return view('admin.error.403', compact('settingTheme'));
         }
 
@@ -205,7 +210,7 @@ class ProductController extends Controller
         return view('admin.blades.product.edit', compact('product', 'categories', 'productCategory', 'productBrand'));
     }
 
-     public function uploadImageCkeditor(Request $request)
+    public function uploadImageCkeditor(Request $request)
     {
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');

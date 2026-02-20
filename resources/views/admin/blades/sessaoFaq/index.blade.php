@@ -27,8 +27,8 @@
                                 <div class="row mb-2">
                                     <div class="col-12 d-flex justify-end">
                                         <div class="col-12 d-flex justify-content-end">
-                                            @if (Auth::user()->can('Sessão Faq.visualizar') &&
-                                            Auth::user()->can('Sessão Faq.criar') ||
+                                            @if (Auth::user()->can('sesssao faq.visualizar') &&
+                                            Auth::user()->can('sesssao faq.criar') ||
                                             Auth::user()->can('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
                                                 @if (!isset($sessaoFaq))                                                
@@ -98,8 +98,8 @@
                                                         @endswitch
                                                     </td>
                                                     <td class="d-flex gap-lg-1 justify-center">
-                                                        @if (Auth::user()->can('Sessão Faq.visualizar') &&
-                                                        Auth::user()->can('Sessão Faq.editar') ||
+                                                        @if (Auth::user()->can('sesssao faq.visualizar') &&
+                                                        Auth::user()->can('sesssao faq.editar') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <button class="table-edit-button btn btn-primary text-black" data-bs-toggle="modal" data-bs-target="#modal-group-edit-{{$sessaoFaq->id}}" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
@@ -107,7 +107,7 @@
                                                                 <div class="modal-dialog modal-dialog-centered" style="max-width: 1320px;">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header bg-light">
-                                                                            <h4 class="modal-title" id="myCenterModalLabel">Sessão Faq</h4>
+                                                                            <h4 class="modal-title" id="myCenterModalLabel">sesssao faq</h4>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                                                         </div>
                                                                         <div class="modal-body  p-2 px-3 px-md-4">
@@ -126,8 +126,8 @@
                                                             </div><!-- /.modal -->                                                        
                                                         @endif
 
-                                                        @if (Auth::user()->can('Sessão Faq.visualizar') &&
-                                                        Auth::user()->can('Sessão Faq.remover') ||
+                                                        @if (Auth::user()->can('sesssao faq.visualizar') &&
+                                                        Auth::user()->can('sesssao faq.remover') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <form action="{{route('admin.dashboard.sessaoFaq.destroy',['sessaoFaq' => $sessaoFaq->id])}}" style="width: 30px" method="POST">

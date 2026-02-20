@@ -39,7 +39,7 @@
                                             Auth::user()->can('video.criar') ||
                                             Auth::user()->can('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
-                                                @if (isset($video) && $video->count() < 1)                                                    
+                                                @if (!$video)                                                    
                                                     <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#video-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
                                                 @endif
                                                 <!-- Modal -->
@@ -80,13 +80,13 @@
                                                 <th style="width: 85px;">Ações</th>
                                             </tr>
                                         </thead>
-    
-                                        <tbody data-route="{{route('admin.dashboard.video.sorting')}}">
-                                            @foreach ($video as $key => $video)
+                                        
+                                        @if (isset($video))                                            
+                                            <tbody data-route="{{route('admin.dashboard.video.sorting')}}">
                                                 <tr data-code="{{$video->id}}">
                                                     <td><span class="btnDrag mdi mdi-drag-horizontal font-22"></span></td>
                                                     <td class="bs-checkbox">
-                                                        <label><input data-index="{{$key}}" name="btnSelectItem" class="btnSelectItem" type="checkbox" value="{{$video->id}}"></label>
+                                                        {{-- <label><input data-index="{{$key}}" name="btnSelectItem" class="btnSelectItem" type="checkbox" value="{{$video->id}}"></label> --}}
                                                     </td>
                                                     <td>{{$video->link}}</td>
                                                     <td>
@@ -136,8 +136,8 @@
                                                         @endif
                                                     </td>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
+                                            </tbody>
+                                        @endif
                                     </table>
                                 </div>
 

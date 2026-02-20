@@ -27,8 +27,8 @@
                                 <div class="row mb-2">
                                     <div class="col-12 d-flex justify-end">
                                         <div class="col-12 d-flex justify-content-end">
-                                            @if (Auth::user()->can('sessao anuncie.visualizar') &&
-                                            Auth::user()->can('sessao anuncie.criar') ||
+                                            @if (Auth::user()->can('missao visao e valores.visualizar') &&
+                                            Auth::user()->can('missao visao e valores.criar') ||
                                             Auth::user()->can('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
                                                 @if ($reports->count() < 3)                                                
@@ -99,8 +99,8 @@
                                                         @endswitch
                                                     </td>
                                                     <td class="d-flex gap-lg-1 justify-center">
-                                                        @if (Auth::user()->can('sessao anuncie.visualizar') &&
-                                                        Auth::user()->can('sessao anuncie.editar') ||
+                                                        @if (Auth::user()->can('missao visao e valores.visualizar') &&
+                                                        Auth::user()->can('missao visao e valores.editar') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <button class="table-edit-button btn btn-primary text-black" data-bs-toggle="modal" data-bs-target="#modal-group-edit-{{$report->id}}" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
@@ -127,8 +127,8 @@
                                                             </div><!-- /.modal -->                                                        
                                                         @endif
 
-                                                        @if (Auth::user()->can('sessao anuncie.visualizar') &&
-                                                        Auth::user()->can('sessao anuncie.remover') ||
+                                                        @if (Auth::user()->can('missao visao e valores.visualizar') &&
+                                                        Auth::user()->can('missao visao e valores.remover') ||
                                                         Auth::user()->can('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <form action="{{route('admin.dashboard.report.destroy',['report' => $report->id])}}" style="width: 30px" method="POST">

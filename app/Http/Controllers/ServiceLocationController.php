@@ -19,11 +19,13 @@ class ServiceLocationController extends Controller
     public function index()
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-            !Auth::user()->can('usuario.tornar usuario master') && 
-            !Auth::user()->hasPermissionTo('denuncie.visualizar')){
-            return view('admin.error.403', compact('settingTheme'));
+
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('onde atendemos.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
+
         $serviceLocation = serviceLocation::first();
 
        return view('admin.blades.serviceLocation.index', compact('serviceLocation'));

@@ -16,10 +16,11 @@ class ContactController extends Controller
     public function index()
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') &&
-          !Auth::user()->hasPermissionTo('contato.visualizar')){
-            return view('admin.error.403', compact('settingTheme'));
+
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('contato.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
         $contact = Contact::first();
         return view('admin.blades.contact.index', compact('contact'));

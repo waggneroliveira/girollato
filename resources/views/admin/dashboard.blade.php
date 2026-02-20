@@ -38,7 +38,7 @@
                 @include('admin.components.dashboard-card', [
                     'route' => route('admin.dashboard.slide.index'),
                     'icon' => 'mdi-image-size-select-actual',
-                    'title' => 'Slide'
+                    'title' => 'Slides'
                 ])
             @endif
 

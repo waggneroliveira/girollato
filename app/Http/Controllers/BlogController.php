@@ -26,12 +26,10 @@ class BlogController extends Controller
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
 
-        if(
-            !Auth::user()->hasRole('Super') && 
-            !Auth::user()->can('usuario.tornar usuario master') && 
-            !Auth::user()->hasPermissionTo('noticias.visualizar')
-        ){
-            return view('admin.error.403', compact('settingTheme'));
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('noticias.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
 
         $categories = BlogCategory::active()->sorting()->get();
@@ -78,15 +76,17 @@ class BlogController extends Controller
 
     public function create(){
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') &&  
-          !Auth::user()->hasPermissionTo('noticias.visualizar') &&
-          !Auth::user()->hasPermissionTo('noticias.criar')){
+        $user = Auth::user();
+
+        if (!$user->hasRole('Super') &&
+            !$user->can('usuario.tornar usuario master') &&
+            !($user->hasPermissionTo('noticias.visualizar') &&
+            $user->hasPermissionTo('noticias.criar'))
+        ) {
             return view('admin.error.403', compact('settingTheme'));
         }
 
         $categories = BlogCategory::active()->sorting()->get();
-
 
         $blogCategory = [];
 
@@ -98,10 +98,13 @@ class BlogController extends Controller
 
     public function edit(Blog $blog){
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') && 
-          !Auth::user()->hasPermissionTo('noticias.visualizar') && 
-          !Auth::user()->hasPermissionTo('noticias.editar')){
+        $user = Auth::user();
+
+        if (!$user->hasRole('Super') &&
+            !$user->can('usuario.tornar usuario master') &&
+            !($user->hasPermissionTo('noticias.visualizar') &&
+            $user->hasPermissionTo('noticias.editar'))
+        ) {
             return view('admin.error.403', compact('settingTheme'));
         }
 

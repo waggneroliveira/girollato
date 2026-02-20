@@ -17,15 +17,16 @@ class VideoController extends Controller
     public function index()
     {
         $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-          !Auth::user()->can('usuario.tornar usuario master') && 
-          !Auth::user()->hasPermissionTo('videos.visualizar')){
-            return view('admin.error.403', compact('settingTheme'));
+
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('video.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
 
-        $videos = Video::sorting()->get();
+        $video = Video::first();
 
-        return view('admin.blades.video.index', compact('videos'));
+        return view('admin.blades.video.index', compact('video'));
     }
 
     public function store(Request $request)

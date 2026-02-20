@@ -32,12 +32,12 @@
                             <div class="row mb-2">
                                 <div class="col-12 d-flex justify-between">
                                     <div class="col-6">
-                                        @if(Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['depoiment.visualizar', 'depoiment.remover']))
+                                        @if(Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can('depoimento.visualizar') && Auth::user()->can('depoimento.remover'))
                                             <button id="btSubmitDelete" data-route="{{route('admin.dashboard.depoiment.destroySelected')}}" type="button" class="btSubmitDelete btn btn-danger" style="display: none;">{{__('dashboard.btn_delete_all')}}</button>
                                         @endif
                                     </div>
                                     <div class="col-6 d-flex justify-content-end">
-                                        @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['depoiment.visualizar', 'depoiment.criar']))
+                                        @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can('depoimento.visualizar') && Auth::user()->can('depoimento.criar'))
                                             <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#depoiment-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
                                             <!-- Modal -->
                                             <div class="modal fade" id="depoiment-create" tabindex="-1" role="dialog" aria-hidden="true">
@@ -125,7 +125,7 @@
                                                 </td>
             
                                                 <td class="d-flex gap-lg-1 justify-center" style="padding: 18px 15px 0px 0px;">
-                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['depoiment.visualizar', 'depoiment.editar'])) 
+                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can('depoimento.visualizar') && Auth::user()->can('depoimento.editar')) 
                                                         <button data-bs-toggle="modal" data-bs-target="#depoiment-edit-{{$depoiment->id}}" class="tabledit-edit-button btn btn-primary text-black" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
                                                         <div class="modal fade" id="depoiment-edit-{{$depoiment->id}}" tabindex="-1" role="dialog" aria-hidden="true">
                                                             <div class="depoiment modal-dialog modal-dialog-centered" style="max-width: 1280px;">
@@ -149,7 +149,7 @@
                                                             </div><!-- /.modal-dialog -->
                                                         </div><!-- /.modal -->
                                                     @endif
-                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['depoiment.visualizar', 'depoiment.remover']))
+                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can('depoimento.visualizar') && Auth::user()->can('depoimento.remover'))
                                                         <form action="{{route('admin.dashboard.depoiment.destroy',['depoiment' => $depoiment->id])}}" style="width: 30px" method="POST">
                                                             @method('DELETE') @csrf        
                                                             

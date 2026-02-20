@@ -11,7 +11,7 @@ class BlogCategoryRequestUpdate extends FormRequest
     {
         if(!Auth::user()->hasRole('Super') && 
         !Auth::user()->can('usuario.tornar usuario master') && 
-        !Auth::user()->can('categorias do noticias.editar')){
+        !Auth::user()->can('categorias de noticias.editar')){
             return false;
         }
         return true;

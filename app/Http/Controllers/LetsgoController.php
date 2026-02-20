@@ -18,12 +18,14 @@ class LetsgoController extends Controller
     protected $pathUpload = 'admin/uploads/images/lets-go/';
     public function index()
     {
-        $settingTheme = (new SettingThemeRepository())->settingTheme();
-        if(!Auth::user()->hasRole('Super') && 
-            !Auth::user()->can('usuario.tornar usuario master') && 
-            !Auth::user()->hasPermissionTo('denuncie.visualizar')){
-            return view('admin.error.403', compact('settingTheme'));
+         $settingTheme = (new SettingThemeRepository())->settingTheme();
+
+        // Verifica permissão para visualizar slides
+        $check = checkPermission('sesssao lets go.visualizar', $settingTheme);
+        if ($check !== true) {
+            return $check; // retorna view 403
         }
+
         $letsgo = Letsgo::first();
 
        return view('admin.blades.letsgo.index', compact('letsgo'));
