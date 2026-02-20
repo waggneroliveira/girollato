@@ -105,7 +105,6 @@
                                                 <th>Imagem</th>
                                                 <th>Publicado</th>
                                                 <th>Status</th>
-                                                <th>Super destaque</th>
                                                 <th>Destaque</th>
                                                 <th style="width: 85px;">Ações</th>
                                             </tr>
@@ -136,12 +135,6 @@
                                                     <td>{{$dataFormatada}}</td>
                                                     <td class="text-center">
                                                         @switch($blog->active)
-                                                            @case(0) <span class="badge bg-danger">Inativo</span> @break
-                                                            @case(1) <span class="badge bg-success">Ativo</span> @break
-                                                        @endswitch
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @switch($blog->super_highlight)
                                                             @case(0) <span class="badge bg-danger">Inativo</span> @break
                                                             @case(1) <span class="badge bg-success">Ativo</span> @break
                                                         @endswitch

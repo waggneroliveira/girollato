@@ -5,51 +5,54 @@
         <h1 class="font-changa font-40 font-bold text-white position-relative z-3 mt-2">Artigo Animal</h1>
         <p class="font-changa font-15 font-regular text-white position-relative z-3">Conheça um pouco sobre a gente aqui!</p>
     </div>
+
     <section class="contact mb-0 mt-4">
         <div class="container py-5">
             <div class="row">
-                <!-- Infos -->
-                <div class="col-12 col-lg-5">
-                    <span class="about-subtitle faq-eyebrow color-yellow font-changa font-16 font-bold d-block mb-2 text-end m-0 z-3 position-relative">Fale Conosco</span>
-                    <h2 class="faq-title font-changa font-50 font-bold color-green mt-2 mb-3">{{$contact->name_section}}</h2>
-                    <p class="faq-text color-grey font-changa font-16 font-regular text-center text-lg-start">
-                        {{$contact->text}}
-                    </p>
-    
-                    <ul class="list-unstyled">
-                        <li class="d-flex mb-3">
-                            <div class="me-3 text-success fs-4">
-                                <i class="bi bi-geo-alt-fill color-green"></i>
-                            </div>
-                            <div>
-                                <span class="color-green font-changa font-16 font-semibold">Endereço</span>
-                                <p class="color-grey font-changa font-16 font-regular col-12 col-lg-10">
-                                    {{$contact->address_one}}
-                                </p>
-                            </div>
-                        </li>
-    
-                        <li class="d-flex mb-3">
-                            <div class="me-3 text-success fs-4">
-                                <i class="bi bi-telephone-fill color-green"></i>
-                            </div>
-                            <div>
-                                <span class="color-green font-changa font-16 font-semibold">Telefone</span>
-                                <p class="color-grey font-changa font-16 font-regular">{{$contact->phone_one}}</p>
-                            </div>
-                        </li>
-    
-                        <li class="d-flex">
-                            <div class="me-3 text-success fs-4">
-                                <i class="bi bi-envelope-fill color-green"></i>
-                            </div>
-                            <div>
-                                <span class="color-green font-changa font-16 font-semibold">E-mail</span>
-                                <p class="color-grey font-changa font-16 font-regular">{{$contact->name_one}}</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                @if (isset($contact))
+                    <!-- Infos -->
+                    <div class="col-12 col-lg-5">
+                        <span class="about-subtitle faq-eyebrow color-yellow font-changa font-16 font-bold d-block mb-2 text-end m-0 z-3 position-relative">Fale Conosco</span>
+                        <h2 class="faq-title font-changa font-50 font-bold color-green mt-2 mb-3">{{$contact->name_section}}</h2>
+                        <p class="faq-text color-grey font-changa font-16 font-regular text-center text-lg-start">
+                            {{$contact->text}}
+                        </p>
+        
+                        <ul class="list-unstyled">
+                            <li class="d-flex mb-3">
+                                <div class="me-3 text-success fs-4">
+                                    <i class="bi bi-geo-alt-fill color-green"></i>
+                                </div>
+                                <div>
+                                    <span class="color-green font-changa font-16 font-semibold">Endereço</span>
+                                    <p class="color-grey font-changa font-16 font-regular col-12 col-lg-10">
+                                        {{$contact->address_one}}
+                                    </p>
+                                </div>
+                            </li>
+        
+                            <li class="d-flex mb-3">
+                                <div class="me-3 text-success fs-4">
+                                    <i class="bi bi-telephone-fill color-green"></i>
+                                </div>
+                                <div>
+                                    <span class="color-green font-changa font-16 font-semibold">Telefone</span>
+                                    <p class="color-grey font-changa font-16 font-regular">{{$contact->phone_one}}</p>
+                                </div>
+                            </li>
+        
+                            <li class="d-flex">
+                                <div class="me-3 text-success fs-4">
+                                    <i class="bi bi-envelope-fill color-green"></i>
+                                </div>
+                                <div>
+                                    <span class="color-green font-changa font-16 font-semibold">E-mail</span>
+                                    <p class="color-grey font-changa font-16 font-regular">{{$contact->name_one}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
                 
                 <div class="col-lg-7">
                     <!-- Formulário e Mapa -->
@@ -104,6 +107,7 @@
             </div>
         @endif
     </section>
+    
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

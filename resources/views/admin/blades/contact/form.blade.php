@@ -96,7 +96,8 @@
                 </div>
                 <div class="col-12">
                     <label for="address_one" class="form-label">Endereço</label>
-                    <textarea name="address_one" id="address_one" placeholder="Texto" class="form-control" rows="5">{{ isset($contact)?$contact->address_one:'' }}</textarea>
+                    <input type="text" name="address_one" class="form-control" id="address_one"
+                        value="{{ isset($contact)?$contact->address_one:'' }}" placeholder="Endereço">
                 </div>
             </div> 
         </div>

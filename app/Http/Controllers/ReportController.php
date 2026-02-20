@@ -26,8 +26,8 @@ class ReportController extends Controller
             return $check; // retorna view 403
         }
         $reports = Report::get();
-
-       return view('admin.blades.report.index', compact('reports'));
+  
+        return view('admin.blades.report.index', compact('reports'));
     }
 
    

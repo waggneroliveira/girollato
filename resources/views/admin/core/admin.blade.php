@@ -179,7 +179,7 @@
                         @if (Auth::user()->hasRole('Super') || 
                         Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
                         Auth::user()->hasPermissionTo('sobre nos.visualizar') || 
-                        Auth::user()->hasPermissionTo('benefitTopic.visualizar') || 
+                        Auth::user()->hasPermissionTo('parametro.visualizar') || 
                         Auth::user()->hasPermissionTo('missao visao e valores.visualizar') || 
                         Auth::user()->hasPermissionTo('representantes.visualizar') || 
                         Auth::user()->hasPermissionTo('video.visualizar') || 

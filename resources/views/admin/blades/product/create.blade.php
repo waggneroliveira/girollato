@@ -135,7 +135,15 @@
                                         <p class="text-muted text-center mt-2 mb-0">{{__('dashboard.text_img_size')}} <b class="text-danger">2 MB</b>.</p>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>     
+                            
+                            <div class="col-12">
+                                <div class="mt-3">
+                                    <label for="path_file" class="form-label">Ficha Técnica</label>
+                                    <input type="file" name="path_file" data-plugins="dropify" />
+                                    <p class="text-muted text-center mt-2 mb-0">{{__('dashboard.text_img_size')}} <b class="text-danger">3 MB</b>.</p>
+                                </div>
+                            </div>
                             
                             <div class="d-flex justify-content-end gap-2">
                                 <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>

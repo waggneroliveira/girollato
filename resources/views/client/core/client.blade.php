@@ -266,7 +266,7 @@
                     <script defer>
                         const currentYeaar = (new Date).getFullYear();
                         document.getElementById("footer-text").innerHTML = `© ${currentYeaar} <span> Transportes e Atacadista de Rações LTDA.
-                    Todos os direitos reservados.</span> <a href="#" class="text-white font-semibold">| Política de Privacidade</a>`
+                    Todos os direitos reservados.</span> <a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank" class="text-white font-semibold">| Política de Privacidade</a>`
                     </script>
                 </div>
 

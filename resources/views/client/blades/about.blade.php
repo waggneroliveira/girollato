@@ -275,22 +275,26 @@
         }
 
         // Video youtube
-        document.querySelector('.video-play-btn').addEventListener('click', function () {
+        const playBtn = document.querySelector('.video-play-btn');
 
-            const container = this.closest('.video-container');
-            const rawUrl = container.getAttribute('data-video');
-            const embedUrl = toEmbed(rawUrl);
+        if (playBtn) {
+            playBtn.addEventListener('click', function () {
 
-            container.innerHTML = `
-                <iframe
-                    src="${embedUrl}"
-                    frameborder="0"
-                    allow="autoplay; encrypted-media"
-                    allowfullscreen
-                    style="width:100%; height:100%;">
-                </iframe>
-            `;
-        });
+                const container = this.closest('.video-container');
+                const rawUrl = container.getAttribute('data-video');
+                const embedUrl = toEmbed(rawUrl);
+
+                container.innerHTML = `
+                    <iframe
+                        src="${embedUrl}?autoplay=1"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen
+                        style="width:100%; height:100%;">
+                    </iframe>
+                `;
+            });
+        }
 
 
             function getYouTubeId(url) {
@@ -319,14 +323,25 @@
         document.addEventListener("DOMContentLoaded", function () {
 
             const container = document.querySelector(".video-container");
+
+            // evita erro se não existir
+            if (!container) return;
+
             const img = container.querySelector(".video-thumb");
+
+            // verifica se a imagem existe também
+            if (!img) return;
+
             const rawUrl = container.getAttribute("data-video");
+
+            if (!rawUrl) return;
 
             const videoId = getYouTubeId(rawUrl);
 
             if (videoId) {
                 img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
             }
+
         });
 
         const section = document.getElementById("mvwSection");
