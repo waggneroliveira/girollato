@@ -28,7 +28,6 @@ class TopicController extends Controller
             return $check; // retorna view 403
         }
 
-
         $topics = Topic::select(
             'id',
             'title',
