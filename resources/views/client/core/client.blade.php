@@ -58,6 +58,8 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
     <link href="{{ asset('build/client/lgpd/style.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link href="{{ asset('build/client/css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="preload" href="{{ asset('build/client/css/bootstrap-icons/bootstrap-icons.css') }}" as="style" onload="this.rel='stylesheet'">
     <link href="{{ asset('build/client/css/style.css') }}" rel="stylesheet" type="text/css" />
@@ -195,7 +197,7 @@
 
                     <div class="modal-header flex-column">
                         <div class="d-flex justify-content-end col-12">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                         </div>
                         <img src="{{asset('build/client/images/girollato-footer.svg')}}" alt="Girollato" height="40">
                         <h5 class="modal-title text-white font-changa font-20 font-medium mt-3">Preencha o formulário para baixar o arquivo</h5>
@@ -208,14 +210,16 @@
                             <input type="text" name="name" class="form-control" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label text-white font-changa font-15 font-regular">CNPJ</label>
-                            <input type="text" inputmode="numeric" name="cnpj" id="cnpj" class="form-control" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label text-white font-changa font-15 font-regular">Telefone</label>
-                            <input type="text" inputmode="numeric" name="phone" id="phone" class="form-control" required>
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label text-white font-changa font-15 font-regular">CNPJ</label>
+                                <input type="text" inputmode="numeric" name="cnpj" id="cnpj" class="form-control" required>
+                            </div>
+    
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label text-white font-changa font-15 font-regular">Telefone</label>
+                                <input type="text" inputmode="numeric" name="phone" id="phone" class="form-control" required>
+                            </div>
                         </div>
 
                     </div>
@@ -450,9 +454,58 @@
     <script src="https://cdn.ckeditor.com/4.22.1/basic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('build/client/css/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('build/client/lgpd/script.js') }}"></script>
     <script src="{{ asset('build/client/js/default.js') }}"></script>
 
+    {{-- Modais alert --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            let successMessage = @json(session('success'));
+            let errorMessage = @json(session('error'));
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timerProgressBar: true,
+                timer: 3000,
+                didOpen: (toast) => {
+
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+
+                }
+            });
+
+            if (successMessage) {
+
+                Toast.fire({
+                    icon: 'success',
+                    title: successMessage,
+                    background: '#f0fdf4',
+                    color: '#166534',
+                    iconColor: '#22c55e'
+                });
+
+            }
+
+            if (errorMessage) {
+
+                Toast.fire({
+                    icon: 'error',
+                    title: errorMessage,
+                    background: '#fef2f2',
+                    color: '#991b1b',
+                    iconColor: '#ef4444'
+                });
+
+            }
+
+        });
+    </script>
 </body>
 </html>

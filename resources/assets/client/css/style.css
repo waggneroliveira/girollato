@@ -136,6 +136,9 @@ body {
  .border-btn-footer{
     border: 1px solid var(--white-color) !important;
  }
+ .bt-hover:hover{
+    color:  var(--green-color) !important;
+ }
 /* =========================
    HEADER
 ========================= */

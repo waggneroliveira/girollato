@@ -83,7 +83,7 @@
                                                 Aceito os termos descritos na Política de Privacidade
                                             </label>
                                         </div>
-                                        <button type="submit" class="font-changa font-15 btn bg-green text-white rounded-3 ms-auto px-4">Enviar</button>
+                                        <button type="submit" class="bt-hover border font-changa font-15 btn bg-green text-white rounded-3 ms-auto px-4">Enviar</button>
                                     </div>
                                 </div>
                             </form>
