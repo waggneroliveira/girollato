@@ -2,7 +2,7 @@
 @section('content')
     <div class="banner-inner blog container-fluid d-flex justify-content-center align-items-center flex-column position-relative" style="--banner-bg: url('../images/banner-blog.png');">
         <span class="color-yellow font-changa font-16 font-bold position-relative z-3 text-center">Blog </span>
-        <h1 class="font-changa font-40 font-bold text-white position-relative z-3 mt-2">Artigo Animal</h1>
+        <h1 class="font-mobi font-changa font-40 font-bold text-white position-relative z-3 mt-2">Artigo Animal</h1>
         <p class="font-changa font-15 font-regular text-white position-relative z-3">Conheça um pouco sobre a gente aqui!</p>
     </div>
 

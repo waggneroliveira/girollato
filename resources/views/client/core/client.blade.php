@@ -186,6 +186,158 @@
         </nav>
     </header>
 
+    <div class="modal fade" id="modalDownloadFicha" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-green">
+
+                <form id="formDownloadFicha">
+                    @csrf
+
+                    <div class="modal-header flex-column">
+                        <div class="d-flex justify-content-end col-12">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <img src="{{asset('build/client/images/girollato-footer.svg')}}" alt="Girollato" height="40">
+                        <h5 class="modal-title text-white font-changa font-20 font-medium mt-3">Preencha o formulário para baixar o arquivo</h5>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="form-label text-white font-changa font-15 font-regular">Nome</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-white font-changa font-15 font-regular">CNPJ</label>
+                            <input type="text" inputmode="numeric" name="cnpj" id="cnpj" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-white font-changa font-15 font-regular">Telefone</label>
+                            <input type="text" inputmode="numeric" name="phone" id="phone" class="form-control" required>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn bg-yellow border">
+                            Baixar arquivo
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const modal = new bootstrap.Modal(document.getElementById('modalDownloadFicha'));
+            const form = document.getElementById('formDownloadFicha');
+
+            let currentFile = null;
+
+            document.querySelectorAll('.btn-download-ficha').forEach(button => {
+
+                button.addEventListener('click', function(e){
+
+                    e.preventDefault();
+
+                    currentFile = this.getAttribute('href');
+
+                    modal.show();
+
+                });
+
+            });
+
+            form.addEventListener('submit', function(e){
+
+                e.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch("{{ route('download.ficha.store') }}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": document.querySelector('input[name=_token]').value
+                    },
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(res => {
+
+                    if(res.success){
+
+                        modal.hide();
+
+                        // FORÇA DOWNLOAD
+                        const link = document.createElement('a');
+                        link.href = currentFile;
+                        link.setAttribute('download', '');
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+
+                        form.reset();
+
+                    }
+
+                });
+
+            });
+
+        });
+
+        // mascara CNPJ
+        function maskCNPJ(value) {
+
+            value = value.replace(/\D/g, '');
+
+            value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+            value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+            value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+            value = value.replace(/(\d{4})(\d)/, '$1-$2');
+
+            return value.substring(0, 18);
+        }
+
+
+        // mascara celular
+        function maskPhone(value) {
+
+            value = value.replace(/\D/g, '');
+
+            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+            value = value.replace(/(\d{5})(\d)/, '$1-$2');
+
+            return value.substring(0, 15);
+        }
+
+
+        // aplicar máscaras
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const cnpj = document.getElementById('cnpj');
+            const phone = document.getElementById('phone');
+
+            if(cnpj){
+                cnpj.addEventListener('input', function(){
+                    this.value = maskCNPJ(this.value);
+                });
+            }
+
+            if(phone){
+                phone.addEventListener('input', function(){
+                    this.value = maskPhone(this.value);
+                });
+            }
+
+        });
+    </script>
+
     <main>
         @yield('content') 
     </main>
@@ -201,7 +353,7 @@
                     <img src="{{asset('build/client/images/girollato-footer.svg')}}" alt="Girollato" height="40">
 
                     <div class="mt-5">
-                        <a href="#" class="border-btn-footer btn bg-yellow px-4 py-2 rounded-pill font-changa color-green font-16 font-medium text-decoration-none">
+                        <a href="{{ request()->routeIs('about') ? '#team-section' : route('about') . '#team-section' }}" class="border-btn-footer btn bg-yellow px-4 py-2 rounded-pill font-changa color-green font-16 font-medium text-decoration-none">
                             Encontrar Representantes
                             <i class="bi bi-arrow-right"></i>
                         </a>
@@ -237,17 +389,29 @@
                 </div>
 
                 <!-- Redes sociais -->
+                @if (isset($contact) && 
+                $contact->link_insta <> null ||
+                $contact->link_face <> null ||
+                $contact->link_tik_tok <> null)
+                    
+                @endif
                 <div class="col-lg-2 text-lg-end">
                     <div class="d-flex gap-3 justify-content-lg-end">
-                        <a href="#" class="text-white fs-5">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="#" class="text-white fs-5">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="#" class="text-white fs-5">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
+                        @if ($contact->link_insta <> null)                            
+                            <a href="{{$contact->link_insta}}" target="_blank" rel="noopener noreferrer" class="text-white fs-5">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        @endif
+                        @if ($contact->link_face <> null)                            
+                            <a href="{{$contact->link_face}}" target="_blank" rel="noopener noreferrer" class="text-white fs-5">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                        @endif
+                        @if ($contact->link_tik_tok <> null)                            
+                            <a href="{{$contact->link_tik_tok}}" target="_blank" rel="noopener noreferrer" class="text-white fs-5">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
 

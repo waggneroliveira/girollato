@@ -55,7 +55,7 @@ class ProductGalleryController extends Controller
         $productGallery->delete();
 
         Session::flash('success','Arquivo(s) deletado com sucesso!');
-        return redirect()->route('admin.dashboard.galleryApprovalRequest');
+        return redirect()->back();
     }
 
         public function destroySelected(Request $request)

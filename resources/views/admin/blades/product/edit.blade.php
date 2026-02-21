@@ -160,7 +160,7 @@
                                                         @endif
                                                     </td>
                                                     <td class="d-flex gap-lg-1 justify-center">
-                                                        <form action="{{route('admin.dashboard.product.destroy',['product' => $file->id])}}" style="width: 30px" method="POST">
+                                                        <form action="{{route('admin.dashboard.gallery.productGallery.destroy',['productGallery' => $file->id])}}" style="width: 30px" method="POST">
                                                             @method('DELETE') @csrf        
                                                             
                                                             <button type="button" style="width: 30px"class="demo-delete-row btn btn-danger btn-xs btn-icon btSubmitDeleteItem"><i class="fa fa-times"></i></button>

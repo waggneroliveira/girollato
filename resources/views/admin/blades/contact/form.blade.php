@@ -53,7 +53,7 @@
                         <input type="text" name="link_insta" class="form-control" id="link_insta"
                             value="{{ $contact->link_insta ?? '' }}" placeholder="Link Instagram">
                     </div>
-                    <div class="col-12 col-md-6">
+                    {{-- <div class="col-12 col-md-6">
                         <label for="link_x" class="form-label">Link X</label>
                         <input type="text" name="link_x" class="form-control" id="link_x"
                             value="{{ $contact->link_x ?? '' }}" placeholder="Link X">
@@ -63,7 +63,7 @@
                         <label for="link_youtube" class="form-label">Link Youtube</label>
                         <input type="text" name="link_youtube" class="form-control" id="link_youtube"
                             value="{{ $contact->link_youtube ?? '' }}" placeholder="Link Youtube">
-                    </div>
+                    </div> --}}
                     <div class="col-12 col-md-6">
                         <label for="link_face" class="form-label">Link Facebook</label>
                         <input type="text" name="link_face" class="form-control" id="link_face"
@@ -71,9 +71,9 @@
                     </div>
 
                     <div class="col-12 col-md-6">
-                        <label for="link_tik_tok" class="form-label">Link Tik Tok</label>
+                        <label for="link_tik_tok" class="form-label">Link do LinkedIn</label>
                         <input type="text" name="link_tik_tok" class="form-control" id="link_tik_tok"
-                            value="{{ $contact->link_tik_tok ?? '' }}" placeholder="Link Tik Tok">
+                            value="{{ $contact->link_tik_tok ?? '' }}" placeholder="Link do LinkedIn">
                     </div>
                 </div>
             </div>

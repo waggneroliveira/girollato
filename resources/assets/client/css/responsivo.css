@@ -98,7 +98,7 @@
     .hero-content{
         align-items: baseline;
     }
-    .hero-title, .about-title, .faq-title{
+    .hero-title, .about-title, .faq-title, .font-mobi{
         font-size: 1.75rem;
         text-align: center;
     }
@@ -122,6 +122,21 @@
     }
 }
 @media (max-width: 441px) {
+    .mvw-cards{
+        gap: 50px;
+        height: 70vh;
+        margin-bottom: 0;
+    }
+    .font-mobi-12{
+        font-size: 0.75rem;
+    }
+    .left-content .step-image{
+        max-width: 310px;
+    }
+    .topic-item img{
+        width: 135px;
+        height: 85px;
+    }
     .blog-content .col-6.col-md-6.col-lg-4{
         height: 260px;
     }
@@ -148,6 +163,11 @@
     }
     .btn-team{
         font-size: 0.625rem;
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .search-wrapper.active .search-input{
+        width: 280px;
     }
     .hero-title{
         font-size: 24px;
@@ -156,10 +176,13 @@
 }
 @media (max-width: 414px) {
     .team-card {
-        height: 203px;
+        height: 320px;
     }
-    .product-card h6, .product-card p, .btn-filter{
+    .product-card h6, .product-card p{
         font-size: 0.938rem;
+    }
+    .btn-filter{
+        font-size: 0.75rem;
     }
     .hero-title{
         font-size: 1.25rem;

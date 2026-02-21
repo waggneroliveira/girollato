@@ -3,7 +3,7 @@
 @section('content')
     <div class="banner-inner container-fluid d-flex justify-content-center align-items-center flex-column position-relative" style="--banner-bg: url('../images/banner-sobre.png');">
         <span class="color-yellow font-changa font-16 font-bold position-relative z-3">Quem somos? </span>
-        <h1 class="font-changa font-40 font-bold text-white position-relative z-3 mt-2">Somos a Girollato</h1>
+        <h1 class="font-mobi font-changa font-40 font-bold text-white position-relative z-3 mt-2">Somos a Girollato</h1>
         <p class="font-changa font-15 font-regular text-white position-relative z-3">Conheça um pouco sobre a gente aqui!</p>
     </div>
 @if ($topics->count() > 0)
@@ -109,8 +109,8 @@
                             </div>
                         @endif
                         <div class="description ms-2 col-8">
-                            <h4 class="color-yellow font-changa font-30 font-semibold">{{$report->title}}</h4>
-                            <p class="text-white font-changa font-16 font-regular mb-0">{{$report->description}}</p>
+                            <h4 class="font-mobi color-yellow font-changa font-30 font-semibold text-start">{{$report->title}}</h4>
+                            <p class="text-white font-changa font-16 font-regular mb-0 font-mobi-12">{{$report->description}}</p>
                         </div>
                     </div>
                 @endforeach
