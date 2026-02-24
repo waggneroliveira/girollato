@@ -188,6 +188,7 @@
         font-size: 1.25rem;
     }
     .hero-slide, .hero-content {
+        min-height: 80vh;
         height: 80vh;
     }
     .btn-one, .btn-two{
