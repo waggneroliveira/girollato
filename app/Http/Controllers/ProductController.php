@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Brand;
 use App\Models\Product;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Models\ProductCategory;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\SettingThemeRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
-use RealRashid\SweetAlert\Facades\Alert;
-use App\Repositories\SettingThemeRepository;
+use Illuminate\Support\Str;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
+use Intervention\Image\ImageManager;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -101,14 +103,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
-        $request->validate([
-            'sizes'   => 'array|nullable',
-            'sizes.*' => 'string|max:50|nullable',
-            'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'],
-            'path_file' => ['nullable', 'file', 'mimes:pdf', 'max:3072'] 
-        ]);
         
         $data = $request->all();
         $data['active'] = $request->active ? 1 : 0;
@@ -255,7 +251,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
         $data = $request->all();
         $data['active'] = $request->active ? 1 : 0;

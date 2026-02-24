@@ -67,7 +67,7 @@
                             @if(Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
                                 Auth::user()->hasRole('Super') || Auth::user()->hasPermissionTo('sobre nos.visualizar') && Auth::user()->hasPermissionTo('sobre nos.criar'))
                                 <div class="d-flex justify-content-end gap-2">
-                                    <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                    <a href="{{route('admin.dashboard.about.index')}}" class="btn btn-danger waves-effect waves-light">{{__('dashboard.btn_cancel')}}</a>
                                     <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_create')}}</button>
                                 </div>  
                             @endif                                               

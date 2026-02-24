@@ -7,7 +7,7 @@
    <h1 class="font-mobi font-changa font-40 font-bold text-white position-relative z-3 mt-2">Artigo Animal</h1>
    <p class="font-changa font-15 font-regular text-white position-relative z-3">Conheça um pouco sobre a gente aqui!</p>
 </div>
-<section id="news" >
+<section id="news" class="pb-5">
    <div class="container p-3 p-lg-0">
       <div class="row mt-0 mt-lg-5 justify-content-between flex-column-reverse flex-lg-row">
          <div class="blog-content col-12 col-lg-8 mt-5 mt-lg-0">

@@ -183,7 +183,7 @@
                         @include('admin.blades.product.form')    
                     </div>
                     <div class="d-flex justify-content-end gap-2">
-                        <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                        <a href="{{route('admin.dashboard.product.index')}}" class="btn btn-danger waves-effect waves-light">{{__('dashboard.btn_cancel')}}</a>
                         <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_save')}}</button>
                     </div>                                                                                                                                                                                            
                 </form>
