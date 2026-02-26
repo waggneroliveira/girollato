@@ -25,7 +25,9 @@
 
                 <div class="col-2 mb-2">
                     <button class="table-edit-button btn btn-primary text-black" data-bs-toggle="modal" data-bs-target="#modal-gellery-edit-{{$product->id}}">
-                        <i class="mdi mdi-plus-circle me-1"></i> Galeria
+                       {!! !$product->galleries->count() > 0 
+                        ? '<i class="mdi mdi-plus-circle me-1"></i> Criar Galeria' 
+                        : '<i class="mdi mdi-pencil me-1"></i> Editar Galeria' !!}
                     </button>
                 </div>
 

@@ -46,7 +46,7 @@ class Product extends Model
     }
 
     public function scopeSorting($query){
-        return $query->orderby('sorting', 'DESC');
+        return $query->orderby('sorting', 'asc');
     }
 
     public function getActivitylogOptions(): LogOptions

@@ -50,7 +50,7 @@ class ProductController extends Controller
         }
 
         // Paginação
-        $products = $productsQuery->orderBy('sorting', 'desc')->paginate(60)->withQueryString();
+        $products = $productsQuery->sorting()->paginate(60)->withQueryString();
 
         // Array simples de categorias [id => title]
         $productCategory = [];

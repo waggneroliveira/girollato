@@ -317,16 +317,6 @@
                         @endif
                         @if (Auth::user()->hasRole('Super') || 
                         Auth::user()->can('usuario.tornar usuario master') || 
-                        Auth::user()->can('newsletter.visualizar'))
-                            <li class="menu-item">
-                                <a href="{{route('admin.dashboard.newsletter.index')}}" class="menu-link">
-                                    <span class="menu-icon"><i class="mdi mdi-email-outline"></i></span>
-                                    <span class="menu-text"> Newsletter </span>
-                                </a>
-                            </li>
-                        @endif
-                        @if (Auth::user()->hasRole('Super') || 
-                        Auth::user()->can('usuario.tornar usuario master') || 
                         Auth::user()->can('lead contato.visualizar'))
                             <li class="menu-item">
                                 <a href="{{route('admin.dashboard.formIndex.index')}}" class="menu-link">
@@ -342,22 +332,6 @@
                                 <a href="{{route('admin.dashboard.contact.index')}}" class="menu-link">
                                     <span class="menu-icon"><i class="mdi mdi-card-account-mail-outline"></i></span>
                                     <span class="menu-text"> Contato </span>
-                                </a>
-                            </li>
-                        @endif
-                        @if (Auth::user()->hasRole('Super') || 
-                        Auth::user()->can('usuario.tornar usuario master') || 
-                        Auth::user()->can('anuncio.visualizar'))
-                            <li class="menu-item">
-                                <a href="{{route('admin.dashboard.announcement.index')}}" class="menu-link">
-                                    <span class="menu-icon"><i class="mdi mdi-bullhorn-outline"></i></span>
-                                    <span class="menu-text"> Anuncios </span>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="{{route('admin.dashboard.popUp.index')}}" class="menu-link">
-                                    <span class="menu-icon"><i class="mdi mdi-window-maximize"></i></span>
-                                    <span class="menu-text"> Pop-up </span>
                                 </a>
                             </li>
                         @endif

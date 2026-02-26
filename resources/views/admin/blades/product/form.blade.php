@@ -124,7 +124,10 @@
             wrapper.appendChild(div)
         }
     </script>
-    
+    <div class="mb-3">
+        <label for="description" class="form-label">Breve descrição <span class="text-danger">*</span></label>
+        <input type="text" name="description" value="{{isset($product)?$product->description:''}}" class="form-control" id="description" placeholder="Digite uma breve descrição" required>
+    </div>
     <div class="mb-3 col-12 d-flex align-items-start flex-column">
         <label for="textarea-edit" class="form-label">Texto </label>
         <textarea name="text" class="form-control col-12" id="textarea-edit" rows="5">

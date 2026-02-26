@@ -62,7 +62,8 @@ class HomePageController extends Controller
         })
         ->where('highlight', 1)
         ->active()      
-        ->sorting()     
+        ->sorting()    
+        ->limit(3) 
         ->get();
 
         $productCategories = ProductCategory::whereHas('products', function($query){
@@ -70,6 +71,7 @@ class HomePageController extends Controller
         })
         ->active()
         ->sorting()
+        ->limit(4) 
         ->get();
         
         $products = Product::whereHas('category', function($query){
@@ -77,7 +79,7 @@ class HomePageController extends Controller
         })
         ->whereHas('brand', function($query){
             $query->active();
-        })->active()->sorting()->get();
+        })->active()->sorting()->limit(16)->get();
 
         // Obter as 5 categorias mais recentes das últimas notícias
         $recentCategories = BlogCategory::whereHas('blogs', function($query) {
