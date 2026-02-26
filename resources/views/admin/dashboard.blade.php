@@ -299,6 +299,11 @@
                     'title' => 'Lead Contato'
                 ])
             @endif
+            @include('admin.components.dashboard-card', [
+                'route' => route('admin.dashboard.leadDownload.index'),
+                'icon' => 'mdi-account-box-outline',
+                'title' => 'Lead Download'
+            ])
 
         </div>
     @endif

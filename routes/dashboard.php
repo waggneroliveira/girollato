@@ -39,6 +39,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DepoimentController;
+use App\Http\Controllers\DownloadFichaController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LetsgoController;
 use App\Http\Controllers\ServiceLocationController;
@@ -150,6 +151,12 @@ Route::prefix('painel/')->group(function () {
         ->parameters(['newsletter'=>'newsletter']);
         Route::post('newsletter/delete', [NewsletterController::class, 'destroySelected'])
         ->name('admin.dashboard.newsletter.destroySelected');
+        //LEAD DOWNLOAD
+        Route::resource('lead-download', DownloadFichaController::class)
+        ->names('admin.dashboard.leadDownload')
+        ->parameters(['lead-download'=>'leadDownload']);
+        Route::post('lead-download/delete', [DownloadFichaController::class, 'destroySelected'])
+        ->name('admin.dashboard.leadDownload.destroySelected');
         //ANUNCIO
         Route::resource('anuncio', AnnouncementController::class)
         ->names('admin.dashboard.announcement')
