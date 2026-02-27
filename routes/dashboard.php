@@ -154,7 +154,7 @@ Route::prefix('painel/')->group(function () {
         //LEAD DOWNLOAD
         Route::resource('lead-download', DownloadFichaController::class)
         ->names('admin.dashboard.leadDownload')
-        ->parameters(['lead-download'=>'leadDownload']);
+        ->parameters(['lead-download'=>'downloadFicha']);
         Route::post('lead-download/delete', [DownloadFichaController::class, 'destroySelected'])
         ->name('admin.dashboard.leadDownload.destroySelected');
         //ANUNCIO

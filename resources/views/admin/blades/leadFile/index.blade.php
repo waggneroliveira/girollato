@@ -34,8 +34,8 @@
                                     <div class="col-6">
                                         @if(Auth::user()->hasRole('Super') || 
                                         Auth::user()->can('usuario.tornar usuario master') || 
-                                        Auth::user()->can('leadDownload.visualizar') || 
-                                        Auth::user()->can('leadDownload.remover'))
+                                        Auth::user()->can('newsltter.visualizar') || 
+                                        Auth::user()->can('newsltter.remover'))
                                             <button id="btSubmitDelete" data-route="{{route('admin.dashboard.leadDownload.destroySelected')}}" type="button" class="btSubmitDelete btn btn-danger" style="display: none;">{{__('dashboard.btn_delete_all')}}</button>
                                         @endif
                                     </div>
@@ -95,9 +95,9 @@
                                                 <td class="d-flex gap-lg-1 justify-content-center" style="padding: 18px 15px 0px 0px;">
                                                     @if(Auth::user()->hasRole('Super') || 
                                                     Auth::user()->can('usuario.tornar usuario master') || 
-                                                    Auth::user()->can('leadDownload.visualizar') && 
-                                                    Auth::user()->can('leadDownload.remover'))
-                                                        <form action="{{route('admin.dashboard.leadDownload.destroy',['leadDownload' => $leadDownload->id])}}" style="width: 30px" method="POST">
+                                                    Auth::user()->can('newsletter.visualizar') && 
+                                                    Auth::user()->can('newsletter.remover'))
+                                                        <form action="{{route('admin.dashboard.leadDownload.destroy',['downloadFicha' => $leadDownload->id])}}" style="width: 30px" method="POST">
                                                             @method('DELETE') @csrf        
                                                             
                                                             <button type="button" style="width: 30px"class="demo-delete-row btn btn-danger btn-xs btn-icon btSubmitDeleteItem"><i class="fa fa-times"></i></button>

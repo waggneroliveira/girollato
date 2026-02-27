@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DownloadFicha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 
 class DownloadFichaController extends Controller
